@@ -11,6 +11,9 @@
     </script>
     <!-- SDK Supabase pour le cloud -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Cropper.js pour le recadrage photo de profil -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
     <!-- Police style rétro/pixel -->
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
@@ -130,15 +133,29 @@
                         <label class="block text-xs font-bold mb-1 uppercase text-dex-muted">Nom de l'artiste</label>
                         <input type="text" id="name" required class="w-full p-2.5 rounded-2xl bg-dex-dark border border-dex-mid text-dex-lightest focus:outline-none focus:border-dex-accent">
                     </div>
+                    
+                    <!-- Section Image Principale avec Recadrage style Photo de Profil -->
                     <div>
-                        <label class="block text-xs font-bold mb-1 uppercase text-dex-muted">URLs des images</label>
-                        <div id="images-inputs-container" class="space-y-2 mb-2">
-                            <div class="flex gap-2">
-                                <input type="url" required class="image-input w-full p-2.5 rounded-2xl bg-dex-dark border border-dex-mid text-dex-lightest focus:outline-none focus:border-dex-accent text-sm" placeholder="https://... (Image 1)">
-                            </div>
+                        <label class="block text-xs font-bold mb-1 uppercase text-dex-muted">Image Principale & Recadrage (Profil)</label>
+                        <div class="flex gap-2 mb-2">
+                            <input type="url" id="primary-image-url" required class="w-full p-2.5 rounded-2xl bg-dex-dark border border-dex-mid text-dex-lightest focus:outline-none focus:border-dex-accent text-sm" placeholder="https://... (URL de l'image)">
+                            <button type="button" onclick="initCropper()" class="px-4 py-2 bg-dex-accent text-white rounded-2xl text-xs font-bold hover:bg-amber-800 transition whitespace-nowrap shadow">Ajuster</button>
                         </div>
+                        
+                        <!-- Zone du recadreur Cropper.js -->
+                        <div id="cropper-container" class="hidden w-full h-64 bg-dex-dark rounded-2xl overflow-hidden border-2 border-dex-mid relative mb-2">
+                            <img id="image-to-crop" class="max-w-full">
+                        </div>
+                        <p class="text-[10px] text-dex-muted italic" id="cropper-hint">Astuce : Cliquez sur "Ajuster" pour recadrer votre image au format miniature (carré).</p>
+                    </div>
+
+                    <!-- Images Supplémentaires -->
+                    <div>
+                        <label class="block text-xs font-bold mb-1 uppercase text-dex-muted">Images supplémentaires (Optionnel)</label>
+                        <div id="images-inputs-container" class="space-y-2 mb-2"></div>
                         <button type="button" onclick="addImageInput()" class="text-xs text-dex-accent font-bold hover:opacity-75">+ Ajouter une autre image</button>
                     </div>
+
                     <div>
                         <label class="block text-xs font-bold mb-1 uppercase text-dex-muted">Description / Style</label>
                         <textarea id="description" rows="2" required class="w-full p-2.5 rounded-2xl bg-dex-dark border border-dex-mid text-dex-lightest focus:outline-none focus:border-dex-accent"></textarea>
@@ -183,10 +200,9 @@
         let currentFormTags = [];
         let currentImageIndex = 0;
         let currentArtistIndex = null;
-
-        // Variables pour le réglage de l'aperçu de l'image (type photo de profil)
-        let currentZoom = 1;
-        let currentFitMode = 'contain'; // 'contain' (entier) ou 'cover' (remplir)
+        
+        // Instance globale de Cropper.js
+        let cropper = null;
 
         async function fetchArtistsFromCloud() {
             const { data, error } = await dbClient.from('artists').select('*');
@@ -345,12 +361,48 @@
             });
         }
 
+        // Initialisation du Cropper pour l'image principale
+        function initCropper() {
+            const urlInput = document.getElementById('primary-image-url').value.trim();
+            const container = document.getElementById('cropper-container');
+            const imageEl = document.getElementById('image-to-crop');
+            const hint = document.getElementById('cropper-hint');
+
+            if (!urlInput) {
+                alert("Veuillez d'abord entrer une URL d'image principale valide.");
+                return;
+            }
+
+            container.classList.remove('hidden');
+            imageEl.src = urlInput;
+
+            if (cropper) {
+                cropper.destroy();
+            }
+
+            cropper = new Cropper(imageEl, {
+                aspectRatio: 1 / 1,
+                viewMode: 1,
+                dragMode: 'move',
+                autoCropArea: 0.9,
+                restore: false,
+                guides: true,
+                center: true,
+                highlight: false,
+                cropBoxMovable: true,
+                cropBoxResizable: true,
+                toggleDragModeOnDblclick: false,
+            });
+
+            hint.textContent = "Recadrez la miniature à votre guise (carré type photo de profil).";
+        }
+
         function addImageInput() {
             const container = document.getElementById('images-inputs-container');
             const div = document.createElement('div');
             div.className = "flex gap-2";
             div.innerHTML = `
-                <input type="url" required class="image-input w-full p-2.5 rounded-2xl bg-dex-dark border border-dex-mid text-dex-lightest focus:outline-none focus:border-dex-accent text-sm" placeholder="https://... (Autre image)">
+                <input type="url" class="image-input w-full p-2.5 rounded-2xl bg-dex-dark border border-dex-mid text-dex-lightest focus:outline-none focus:border-dex-accent text-sm" placeholder="https://... (Image supplémentaire)">
                 <button type="button" onclick="this.parentElement.remove()" class="px-3 bg-dex-dark text-dex-accent rounded-2xl border border-dex-mid hover:bg-dex-mid font-bold">×</button>
             `;
             container.appendChild(div);
@@ -372,11 +424,16 @@
             currentFormTags = [];
             const form = document.getElementById('artist-form');
             if(form) form.reset();
-            document.getElementById('images-inputs-container').innerHTML = `
-                <div class="flex gap-2">
-                    <input type="url" required class="image-input w-full p-2.5 rounded-2xl bg-dex-dark border border-dex-mid text-dex-lightest focus:outline-none focus:border-dex-accent text-sm" placeholder="https://... (Image 1)">
-                </div>
-            `;
+            
+            // Réinitialiser le cropper si actif
+            if (cropper) {
+                cropper.destroy();
+                cropper = null;
+            }
+            document.getElementById('cropper-container').classList.add('hidden');
+            document.getElementById('cropper-hint').textContent = 'Astuce : Cliquez sur "Ajuster" pour recadrer votre image au format miniature (carré).';
+
+            document.getElementById('images-inputs-container').innerHTML = '';
             document.getElementById('links-inputs-container').innerHTML = `
                 <div class="flex gap-2">
                     <input type="text" class="link-name-input w-1/3 p-2.5 rounded-2xl bg-dex-dark border border-dex-mid text-dex-lightest focus:outline-none focus:border-dex-accent text-sm" placeholder="Nom du site">
@@ -460,8 +517,6 @@
         function showDetail(index) {
             currentArtistIndex = index;
             currentImageIndex = 0;
-            currentZoom = 1;
-            currentFitMode = 'contain';
             renderDetailContent();
             switchPage('detail');
         }
@@ -478,17 +533,8 @@
 
             let imageSectionHtml = `
                 <div class="flex flex-col gap-3">
-                    <div class="h-80 md:h-96 rounded-2xl overflow-hidden border-2 border-dex-mid bg-dex-dark/95 relative shadow-inner flex items-center justify-center p-2 select-none">
-                        <img src="${currentImg}" alt="${artist.name}" style="transform: scale(${currentZoom}); transition: transform 0.2s ease;" class="max-h-full max-w-full object-${currentFitMode}" onerror="this.src='https://via.placeholder.com/400x300?text=ErreurImage'">
-                        
-                        <!-- Barre de réglage type photo de profil -->
-                        <div class="absolute top-2 left-2 flex gap-1 bg-dex-darkest/90 p-1.5 rounded-xl border border-dex-mid backdrop-blur-sm z-10 shadow">
-                            <button onclick="adjustZoom(0.15)" class="px-2 py-1 bg-dex-dark hover:bg-dex-accent text-dex-lightest text-xs rounded-lg border border-dex-mid font-bold" title="Zoom +">🔍+</button>
-                            <button onclick="adjustZoom(-0.15)" class="px-2 py-1 bg-dex-dark hover:bg-dex-accent text-dex-lightest text-xs rounded-lg border border-dex-mid font-bold" title="Zoom -">🔍-</button>
-                            <button onclick="toggleFitMode()" class="px-2.5 py-1 bg-dex-dark hover:bg-dex-accent text-dex-lightest text-xs rounded-lg border border-dex-mid font-bold" title="Changer le mode d'affichage">🖼️ ${currentFitMode === 'contain' ? 'Entier' : 'Remplir'}</button>
-                            <button onclick="resetImageAdjustment()" class="px-2 py-1 bg-dex-dark hover:bg-dex-accent text-dex-lightest text-xs rounded-lg border border-dex-mid font-bold" title="Réinitialiser">↺</button>
-                        </div>
-
+                    <div class="h-80 md:h-96 rounded-2xl overflow-hidden border-2 border-dex-mid bg-dex-dark/90 relative shadow-inner flex items-center justify-center p-2">
+                        <img src="${currentImg}" alt="${artist.name}" class="max-h-full max-w-full object-contain transition-all duration-300" onerror="this.src='https://via.placeholder.com/400x300?text=ErreurImage'">
                         ${images.length > 1 ? `
                             <button onclick="prevImage()" class="absolute left-2 top-1/2 -translate-y-1/2 bg-dex-darkest/80 hover:bg-dex-accent text-white px-3 py-2 rounded-xl border border-dex-mid font-bold text-sm transition shadow">‹</button>
                             <button onclick="nextImage()" class="absolute right-2 top-1/2 -translate-y-1/2 bg-dex-darkest/80 hover:bg-dex-accent text-white px-3 py-2 rounded-xl border border-dex-mid font-bold text-sm transition shadow">›</button>
@@ -549,7 +595,6 @@
             const artist = artists[currentArtistIndex];
             const images = artist.images || [];
             currentImageIndex = (currentImageIndex + 1) % images.length;
-            currentZoom = 1;
             renderDetailContent();
         }
 
@@ -557,29 +602,11 @@
             const artist = artists[currentArtistIndex];
             const images = artist.images || [];
             currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
-            currentZoom = 1;
             renderDetailContent();
         }
 
         window.selectImageIndex = function(idx) {
             currentImageIndex = idx;
-            currentZoom = 1;
-            renderDetailContent();
-        }
-
-        window.adjustZoom = function(delta) {
-            currentZoom = Math.max(0.5, Math.min(3, currentZoom + delta));
-            renderDetailContent();
-        }
-
-        window.toggleFitMode = function() {
-            currentFitMode = currentFitMode === 'contain' ? 'cover' : 'contain';
-            renderDetailContent();
-        }
-
-        window.resetImageAdjustment = function() {
-            currentZoom = 1;
-            currentFitMode = 'contain';
             renderDetailContent();
         }
 
@@ -588,8 +615,26 @@
             formElement.addEventListener('submit', async (e) => {
                 e.preventDefault();
                 
+                // Récupération de l'image principale (recadrée si le cropper a été utilisé)
+                let primaryImageUrl = document.getElementById('primary-image-url').value.trim();
+                let finalPrimaryImage = primaryImageUrl;
+
+                if (cropper) {
+                    const canvas = cropper.getCroppedCanvas({
+                        width: 400,
+                        height: 400
+                    });
+                    if (canvas) {
+                        finalPrimaryImage = canvas.toDataURL('image/jpeg', 0.85);
+                    }
+                }
+
                 const imageInputs = document.querySelectorAll('.image-input');
-                const imagesList = Array.from(imageInputs).map(input => input.value.trim()).filter(url => url.length > 0);
+                const extraImages = Array.from(imageInputs).map(input => input.value.trim()).filter(url => url.length > 0);
+
+                const imagesList = [];
+                if (finalPrimaryImage) imagesList.push(finalPrimaryImage);
+                imagesList.push(...extraImages);
 
                 const linkNameInputs = document.querySelectorAll('.link-name-input');
                 const linkUrlInputs = document.querySelectorAll('.link-url-input');
