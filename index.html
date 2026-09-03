@@ -11,7 +11,7 @@
     </script>
     <!-- SDK Supabase pour le cloud -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <!-- Cropper.js pour le recadrage photo de profil -->
+    <!-- Cropper.js pour le recadrage de la prévisualisation index -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
     <!-- Police style rétro/pixel -->
@@ -83,10 +83,10 @@
             <section id="page-home" class="page flex flex-col items-center justify-center h-full text-center py-6">
                 <div class="bg-dex-darkest p-8 rounded-[2rem] border-4 border-dex-mid shadow-inner max-w-xl w-full text-dex-lightest transition-colors duration-300 flex flex-col items-center">
                     <img src="https://github.com/AkurasuBe/GoonDeX/blob/main/c9442c18-267f-422d-89ab-d0a71b10127a.png?raw=true" alt="Logo Goon-Dex" class="w-full max-w-[280px] mb-6 drop-shadow-lg rounded-xl border-2 border-dex-mid">
-                    <p class="text-sm text-dex-muted mb-6">Répertoire universel et collaboratif des artistes et de leurs œuvres.</p>
+                    <p class="text-sm text-dex-muted mb-6">Répertoire universel et collaboratif des artistes et de leurs œuvres[cite: 3].</p>
                     <div class="w-full retro-screen p-4 rounded-2xl mb-6 text-left font-mono-tech text-sm font-bold leading-relaxed shadow-inner">
-                        <p>> Connexion au Cloud Supabase établie...</p>
-                        <p>> Mode collaboratif public actif.</p>
+                        <p>> Connexion au Cloud Supabase établie[cite: 3]...</p>
+                        <p>> Mode collaboratif public actif[cite: 3].</p>
                         <p>> Appuyez sur START pour explorer.</p>
                     </div>
                     <button onclick="switchPage('list')" class="w-full bg-dex-accent hover:bg-amber-800 text-white font-bold py-3 px-6 rounded-2xl border-b-4 border-amber-950 transition uppercase tracking-wider font-retro text-xs shadow-md">
@@ -102,7 +102,7 @@
                     <span id="counter-badge" class="bg-dex-darkest text-dex-lightest px-3 py-1 rounded-2xl text-xs font-bold border border-dex-mid">Chargement...</span>
                 </div>
                 <div id="artists-list-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 max-h-[60vh] overflow-y-auto pr-2">
-                    <!-- Chargé dynamiquement -->
+                    <!-- Chargé dynamiquement[cite: 3] -->
                 </div>
             </section>
 
@@ -133,29 +133,27 @@
                         <label class="block text-xs font-bold mb-1 uppercase text-dex-muted">Nom de l'artiste</label>
                         <input type="text" id="name" required class="w-full p-2.5 rounded-2xl bg-dex-dark border border-dex-mid text-dex-lightest focus:outline-none focus:border-dex-accent">
                     </div>
-                    
-                    <!-- Section Image Principale avec Recadrage style Photo de Profil -->
+
+                    <!-- RECADRAGE DE LA PRÉVISUALISATION INDEX -->
                     <div>
-                        <label class="block text-xs font-bold mb-1 uppercase text-dex-muted">Image Principale & Recadrage (Profil)</label>
+                        <label class="block text-xs font-bold mb-1 uppercase text-dex-muted">Image principale & Cadrage Index (Vignette)</label>
                         <div class="flex gap-2 mb-2">
-                            <input type="url" id="primary-image-url" required class="w-full p-2.5 rounded-2xl bg-dex-dark border border-dex-mid text-dex-lightest focus:outline-none focus:border-dex-accent text-sm" placeholder="https://... (URL de l'image)">
-                            <button type="button" onclick="initCropper()" class="px-4 py-2 bg-dex-accent text-white rounded-2xl text-xs font-bold hover:bg-amber-800 transition whitespace-nowrap shadow">Ajuster</button>
+                            <input type="url" id="primary-image-url" required class="w-full p-2.5 rounded-2xl bg-dex-dark border border-dex-mid text-dex-lightest focus:outline-none focus:border-dex-accent text-sm" placeholder="https://... (URL de l'image principale)">
+                            <button type="button" onclick="initCropper()" class="px-4 py-2 bg-dex-accent text-white rounded-2xl text-xs font-bold hover:bg-amber-800 transition whitespace-nowrap shadow">Ajuster pour l'index</button>
                         </div>
                         
-                        <!-- Zone du recadreur Cropper.js -->
+                        <!-- Zone interactive de recadrage au format carte index -->
                         <div id="cropper-container" class="hidden w-full h-64 bg-dex-dark rounded-2xl overflow-hidden border-2 border-dex-mid relative mb-2">
                             <img id="image-to-crop" class="max-w-full">
                         </div>
-                        <p class="text-[10px] text-dex-muted italic" id="cropper-hint">Astuce : Cliquez sur "Ajuster" pour recadrer votre image au format miniature (carré).</p>
+                        <p class="text-[10px] text-dex-muted italic" id="cropper-hint">Astuce : Cliquez sur "Ajuster pour l'index" pour choisir la zone visible de la miniature dans la liste.</p>
                     </div>
 
-                    <!-- Images Supplémentaires -->
                     <div>
                         <label class="block text-xs font-bold mb-1 uppercase text-dex-muted">Images supplémentaires (Optionnel)</label>
                         <div id="images-inputs-container" class="space-y-2 mb-2"></div>
                         <button type="button" onclick="addImageInput()" class="text-xs text-dex-accent font-bold hover:opacity-75">+ Ajouter une autre image</button>
                     </div>
-
                     <div>
                         <label class="block text-xs font-bold mb-1 uppercase text-dex-muted">Description / Style</label>
                         <textarea id="description" rows="2" required class="w-full p-2.5 rounded-2xl bg-dex-dark border border-dex-mid text-dex-lightest focus:outline-none focus:border-dex-accent"></textarea>
@@ -201,7 +199,7 @@
         let currentImageIndex = 0;
         let currentArtistIndex = null;
         
-        // Instance globale de Cropper.js
+        // Instance globale de Cropper.js pour l'index
         let cropper = null;
 
         async function fetchArtistsFromCloud() {
@@ -291,14 +289,15 @@
             const tagsHtml = (artist.tags || []).map(t => `<span class="bg-dex-dark text-dex-muted text-[10px] px-2 py-0.5 rounded-xl border border-dex-mid">${escapeHtml(t)}</span>`).join(' ');
             const coverImage = (artist.images && artist.images.length > 0) ? artist.images[0] : '';
 
+            // Utilisation de object-cover pour que la miniature recadrée sur-mesure remplisse le cadre de l'index parfaitement
             card.innerHTML = `
                 <div>
                     <div class="flex items-center justify-between mb-2 text-dex-muted text-xs font-bold">
                         <span>📁 #${String(index + 1).padStart(3, '0')}</span>
                         ${artist.images && artist.images.length > 1 ? `<span class="bg-dex-dark px-1.5 py-0.5 rounded text-[10px] border border-dex-mid">📷 ${artist.images.length}</span>` : ''}
                     </div>
-                    <div class="h-32 rounded-2xl overflow-hidden mb-2 bg-dex-dark/70 border border-dex-mid flex items-center justify-center p-1">
-                        <img src="${coverImage}" alt="${artist.name}" class="max-h-full max-w-full object-contain" onerror="this.src='https://via.placeholder.com/300x200?text=ErreurImage'">
+                    <div class="h-32 rounded-2xl overflow-hidden mb-2 bg-dex-dark/70 border border-dex-mid flex items-center justify-center">
+                        <img src="${coverImage}" alt="${artist.name}" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/300x200?text=ErreurImage'">
                     </div>
                     <h3 class="font-bold text-sm truncate text-dex-lightest">${escapeHtml(artist.name)}</h3>
                     <div class="flex flex-wrap gap-1 mt-2">${tagsHtml}</div>
@@ -361,7 +360,7 @@
             });
         }
 
-        // Initialisation du Cropper pour l'image principale
+        // Initialisation de Cropper.js avec format paysage (4/3) pour correspondre exactement à la vignette de l'index
         function initCropper() {
             const urlInput = document.getElementById('primary-image-url').value.trim();
             const container = document.getElementById('cropper-container');
@@ -369,7 +368,7 @@
             const hint = document.getElementById('cropper-hint');
 
             if (!urlInput) {
-                alert("Veuillez d'abord entrer une URL d'image principale valide.");
+                alert("Veuillez d'abord entrer une URL d'image principale.");
                 return;
             }
 
@@ -381,10 +380,10 @@
             }
 
             cropper = new Cropper(imageEl, {
-                aspectRatio: 1 / 1,
+                aspectRatio: 4 / 3, // Format paysage correspondant au design de la carte de l'index
                 viewMode: 1,
                 dragMode: 'move',
-                autoCropArea: 0.9,
+                autoCropArea: 1,
                 restore: false,
                 guides: true,
                 center: true,
@@ -394,7 +393,7 @@
                 toggleDragModeOnDblclick: false,
             });
 
-            hint.textContent = "Recadrez la miniature à votre guise (carré type photo de profil).";
+            hint.textContent = "Cadrez la zone que vous souhaitez voir s'afficher dans la vignette de l'index.";
         }
 
         function addImageInput() {
@@ -425,13 +424,12 @@
             const form = document.getElementById('artist-form');
             if(form) form.reset();
             
-            // Réinitialiser le cropper si actif
             if (cropper) {
                 cropper.destroy();
                 cropper = null;
             }
             document.getElementById('cropper-container').classList.add('hidden');
-            document.getElementById('cropper-hint').textContent = 'Astuce : Cliquez sur "Ajuster" pour recadrer votre image au format miniature (carré).';
+            document.getElementById('cropper-hint').textContent = 'Astuce : Cliquez sur "Ajuster pour l\'index" pour choisir la zone visible de la miniature dans la liste.';
 
             document.getElementById('images-inputs-container').innerHTML = '';
             document.getElementById('links-inputs-container').innerHTML = `
@@ -615,14 +613,14 @@
             formElement.addEventListener('submit', async (e) => {
                 e.preventDefault();
                 
-                // Récupération de l'image principale (recadrée si le cropper a été utilisé)
                 let primaryImageUrl = document.getElementById('primary-image-url').value.trim();
                 let finalPrimaryImage = primaryImageUrl;
 
+                // Si le recadreur a été utilisé, on extrait la zone de prévisualisation index sélectionnée
                 if (cropper) {
                     const canvas = cropper.getCroppedCanvas({
-                        width: 400,
-                        height: 400
+                        width: 600,
+                        height: 450
                     });
                     if (canvas) {
                         finalPrimaryImage = canvas.toDataURL('image/jpeg', 0.85);
