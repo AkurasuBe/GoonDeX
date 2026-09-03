@@ -1,621 +1,234 @@
 <!DOCTYPE html>
-<html lang="fr" class="dark">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GOON-DEX - Pokédex des Artistes</title>
-    <!-- Tailwind CSS -->
+    <title>Goon-Dex - Artist Directory</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = { darkMode: 'class' }
-    </script>
-    <!-- SDK Supabase pour le cloud -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <!-- Police style rétro/pixel -->
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-    <style>
-        .font-retro { font-family: 'Press Start 2P', monospace; }
-        .font-mono-tech { font-family: 'Share Tech Mono', monospace; }
-        
-        /* Palette Orange / Marron Rétro (Mode Sombre) */
-        html.dark .bg-dex-darkest { background-color: #16100c; }
-        html.dark .bg-dex-dark { background-color: #211711; }
-        html.dark .bg-dex-mid { background-color: #38261c; }
-        html.dark .bg-dex-accent { background-color: #b3541e; } 
-        html.dark .hover\:bg-dex-accent:hover { background-color: #8c4116; }
-        html.dark .border-dex-darkest { border-color: #16100c; }
-        html.dark .border-dex-dark { border-color: #211711; }
-        html.dark .border-dex-mid { border-color: #4f3729; }
-        html.dark .border-dex-accent { border-color: #b3541e; }
-        html.dark .text-dex-lightest { color: #f5ebe0; } 
-        html.dark .text-dex-muted { color: #b59f8c; }
-        html.dark .text-dex-accent { color: #e07a5f; }
-        html.dark .retro-screen { background-color: #1b130e; color: #f5ebe0; border: 4px solid #4f3729; }
-
-        /* Palette Orange / Marron Rétro (Mode Clair) */
-        html:not(.dark) .bg-dex-darkest { background-color: #f7f3ed; }
-        html:not(.dark) .bg-dex-dark { background-color: #ffffff; }
-        html:not(.dark) .bg-dex-mid { background-color: #ede2d5; }
-        html:not(.dark) .bg-dex-accent { background-color: #b3541e; }
-        html:not(.dark) .hover\:bg-dex-accent:hover { background-color: #8c4116; }
-        html:not(.dark) .border-dex-darkest { border-color: #ede2d5; }
-        html:not(.dark) .border-dex-dark { border-color: #ede2d5; }
-        html:not(.dark) .border-dex-mid { border-color: #d1bfae; }
-        html:not(.dark) .border-dex-accent { border-color: #b3541e; }
-        html:not(.dark) .text-dex-lightest { color: #2c1d14; }
-        html:not(.dark) .text-dex-muted { color: #7a6252; }
-        html:not(.dark) .text-dex-accent { color: #b3541e; }
-        html:not(.dark) .retro-screen { background-color: #faf6f0; color: #2c1d14; border: 4px solid #d1bfae; }
-    </style>
-</head>
-<body class="bg-dex-darkest min-h-screen text-dex-lightest font-mono-tech flex flex-col justify-between selection:bg-orange-500 selection:text-white p-2 sm:p-4 transition-colors duration-300">
-
-    <div class="max-w-7xl mx-auto w-full my-2 bg-dex-dark rounded-[2.5rem] border-8 border-dex-darkest shadow-2xl overflow-hidden flex flex-col flex-grow transition-colors duration-300">
-        
-        <header class="bg-dex-darkest border-b-4 border-dex-darkest p-4 rounded-t-[2rem] transition-colors duration-300">
-            <div class="flex flex-row justify-between items-center gap-4 px-2">
-                <div class="flex items-center gap-2">
-                    <div class="w-8 h-8 bg-amber-600 rounded-full border-4 border-dex-dark shadow-md animate-pulse"></div>
-                    <div class="w-4 h-4 bg-dex-mid rounded-full border-2 border-dex-dark"></div>
-                    <div class="w-4 h-4 bg-dex-muted rounded-full border-2 border-dex-dark"></div>
-                </div>
-
-                <div class="flex items-center gap-3">
-                    <nav class="flex gap-2 sm:gap-4 flex-row items-center">
-                        <button onclick="switchPage('home')" id="tab-home" class="px-5 sm:px-6 py-2.5 bg-dex-mid hover:bg-dex-accent hover:text-white text-dex-lightest rounded-2xl font-bold border-b-4 border-dex-darkest text-xs transition shadow whitespace-nowrap">Accueil</button>
-                        <button onclick="switchPage('list')" id="tab-list" class="px-5 sm:px-6 py-2.5 bg-dex-mid hover:bg-dex-accent hover:text-white text-dex-lightest rounded-2xl font-bold border-b-4 border-dex-darkest text-xs transition shadow whitespace-nowrap">Index</button>
-                        <button onclick="switchPage('search')" id="tab-search" class="px-5 sm:px-6 py-2.5 bg-dex-mid hover:bg-dex-accent hover:text-white text-dex-lightest rounded-2xl font-bold border-b-4 border-dex-darkest text-xs transition shadow whitespace-nowrap">Recherche</button>
-                        <button onclick="switchPage('add')" id="tab-add" class="px-5 sm:px-6 py-2.5 bg-dex-mid hover:bg-dex-accent hover:text-white text-dex-lightest rounded-2xl font-bold border-b-4 border-dex-darkest text-xs transition shadow whitespace-nowrap">Ajouter +</button>
-                    </nav>
-
-                    <button onclick="toggleTheme()" id="theme-toggle-btn" class="p-2.5 bg-dex-mid hover:bg-dex-accent hover:text-white text-dex-lightest rounded-2xl border-b-4 border-dex-darkest text-xs transition shadow flex items-center justify-center" title="Changer de mode">☀️</button>
-                </div>
-            </div>
-        </header>
-
-        <main class="p-6 sm:p-8 flex-grow bg-dex-dark transition-colors duration-300">
-
-            <!-- ACCUEIL -->
-            <section id="page-home" class="page flex flex-col items-center justify-center h-full text-center py-6">
-                <div class="bg-dex-darkest p-8 rounded-[2rem] border-4 border-dex-mid shadow-inner max-w-xl w-full text-dex-lightest transition-colors duration-300 flex flex-col items-center">
-                    <!-- Logo GitHub propre -->
-                    <img src="https://github.com/AkurasuBe/GoonDeX/blob/main/c9442c18-267f-422d-89ab-d0a71b10127a.png?raw=true" alt="Logo Goon-Dex" class="w-full max-w-[280px] mb-6 drop-shadow-lg rounded-xl border-2 border-dex-mid">
-                    <p class="text-sm text-dex-muted mb-6">Répertoire universel et collaboratif des artistes et de leurs œuvres.</p>
-                    <div class="w-full retro-screen p-4 rounded-2xl mb-6 text-left font-mono-tech text-sm font-bold leading-relaxed shadow-inner">
-                        <p>> Connexion au Cloud Supabase établie...</p>
-                        <p>> Mode collaboratif public actif.</p>
-                        <p>> Appuyez sur START pour explorer.</p>
-                    </div>
-                    <button onclick="switchPage('list')" class="w-full bg-dex-accent hover:bg-amber-800 text-white font-bold py-3 px-6 rounded-2xl border-b-4 border-amber-950 transition uppercase tracking-wider font-retro text-xs shadow-md">
-                        Commencer l'exploration
-                    </button>
-                </div>
-            </section>
-
-            <!-- LISTE -->
-            <section id="page-list" class="page hidden">
-                <div class="flex justify-between items-center mb-4">
-                    <h2 class="font-retro text-dex-accent text-sm">DOSSIERS ARTISTES (CLOUD)</h2>
-                    <span id="counter-badge" class="bg-dex-darkest text-dex-lightest px-3 py-1 rounded-2xl text-xs font-bold border border-dex-mid">Chargement...</span>
-                </div>
-                <div id="artists-list-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 max-h-[60vh] overflow-y-auto pr-2">
-                    <!-- Chargé dynamiquement -->
-                </div>
-            </section>
-
-            <!-- RECHERCHE -->
-            <section id="page-search" class="page hidden space-y-4">
-                <h2 class="font-retro text-dex-accent text-sm">RECHERCHE & FILTRAGE</h2>
-                <div class="bg-dex-darkest p-4 rounded-2xl border-2 border-dex-mid space-y-3 transition-colors duration-300">
-                    <input type="text" id="search-input" oninput="filterArtists()" placeholder="Rechercher par nom ou description..." class="w-full p-2.5 rounded-2xl bg-dex-dark border border-dex-mid text-dex-lightest focus:outline-none focus:border-dex-accent text-sm">
-                    <div>
-                        <p class="text-xs font-bold text-dex-muted mb-2 uppercase">Filtrer par tags :</p>
-                        <div id="tags-filter-container" class="flex flex-wrap gap-2"></div>
-                    </div>
-                </div>
-                <div id="search-results-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 max-h-[45vh] overflow-y-auto pr-2"></div>
-            </section>
-
-            <!-- FICHE DÉTAILLÉE -->
-            <section id="page-detail" class="page hidden max-w-5xl mx-auto">
-                <button onclick="switchPage('list')" class="mb-4 bg-dex-mid hover:bg-dex-accent hover:text-white text-dex-lightest text-xs px-3 py-1.5 rounded-2xl border border-dex-darkest font-bold transition">← Retour</button>
-                <div id="artist-detail-content" class="bg-dex-darkest text-dex-lightest p-6 rounded-[2rem] border-4 border-dex-mid shadow-xl grid grid-cols-1 md:grid-cols-2 gap-6 transition-colors duration-300"></div>
-            </section>
-
-            <!-- AJOUT -->
-            <section id="page-add" class="page hidden max-w-2xl mx-auto bg-dex-darkest p-6 rounded-[2rem] border-4 border-dex-mid text-dex-lightest transition-colors duration-300">
-                <h2 class="font-retro text-dex-accent text-sm mb-4">NOUVELLE ENTRÉE PUBLIQUE</h2>
-                <form id="artist-form" class="space-y-3">
-                    <div>
-                        <label class="block text-xs font-bold mb-1 uppercase text-dex-muted">Nom de l'artiste</label>
-                        <input type="text" id="name" required class="w-full p-2.5 rounded-2xl bg-dex-dark border border-dex-mid text-dex-lightest focus:outline-none focus:border-dex-accent">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold mb-1 uppercase text-dex-muted">URLs des images</label>
-                        <div id="images-inputs-container" class="space-y-2 mb-2">
-                            <div class="flex gap-2">
-                                <input type="url" required class="image-input w-full p-2.5 rounded-2xl bg-dex-dark border border-dex-mid text-dex-lightest focus:outline-none focus:border-dex-accent text-sm" placeholder="https://... (Image 1)">
-                            </div>
-                        </div>
-                        <button type="button" onclick="addImageInput()" class="text-xs text-dex-accent font-bold hover:opacity-75">+ Ajouter une autre image</button>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold mb-1 uppercase text-dex-muted">Description / Style</label>
-                        <textarea id="description" rows="2" required class="w-full p-2.5 rounded-2xl bg-dex-dark border border-dex-mid text-dex-lightest focus:outline-none focus:border-dex-accent"></textarea>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold mb-1 uppercase text-dex-muted">Où le trouver (Liens)</label>
-                        <div id="links-inputs-container" class="space-y-2 mb-2">
-                            <div class="flex gap-2">
-                                <input type="text" class="link-name-input w-1/3 p-2.5 rounded-2xl bg-dex-dark border border-dex-mid text-dex-lightest focus:outline-none focus:border-dex-accent text-sm" placeholder="Nom du site">
-                                <input type="url" class="link-url-input w-2/3 p-2.5 rounded-2xl bg-dex-dark border border-dex-mid text-dex-lightest focus:outline-none focus:border-dex-accent text-sm" placeholder="https://...">
-                            </div>
-                        </div>
-                        <button type="button" onclick="addLinkInput()" class="text-xs text-dex-accent font-bold hover:opacity-75">+ Ajouter un autre lien</button>
-                    </div>
-                    <div class="relative">
-                        <label class="block text-xs font-bold mb-1 uppercase text-dex-muted">Tags</label>
-                        <div id="selected-tags-container" class="flex flex-wrap gap-1.5 mb-2 p-2 bg-dex-dark rounded-2xl border border-dex-mid min-h-[40px]"></div>
-                        <input type="text" id="tag-autocomplete-input" oninput="handleTagInput(event)" placeholder="Tapez un tag..." class="w-full p-2.5 rounded-2xl bg-dex-dark border border-dex-mid text-dex-lightest focus:outline-none focus:border-dex-accent text-sm" autocomplete="off">
-                        <div id="tag-dropdown" class="hidden absolute left-0 right-0 mt-1 bg-dex-dark border-2 border-dex-mid rounded-2xl shadow-xl max-h-36 overflow-y-auto z-50"></div>
-                    </div>
-                    <button type="submit" class="w-full bg-dex-accent hover:bg-amber-800 text-white font-bold py-2.5 px-4 rounded-2xl border-b-4 border-amber-950 uppercase tracking-wider text-xs transition mt-2 shadow-md">Publier la référence pour tous</button>
-                </form>
-            </section>
-
-        </main>
-
-        <footer class="bg-dex-darkest text-dex-muted text-center py-3 text-xs border-t-4 border-dex-dark rounded-b-[2rem] transition-colors duration-300">
-            SYSTEME GOON-DEX CLOUD • PUBLIC
-        </footer>
-    </div>
-
-    <!-- Script Logique connectée à Supabase -->
-    <script>
-        // ==========================================
-        // CONFIGURATION SUPABASE OFFICIELLE
-        // ==========================================
-        const SUPABASE_URL = 'https://qmxygwyxkakxkxyflqx.supabase.co';
-        const SUPABASE_ANON_KEY = 'sb_publishable_S0zW_2DKvCxnhpN5-LRzvQ_0Lxhm-RB'; // Ta clé Publishable
-
-        const { createClient } = supabase;
-        const dbClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-        let artists = [];
-        let selectedTagFilter = null;
-        let currentFormTags = [];
-        let currentImageIndex = 0;
-        let currentArtistIndex = null;
-
-        async function fetchArtistsFromCloud() {
-            const { data, error } = await dbClient.from('artists').select('*').order('id', { ascending: true });
-            if (error) {
-                console.error('Erreur de chargement:', error);
-            } else {
-                artists = data || [];
-                renderList();
-            }
-        }
-
-        function toggleTheme() {
-            const htmlEl = document.documentElement;
-            const btn = document.getElementById('theme-toggle-btn');
-            if (htmlEl.classList.contains('dark')) {
-                htmlEl.classList.remove('dark');
-                localStorage.setItem('goondex_theme', 'light');
-                btn.textContent = '🌙';
-            } else {
-                htmlEl.classList.add('dark');
-                localStorage.setItem('goondex_theme', 'dark');
-                btn.textContent = '☀️';
-            }
-        }
-
-        (function() {
-            const savedTheme = localStorage.getItem('goondex_theme');
-            const btn = document.getElementById('theme-toggle-btn');
-            if (savedTheme === 'light') {
-                document.documentElement.classList.remove('dark');
-                if (btn) btn.textContent = '🌙';
-            } else {
-                document.documentElement.classList.add('dark');
-                if (btn) btn.textContent = '☀️';
-            }
-        })();
-
-        function getAllTags() {
-            return [...new Set(artists.flatMap(a => a.tags || []))].sort();
-        }
-
-        function switchPage(pageId) {
-            document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
-            const targetPage = document.getElementById(`page-${pageId}`);
-            if (targetPage) targetPage.classList.remove('hidden');
-
-            document.querySelectorAll('header nav button').forEach(btn => {
-                btn.classList.remove('bg-dex-accent', 'text-white');
-                btn.classList.add('bg-dex-mid', 'text-dex-lightest');
-            });
-            const activeTab = document.getElementById(`tab-${pageId}`);
-            if(activeTab) {
-                activeTab.classList.remove('bg-dex-mid', 'text-dex-lightest');
-                activeTab.classList.add('bg-dex-accent', 'text-white');
-            }
-
-            if (pageId === 'list') fetchArtistsFromCloud();
-            if (pageId === 'search') { fetchArtistsFromCloud().then(() => initSearchPage()); }
-            if (pageId === 'add') initAddPage();
-        }
-
-        function renderList() {
-            const container = document.getElementById('artists-list-container');
-            const counter = document.getElementById('counter-badge');
-            if (!container) return;
-            
-            container.innerHTML = '';
-            counter.textContent = `${artists.length} Fichier${artists.length > 1 ? 's' : ''}`;
-
-            if (artists.length === 0) {
-                container.innerHTML = `<p class="col-span-full text-center text-dex-muted py-8">Aucun dossier trouvé dans le Cloud.</p>`;
-                return;
-            }
-
-            artists.forEach((artist, index) => {
-                container.appendChild(createArtistCard(artist, index));
-            });
-        }
-
-        function createArtistCard(artist, index) {
-            const card = document.createElement('div');
-            card.className = "bg-dex-darkest border-2 border-dex-mid rounded-2xl p-3 text-dex-lightest hover:border-dex-accent transition cursor-pointer flex flex-col justify-between shadow";
-            card.onclick = () => showDetail(index);
-
-            const tagsHtml = (artist.tags || []).map(t => `<span class="bg-dex-dark text-dex-muted text-[10px] px-2 py-0.5 rounded-xl border border-dex-mid">${escapeHtml(t)}</span>`).join(' ');
-            const coverImage = (artist.images && artist.images.length > 0) ? artist.images[0] : '';
-
-            card.innerHTML = `
-                <div>
-                    <div class="flex items-center justify-between mb-2 text-dex-muted text-xs font-bold">
-                        <span>📁 #${String(index + 1).padStart(3, '0')}</span>
-                        ${artist.images && artist.images.length > 1 ? `<span class="bg-dex-dark px-1.5 py-0.5 rounded text-[10px] border border-dex-mid">📷 ${artist.images.length}</span>` : ''}
-                    </div>
-                    <div class="h-28 rounded-2xl overflow-hidden mb-2 bg-dex-dark border border-dex-mid">
-                        <img src="${coverImage}" alt="${artist.name}" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/300x200?text=ErreurImage'">
-                    </div>
-                    <h3 class="font-bold text-sm truncate text-dex-lightest">${escapeHtml(artist.name)}</h3>
-                    <div class="flex flex-wrap gap-1 mt-2">${tagsHtml}</div>
-                </div>
-                <div class="mt-2 text-[11px] text-dex-muted truncate pt-2 border-t border-dex-dark">
-                    🔗 ${artist.links && artist.links.length > 0 ? escapeHtml(artist.links[0].name) : 'Aucun lien'}
-                </div>
-            `;
-            return card;
-        }
-
-        function initSearchPage() {
-            selectedTagFilter = null;
-            document.getElementById('search-input').value = '';
-            renderTagsFilter();
-            filterArtists();
-        }
-
-        function renderTagsFilter() {
-            const container = document.getElementById('tags-filter-container');
-            if(!container) return;
-            const allTags = getAllTags();
-            
-            let html = `<button onclick="setTagFilter(null)" class="px-3 py-1 rounded-2xl text-xs font-bold border transition ${selectedTagFilter === null ? 'bg-dex-accent text-white border-amber-950' : 'bg-dex-dark text-dex-muted border-dex-mid'}">Tous</button>`;
-            
-            allTags.forEach(tag => {
-                const isActive = selectedTagFilter === tag;
-                html += `<button onclick="setTagFilter('${escapeHtml(tag)}')" class="px-3 py-1 rounded-2xl text-xs font-bold border transition ${isActive ? 'bg-dex-accent text-white border-amber-950' : 'bg-dex-dark text-dex-muted border-dex-mid'}">${escapeHtml(tag)}</button>`;
-            });
-
-            container.innerHTML = html;
-        }
-
-        function setTagFilter(tag) {
-            selectedTagFilter = tag;
-            renderTagsFilter();
-            filterArtists();
-        }
-
-        function filterArtists() {
-            const queryElement = document.getElementById('search-input');
-            if(!queryElement) return;
-            const query = queryElement.value.toLowerCase();
-            const resultsContainer = document.getElementById('search-results-container');
-            resultsContainer.innerHTML = '';
-
-            const filtered = artists.map((artist, index) => ({ artist, index })).filter(({ artist }) => {
-                const matchesText = artist.name.toLowerCase().includes(query) || artist.description.toLowerCase().includes(query);
-                const matchesTag = selectedTagFilter === null || (artist.tags && artist.tags.includes(selectedTagFilter));
-                return matchesText && matchesTag;
-            });
-
-            if (filtered.length === 0) {
-                resultsContainer.innerHTML = `<p class="col-span-full text-center text-dex-muted py-8">Aucun résultat trouvé.</p>`;
-                return;
-            }
-
-            filtered.forEach(({ artist, index }) => {
-                resultsContainer.appendChild(createArtistCard(artist, index));
-            });
-        }
-
-        function addImageInput() {
-            const container = document.getElementById('images-inputs-container');
-            const div = document.createElement('div');
-            div.className = "flex gap-2";
-            div.innerHTML = `
-                <input type="url" required class="image-input w-full p-2.5 rounded-2xl bg-dex-dark border border-dex-mid text-dex-lightest focus:outline-none focus:border-dex-accent text-sm" placeholder="https://... (Autre image)">
-                <button type="button" onclick="this.parentElement.remove()" class="px-3 bg-dex-dark text-dex-accent rounded-2xl border border-dex-mid hover:bg-dex-mid font-bold">×</button>
-            `;
-            container.appendChild(div);
-        }
-
-        function addLinkInput() {
-            const container = document.getElementById('links-inputs-container');
-            const div = document.createElement('div');
-            div.className = "flex gap-2";
-            div.innerHTML = `
-                <input type="text" class="link-name-input w-1/3 p-2.5 rounded-2xl bg-dex-dark border border-dex-mid text-dex-lightest focus:outline-none focus:border-dex-accent text-sm" placeholder="Nom du site">
-                <input type="url" class="link-url-input w-2/3 p-2.5 rounded-2xl bg-dex-dark border border-dex-mid text-dex-lightest focus:outline-none focus:border-dex-accent text-sm" placeholder="https://...">
-                <button type="button" onclick="this.parentElement.remove()" class="px-3 bg-dex-dark text-dex-accent rounded-2xl border border-dex-mid hover:bg-dex-mid font-bold">×</button>
-            `;
-            container.appendChild(div);
-        }
-
-        function initAddPage() {
-            currentFormTags = [];
-            const form = document.getElementById('artist-form');
-            if(form) form.reset();
-            document.getElementById('images-inputs-container').innerHTML = `
-                <div class="flex gap-2">
-                    <input type="url" required class="image-input w-full p-2.5 rounded-2xl bg-dex-dark border border-dex-mid text-dex-lightest focus:outline-none focus:border-dex-accent text-sm" placeholder="https://... (Image 1)">
-                </div>
-            `;
-            document.getElementById('links-inputs-container').innerHTML = `
-                <div class="flex gap-2">
-                    <input type="text" class="link-name-input w-1/3 p-2.5 rounded-2xl bg-dex-dark border border-dex-mid text-dex-lightest focus:outline-none focus:border-dex-accent text-sm" placeholder="Nom du site">
-                    <input type="url" class="link-url-input w-2/3 p-2.5 rounded-2xl bg-dex-dark border border-dex-mid text-dex-lightest focus:outline-none focus:border-dex-accent text-sm" placeholder="https://...">
-                </div>
-            `;
-            renderSelectedFormTags();
-            document.getElementById('tag-dropdown').classList.add('hidden');
-        }
-
-        function renderSelectedFormTags() {
-            const container = document.getElementById('selected-tags-container');
-            if (currentFormTags.length === 0) {
-                container.innerHTML = `<span class="text-xs text-dex-muted italic px-1">Aucun tag sélectionné...</span>`;
-                return;
-            }
-
-            container.innerHTML = currentFormTags.map((tag, idx) => `
-                <span class="bg-dex-darkest text-dex-lightest text-xs px-2.5 py-1 rounded-xl border border-dex-mid flex items-center gap-1.5">
-                    ${escapeHtml(tag)}
-                    <button type="button" onclick="removeFormTag(${idx})" class="text-dex-accent font-bold hover:opacity-75">×</button>
-                </span>
-            `).join('');
-        }
-
-        function removeFormTag(index) {
-            currentFormTags.splice(index, 1);
-            renderSelectedFormTags();
-        }
-
-        function handleTagInput(e) {
-            const query = e.target.value.trim().toLowerCase();
-            const dropdown = document.getElementById('tag-dropdown');
-
-            if (query === '') {
-                dropdown.classList.add('hidden');
-                return;
-            }
-
-            const allTags = getAllTags();
-            const matchingTags = allTags.filter(t => t.toLowerCase().startsWith(query) && !currentFormTags.includes(t));
-
-            let html = '';
-            if (matchingTags.length > 0) {
-                matchingTags.forEach(tag => {
-                    html += `<div onclick="selectTagFromDropdown('${escapeHtml(tag)}')" class="px-3 py-2 text-xs text-dex-lightest hover:bg-dex-mid cursor-pointer transition">${escapeHtml(tag)}</div>`;
-                });
-            }
-
-            const exactMatchExists = allTags.some(t => t.toLowerCase() === query);
-            if (!exactMatchExists && query.length > 0) {
-                const formattedQuery = query.charAt(0).toUpperCase() + query.slice(1);
-                html += `<div onclick="selectTagFromDropdown('${escapeHtml(formattedQuery)}')" class="px-3 py-2 text-xs text-dex-accent font-bold hover:bg-dex-mid cursor-pointer transition border-t border-dex-mid">+ Créer le tag "${escapeHtml(formattedQuery)}"</div>`;
-            }
-
-            if (html === '') {
-                dropdown.classList.add('hidden');
-            } else {
-                dropdown.innerHTML = html;
-                dropdown.classList.remove('hidden');
-            }
-        }
-
-        function selectTagFromDropdown(tag) {
-            if (!currentFormTags.includes(tag)) {
-                currentFormTags.push(tag);
-            }
-            document.getElementById('tag-autocomplete-input').value = '';
-            document.getElementById('tag-dropdown').classList.add('hidden');
-            renderSelectedFormTags();
-        }
-
-        document.addEventListener('click', (e) => {
-            const dropdown = document.getElementById('tag-dropdown');
-            const input = document.getElementById('tag-autocomplete-input');
-            if (dropdown && input && !dropdown.contains(e.target) && e.target !== input) {
-                dropdown.classList.add('hidden');
-            }
-        });
-
-        function showDetail(index) {
-            currentArtistIndex = index;
-            currentImageIndex = 0;
-            renderDetailContent();
-            switchPage('detail');
-        }
-
-        function renderDetailContent() {
-            const artist = artists[currentArtistIndex];
-            const detailContainer = document.getElementById('artist-detail-content');
-            if (!detailContainer) return;
-            
-            const tagsHtml = (artist.tags || []).map(t => `<span class="bg-dex-dark text-dex-muted text-xs px-2.5 py-1 rounded-2xl border border-dex-mid">${escapeHtml(t)}</span>`).join(' ');
-
-            let images = artist.images || ['https://via.placeholder.com/400x300?text=PasImage'];
-            const currentImg = images[currentImageIndex] || images[0];
-
-            let imageSectionHtml = `
-                <div class="flex flex-col gap-3">
-                    <div class="h-64 md:h-80 rounded-2xl overflow-hidden border-2 border-dex-mid bg-dex-dark relative shadow-inner">
-                        <img src="${currentImg}" alt="${artist.name}" class="w-full h-full object-cover transition-all duration-300" onerror="this.src='https://via.placeholder.com/400x300?text=ErreurImage'">
-                        ${images.length > 1 ? `
-                            <button onclick="prevImage()" class="absolute left-2 top-1/2 -translate-y-1/2 bg-dex-darkest/80 hover:bg-dex-accent text-white px-3 py-2 rounded-xl border border-dex-mid font-bold text-sm transition">‹</button>
-                            <button onclick="nextImage()" class="absolute right-2 top-1/2 -translate-y-1/2 bg-dex-darkest/80 hover:bg-dex-accent text-white px-3 py-2 rounded-xl border border-dex-mid font-bold text-sm transition">›</button>
-                            <div class="absolute bottom-2 right-2 bg-dex-darkest/80 text-dex-lightest px-2.5 py-1 rounded-xl text-xs border border-dex-mid font-bold">
-                                ${currentImageIndex + 1} / ${images.length}
-                            </div>
-                        ` : ''}
-                    </div>
-            `;
-
-            if (images.length > 1) {
-                imageSectionHtml += `<div class="flex gap-2 overflow-x-auto pb-2">`;
-                images.forEach((img, idx) => {
-                    const isSelected = idx === currentImageIndex;
-                    imageSectionHtml += `
-                        <div onclick="selectImageIndex(${idx})" class="w-14 h-14 rounded-xl overflow-hidden border-2 cursor-pointer flex-shrink-0 transition ${isSelected ? 'border-dex-accent scale-105' : 'border-dex-mid opacity-60 hover:opacity-100'}">
-                            <img src="${img}" class="w-full h-full object-cover">
-                        </div>
-                    `;
-                });
-                imageSectionHtml += `</div>`;
-            }
-            imageSectionHtml += `</div>`;
-
-            let linksHtml = `<span class="text-xs text-dex-muted italic">Aucun lien répertorié</span>`;
-            if (artist.links && artist.links.length > 0) {
-                linksHtml = `<div class="flex flex-wrap gap-2">` + artist.links.map(l => `
-                    <a href="${escapeHtml(l.url)}" target="_blank" rel="noopener noreferrer" class="bg-dex-dark hover:bg-dex-accent hover:text-white text-dex-lightest px-3 py-2 rounded-2xl border border-dex-mid text-xs font-bold transition flex items-center gap-1.5 shadow-sm">
-                        🌐 ${escapeHtml(l.name)} ↗
-                    </a>
-                `).join('') + `</div>`;
-            }
-
-            detailContainer.innerHTML = `
-                ${imageSectionHtml}
-                <div class="flex flex-col justify-between space-y-4">
-                    <div>
-                        <span class="text-xs font-bold text-dex-muted uppercase tracking-widest">Fiche Répertoire #${String(currentArtistIndex + 1).padStart(3, '0')}</span>
-                        <h2 class="text-2xl font-bold text-dex-lightest mt-1">${escapeHtml(artist.name)}</h2>
-                        <div class="flex flex-wrap gap-1.5 mt-2">${tagsHtml}</div>
-                        <div class="mt-4 bg-dex-dark p-4 rounded-2xl border border-dex-mid">
-                            <h4 class="text-xs text-dex-muted uppercase font-bold mb-1">Description / Style :</h4>
-                            <p class="text-sm text-dex-lightest">${escapeHtml(artist.description)}</p>
-                        </div>
-                    </div>
-                    <div class="bg-dex-dark p-4 rounded-2xl border border-dex-mid">
-                        <h4 class="text-xs text-dex-muted uppercase font-bold mb-2">Où le trouver :</h4>
-                        ${linksHtml}
-                    </div>
-                    <button onclick="deleteArtist('${artist.id}')" class="self-start text-xs text-dex-accent hover:opacity-80 underline font-semibold">
-                        [ Supprimer cette référence ]
-                    </button>
-                </div>
-            `;
-        }
-
-        window.nextImage = function() {
-            const artist = artists[currentArtistIndex];
-            const images = artist.images || [];
-            currentImageIndex = (currentImageIndex + 1) % images.length;
-            renderDetailContent();
-        }
-
-        window.prevImage = function() {
-            const artist = artists[currentArtistIndex];
-            const images = artist.images || [];
-            currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
-            renderDetailContent();
-        }
-
-        window.selectImageIndex = function(idx) {
-            currentImageIndex = idx;
-            renderDetailContent();
-        }
-
-        const formElement = document.getElementById('artist-form');
-        if (formElement) {
-            formElement.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                
-                const imageInputs = document.querySelectorAll('.image-input');
-                const imagesList = Array.from(imageInputs).map(input => input.value.trim()).filter(url => url.length > 0);
-
-                const linkNameInputs = document.querySelectorAll('.link-name-input');
-                const linkUrlInputs = document.querySelectorAll('.link-url-input');
-                const linksList = [];
-                for (let i = 0; i < linkUrlInputs.length; i++) {
-                    const urlVal = linkUrlInputs[i].value.trim();
-                    if (urlVal) {
-                        const nameVal = linkNameInputs[i].value.trim() || urlVal;
-                        linksList.push({ name: nameVal, url: urlVal });
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        retro: {
+                            bg: '#fdf6e2',
+                            card: '#faedcd',
+                            border: '#d4a373',
+                            primary: '#bc6c25',
+                            dark: '#603813',
+                            text: '#432818'
+                        }
                     }
                 }
+            }
+        }
+    </script>
+    <!-- Supabase JS Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="bg-retro-bg text-retro-text min-h-screen flex flex-col font-sans selection:bg-retro-primary selection:text-white">
 
-                const leftoverInput = document.getElementById('tag-autocomplete-input').value.trim();
-                if (leftoverInput) {
-                    const formattedTag = leftoverInput.charAt(0).toUpperCase() + leftoverInput.slice(1);
-                    if (!currentFormTags.includes(formattedTag)) currentFormTags.push(formattedTag);
-                }
+    <!-- Header -->
+    <header class="bg-retro-card border-b-4 border-retro-border py-6 px-4 shadow-md">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <h1 class="text-3xl font-black tracking-wider text-retro-dark uppercase">Goon-Dex</h1>
+            </div>
+            <div class="w-full sm:w-auto flex gap-2">
+                <input type="text" id="searchInput" placeholder="Rechercher un artiste..." class="px-4 py-2 rounded-lg border-2 border-retro-border bg-white text-retro-text focus:outline-none focus:border-retro-primary w-full sm:w-64">
+                <button onclick="openAddModal()" class="bg-retro-primary hover:bg-retro-dark text-white font-bold px-4 py-2 rounded-lg border-2 border-retro-dark shadow transition whitespace-nowrap">
+                    + Ajouter
+                </button>
+            </div>
+        </div>
+    </header>
 
-                const newArtist = {
-                    name: document.getElementById('name').value,
-                    images: imagesList,
-                    description: document.getElementById('description').value,
-                    links: linksList,
-                    tags: currentFormTags
-                };
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-4 py-8 flex-grow w-full">
+        <!-- Tags Filter -->
+        <div id="tagsContainer" class="flex flex-wrap gap-2 mb-8">
+            <button onclick="filterByTag('ALL')" class="tag-btn active px-3 py-1 rounded-full text-sm font-bold bg-retro-primary text-white border-2 border-retro-dark">Tous</button>
+        </div>
 
-                const { error } = await dbClient.from('artists').insert([newArtist]);
-                if (error) {
-                    alert("Erreur lors de l'enregistrement public : " + error.message);
-                } else {
-                    alert("Artiste ajouté et partagé avec succès !");
-                    e.target.reset();
-                    currentFormTags = [];
-                    switchPage('list');
-                }
+        <!-- Artists Grid -->
+        <div id="artistsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Dynamically injected -->
+        </div>
+    </main>
+
+    <!-- Add Artist Modal -->
+    <div id="addModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center p-4 z-50">
+        <div class="bg-retro-card border-4 border-retro-dark rounded-xl max-w-lg w-full p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <h2 class="text-2xl font-black text-retro-dark mb-4 uppercase">Ajouter un artiste</h2>
+            <form id="addArtistForm" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block font-bold text-sm mb-1 text-retro-dark">Nom de l'artiste</label>
+                    <input type="text" id="artistName" required class="w-full px-3 py-2 rounded-lg border-2 border-retro-border bg-white focus:outline-none focus:border-retro-primary">
+                </div>
+                <div>
+                    <label class="block font-bold text-sm mb-1 text-retro-dark">Images (URLs séparées par des virgules)</label>
+                    <input type="text" id="artistImages" placeholder="https://..., https://..." required class="w-full px-3 py-2 rounded-lg border-2 border-retro-border bg-white focus:outline-none focus:border-retro-primary">
+                </div>
+                <div>
+                    <label class="block font-bold text-sm mb-1 text-retro-dark">Description</label>
+                    <textarea id="artistDesc" rows="3" class="w-full px-3 py-2 rounded-lg border-2 border-retro-border bg-white focus:outline-none focus:border-retro-primary"></textarea>
+                </div>
+                <div>
+                    <label class="block font-bold text-sm mb-1 text-retro-dark">Liens (Format: Titre|URL, un par ligne)</label>
+                    <textarea id="artistLinks" rows="2" placeholder="Twitter|https://twitter.com/..." class="w-full px-3 py-2 rounded-lg border-2 border-retro-border bg-white focus:outline-none focus:border-retro-primary"></textarea>
+                </div>
+                <div>
+                    <label class="block font-bold text-sm mb-1 text-retro-dark">Tags (séparés par des virgules)</label>
+                    <input type="text" id="artistTags" placeholder="Art, 3D, Animation" class="w-full px-3 py-2 rounded-lg border-2 border-retro-border bg-white focus:outline-none focus:border-retro-primary">
+                </div>
+                <div class="flex justify-end gap-3 pt-2">
+                    <button type="button" onclick="closeAddModal()" class="px-4 py-2 rounded-lg border-2 border-retro-dark bg-gray-200 font-bold hover:bg-gray-300">Annuler</button>
+                    <button type="submit" class="px-4 py-2 rounded-lg border-2 border-retro-dark bg-retro-primary text-white font-bold hover:bg-retro-dark">Enregistrer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-retro-card border-t-4 border-retro-border py-4 text-center text-sm font-semibold text-retro-dark mt-auto">
+        Goon-Dex &bull; Propulsé par Supabase & GitHub Pages
+    </footer>
+
+    <!-- Supabase Initialization Script -->
+    <script>
+        const SUPABASE_URL = "https://qmxjgwyxkakkxkeyflqx.supabase.co";
+        const SUPABASE_ANON_KEY = "sb_publishable_S0zW_2DKvCxnhpN5-LRzvQ_0Lxhm-RB";
+
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        let allArtists = [];
+        let currentTag = 'ALL';
+
+        async function fetchArtists() {
+            const { data, error } = await supabaseClient.from('artists').select('*').order('id', { ascending: true });
+            if (error) {
+                console.error("Erreur de chargement:", error);
+                alert("Erreur lors de l'enregistrement public : " + error.message);
+                return;
+            }
+            allArtists = data || [];
+            renderTags();
+            renderArtists(allArtists);
+        }
+
+        function renderArtists(artists) {
+            const grid = document.getElementById('artistsGrid');
+            grid.innerHTML = '';
+            
+            if (artists.length === 0) {
+                grid.innerHTML = `<p class="col-span-full text-center text-retro-dark font-semibold py-8">Aucun artiste trouvé.</p>`;
+                return;
+            }
+
+            artists.forEach(artist => {
+                const images = Array.isArray(artist.images) ? artist.images : [];
+                const links = Array.isArray(artist.links) ? artist.links : [];
+                const tags = Array.isArray(artist.tags) ? artist.tags : [];
+
+                const card = document.createElement('div');
+                card.className = "bg-retro-card border-4 border-retro-dark rounded-xl overflow-hidden shadow-lg flex flex-col justify-between";
+                
+                card.innerHTML = `
+                    <div>
+                        ${images.length > 0 ? `<img src="${images[0]}" alt="${artist.name}" class="w-full h-48 object-cover border-b-4 border-retro-dark">` : ''}
+                        <div class="p-4">
+                            <h3 class="text-xl font-black text-retro-dark mb-2">${artist.name}</h3>
+                            <p class="text-sm mb-4 text-retro-text whitespace-pre-line">${artist.description || ''}</p>
+                            <div class="flex flex-wrap gap-1 mb-4">
+                                ${tags.map(tag => `<span class="bg-retro-border text-retro-dark text-xs font-bold px-2 py-0.5 rounded">${tag}</span>`).join('')}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4 pt-0 flex flex-wrap gap-2">
+                        ${links.map(link => `<a href="${link.url}" target="_blank" class="bg-retro-primary hover:bg-retro-dark text-white text-xs font-bold px-3 py-1.5 rounded-lg border-2 border-retro-dark">${link.title}</a>`).join('')}
+                    </div>
+                `;
+                grid.appendChild(card);
             });
         }
 
-        window.deleteArtist = async function(id) {
-            if(confirm("Effacer définitivement ce dossier pour tout le monde ?")) {
-                const { error } = await dbClient.from('artists').delete().eq('id', id);
-                if(error) {
-                    alert("Erreur lors de la suppression : " + error.message);
-                } else {
-                    switchPage('list');
+        function renderTags() {
+            const tagsSet = new Set();
+            allArtists.forEach(a => {
+                if (Array.isArray(a.tags)) {
+                    a.tags.forEach(t => tagsSet.add(t));
                 }
+            });
+
+            const container = document.getElementById('tagsContainer');
+            container.innerHTML = `<button onclick="filterByTag('ALL')" class="tag-btn px-3 py-1 rounded-full text-sm font-bold ${currentTag === 'ALL' ? 'bg-retro-primary text-white border-2 border-retro-dark' : 'bg-white text-retro-dark border-2 border-retro-border'}">Tous</button>`;
+
+            tagsSet.forEach(tag => {
+                const isActive = currentTag === tag;
+                const btn = document.createElement('button');
+                btn.onclick = () => filterByTag(tag);
+                btn.className = `tag-btn px-3 py-1 rounded-full text-sm font-bold ${isActive ? 'bg-retro-primary text-white border-2 border-retro-dark' : 'bg-white text-retro-dark border-2 border-retro-border'}`;
+                btn.textContent = tag;
+                container.appendChild(btn);
+            });
+        }
+
+        function filterByTag(tag) {
+            currentTag = tag;
+            renderTags();
+            if (tag === 'ALL') {
+                renderArtists(allArtists);
+            } else {
+                const filtered = allArtists.filter(a => Array.isArray(a.tags) && a.tags.includes(tag));
+                renderArtists(filtered);
             }
         }
 
-        function escapeHtml(text) {
-            if(!text) return '';
-            const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
-            return String(text).replace(/[&<>"']/g, m => map[m]);
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            const filtered = allArtists.filter(a => a.name.toLowerCase().includes(query) || (a.description && a.description.toLowerCase().includes(query)));
+            renderArtists(filtered);
+        });
+
+        function openAddModal() {
+            document.getElementById('addModal').classList.remove('hidden');
+            document.getElementById('addModal').classList.add('flex');
         }
 
-        document.addEventListener("DOMContentLoaded", () => {
-            switchPage('home');
-        });
+        function closeAddModal() {
+            document.getElementById('addModal').classList.remove('flex');
+            document.getElementById('addModal').classList.add('hidden');
+        }
+
+        async function handleFormSubmit(event) {
+            event.preventDefault();
+            const name = document.getElementById('artistName').value;
+            const images = document.getElementById('artistImages').value.split(',').map(s => s.trim()).filter(Boolean);
+            const description = document.getElementById('artistDesc').value;
+            
+            const rawLinks = document.getElementById('artistLinks').value.split('\n');
+            const links = rawLinks.map(l => {
+                const parts = l.split('|');
+                if (parts.length === 2) {
+                    return { title: parts[0].trim(), url: parts[1].trim() };
+                }
+                return null;
+            }).filter(Boolean);
+
+            const tags = document.getElementById('artistTags').value.split(',').map(s => s.trim()).filter(Boolean);
+
+            const { error } = await supabaseClient.from('artists').insert([{ name, images, description, links, tags }]);
+            if (error) {
+                alert("Erreur lors de l'enregistrement : " + error.message);
+            } else {
+                closeAddModal();
+                document.getElementById('addArtistForm').reset();
+                fetchArtists();
+            }
+        }
+
+        fetchArtists();
     </script>
 </body>
 </html>
