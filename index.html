@@ -19,7 +19,6 @@
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
         
-        /* Personnalisation avancée du Cropper avec croix centrale et repères nets (Accent Vert Émeraude) */
         .cropper-view-box {
             outline: 2px solid #10b981;
             outline-color: rgba(16, 185, 129, 0.85);
@@ -131,19 +130,26 @@
                         <input type="text" id="name" required class="w-full p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 focus:outline-none focus:border-emerald-600 text-sm">
                     </div>
 
-                    <!-- RECADRAGE DE LA PRÉVISUALISATION INDEX AVEC CONTOURNEMENT CORS INTÉGRÉ -->
+                    <!-- RECADRAGE AVEC DOUBLE OPTION (URL ou FICHIER LOCAL ANTI-CORS) -->
                     <div>
                         <label class="block text-xs font-semibold mb-1 uppercase text-slate-500 dark:text-slate-400">Image principale & Cadrage Index (Vignette)</label>
                         <div class="flex gap-2 mb-2">
-                            <input type="url" id="primary-image-url" required class="w-full p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 focus:outline-none focus:border-emerald-600 text-sm" placeholder="https://... (URL de l'image principale)">
-                            <button type="button" onclick="initCropper()" class="px-4 py-2 bg-emerald-600 text-white rounded-xl text-xs font-semibold hover:bg-emerald-500 transition whitespace-nowrap shadow-sm">Ajuster</button>
+                            <input type="url" id="primary-image-url" class="w-full p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 focus:outline-none focus:border-emerald-600 text-sm" placeholder="https://... (URL directe)">
+                            <button type="button" onclick="initCropperFromUrl()" class="px-4 py-2 bg-emerald-600 text-white rounded-xl text-xs font-semibold hover:bg-emerald-500 transition whitespace-nowrap shadow-sm">Charger URL</button>
+                        </div>
+                        
+                        <div class="mb-2">
+                            <label class="w-full flex items-center justify-center gap-2 p-2.5 bg-slate-200 dark:bg-slate-900 hover:bg-emerald-600 hover:text-white text-slate-800 dark:text-slate-200 rounded-xl text-xs font-semibold cursor-pointer transition border border-slate-300 dark:border-slate-700 shadow-sm">
+                                📁 Importer depuis l'appareil (100% anti-blocage CORS)
+                                <input type="file" id="primary-file-input" accept="image/*" class="hidden" onchange="initCropperFromFile(this)">
+                            </label>
                         </div>
                         
                         <!-- Zone interactive de recadrage -->
                         <div id="cropper-container" class="hidden w-full h-64 bg-slate-100 dark:bg-slate-900 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 relative mb-2">
                             <img id="image-to-crop" class="max-w-full">
                         </div>
-                        <p class="text-[10px] text-slate-500 dark:text-slate-400 italic" id="cropper-hint">Astuce : Utilisez la croix centrale et les repères pour centrer et ajuster précisément la miniature.</p>
+                        <p class="text-[10px] text-slate-500 dark:text-slate-400 italic" id="cropper-hint">Astuce : Utilisez la croix centrale et les repères pour ajuster précisément la miniature.</p>
                     </div>
 
                     <div>
@@ -355,22 +361,13 @@
             });
         }
 
-        function initCropper() {
-            const rawUrl = document.getElementById('primary-image-url').value.trim();
+        function setupCropperWithSource(imageSrc) {
             const container = document.getElementById('cropper-container');
             const imageEl = document.getElementById('image-to-crop');
             const hint = document.getElementById('cropper-hint');
 
-            if (!rawUrl) {
-                alert("Veuillez d'abord entrer une URL d'image principale.");
-                return;
-            }
-
             container.classList.remove('hidden');
-            
-            // Contournement CORS : utilisation d'un proxy public sécurisé pour permettre le recadrage sans blocage navigateur
-            imageEl.crossOrigin = "anonymous";
-            imageEl.src = 'https://corsproxy.io/?' + encodeURIComponent(rawUrl);
+            imageEl.src = imageSrc;
 
             if (cropper) {
                 cropper.destroy();
@@ -391,6 +388,24 @@
             });
 
             hint.textContent = "Utilisez la croix centrale et les repères d'alignement pour ajuster précisément la miniature.";
+        }
+
+        function initCropperFromUrl() {
+            const rawUrl = document.getElementById('primary-image-url').value.trim();
+            if (!rawUrl) {
+                alert("Veuillez entrer une URL d'image valide.");
+                return;
+            }
+            // Utilisation d'un proxy alternatif ou chargement direct si autorisé
+            setupCropperWithSource('https://corsproxy.io/?' + encodeURIComponent(rawUrl));
+        }
+
+        function initCropperFromFile(input) {
+            if (input.files && input.files[0]) {
+                const file = input.files[0];
+                const localUrl = URL.createObjectURL(file);
+                setupCropperWithSource(localUrl);
+            }
         }
 
         function addImageInput() {
@@ -426,7 +441,7 @@
                 cropper = null;
             }
             document.getElementById('cropper-container').classList.add('hidden');
-            document.getElementById('cropper-hint').textContent = 'Astuce : Cliquez sur "Ajuster" pour choisir la zone visible de la miniature dans la liste.';
+            document.getElementById('cropper-hint').textContent = 'Astuce : Choisissez une image par URL ou importez-la depuis votre appareil pour ajuster la miniature.';
 
             document.getElementById('images-inputs-container').innerHTML = '';
             document.getElementById('links-inputs-container').innerHTML = `
