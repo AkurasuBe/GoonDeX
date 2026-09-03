@@ -188,7 +188,7 @@
         let currentArtistIndex = null;
 
         async function fetchArtistsFromCloud() {
-            const { data, error } = await dbClient.from('artists').select('*').order('id', { ascending: true });
+            const { data, error } = await dbClient.from('artists').select('*');
             if (error) {
                 console.error('Erreur de chargement:', error);
             } else {
