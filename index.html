@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GOON-DEX - Pokédex des Artistes</title>
+    <title>GOON-DEX - Pokédex des Artistes & Manhwas</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -23,19 +23,22 @@
     <div class="max-w-7xl mx-auto w-full my-2 bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-xl overflow-hidden flex flex-col flex-grow transition-colors duration-300">
         
         <header class="bg-slate-50 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 p-4 rounded-t-3xl transition-colors duration-300">
-            <div class="flex flex-row justify-between items-center gap-4 px-2">
+            <div class="flex flex-row justify-between items-center gap-4 px-2 flex-wrap">
                 <div class="flex items-center gap-2">
                     <div class="w-7 h-7 bg-slate-900 dark:bg-slate-100 rounded-full shadow-md"></div>
                     <div class="w-3 h-3 bg-slate-300 dark:bg-slate-700 rounded-full"></div>
                     <div class="w-3 h-3 bg-slate-200 dark:bg-slate-800 rounded-full"></div>
                 </div>
 
-                <div class="flex items-center gap-3">
-                    <nav class="flex gap-2 sm:gap-3 flex-row items-center">
-                        <button onclick="switchPage('home')" id="tab-home" class="px-4 sm:px-5 py-2 bg-slate-200 dark:bg-slate-800 hover:bg-emerald-600 hover:text-white text-slate-800 dark:text-slate-200 rounded-xl font-medium text-xs transition shadow-sm whitespace-nowrap">Accueil</button>
-                        <button onclick="switchPage('list')" id="tab-list" class="px-4 sm:px-5 py-2 bg-slate-200 dark:bg-slate-800 hover:bg-emerald-600 hover:text-white text-slate-800 dark:text-slate-200 rounded-xl font-medium text-xs transition shadow-sm whitespace-nowrap">Index</button>
-                        <button onclick="switchPage('search')" id="tab-search" class="px-4 sm:px-5 py-2 bg-slate-200 dark:bg-slate-800 hover:bg-emerald-600 hover:text-white text-slate-800 dark:text-slate-200 rounded-xl font-medium text-xs transition shadow-sm whitespace-nowrap">Recherche</button>
-                        <button onclick="switchPage('add')" id="tab-add" class="px-4 sm:px-5 py-2 bg-slate-200 dark:bg-slate-800 hover:bg-emerald-600 hover:text-white text-slate-800 dark:text-slate-200 rounded-xl font-medium text-xs transition shadow-sm whitespace-nowrap">Ajouter +</button>
+                <div class="flex items-center gap-3 flex-wrap">
+                    <nav class="flex gap-2 sm:gap-3 flex-row items-center flex-wrap">
+                        <button onclick="switchPage('home')" id="tab-home" class="px-3 sm:px-4 py-2 bg-slate-200 dark:bg-slate-800 hover:bg-emerald-600 hover:text-white text-slate-800 dark:text-slate-200 rounded-xl font-medium text-xs transition shadow-sm whitespace-nowrap">Accueil</button>
+                        <button onclick="switchPage('list')" id="tab-list" class="px-3 sm:px-4 py-2 bg-slate-200 dark:bg-slate-800 hover:bg-emerald-600 hover:text-white text-slate-800 dark:text-slate-200 rounded-xl font-medium text-xs transition shadow-sm whitespace-nowrap">Artistes</button>
+                        <button onclick="switchPage('manhwa-list')" id="tab-manhwa-list" class="px-3 sm:px-4 py-2 bg-slate-200 dark:bg-slate-800 hover:bg-emerald-600 hover:text-white text-slate-800 dark:text-slate-200 rounded-xl font-medium text-xs transition shadow-sm whitespace-nowrap">Manhwas</button>
+                        <button onclick="switchPage('search')" id="tab-search" class="px-3 sm:px-4 py-2 bg-slate-200 dark:bg-slate-800 hover:bg-emerald-600 hover:text-white text-slate-800 dark:text-slate-200 rounded-xl font-medium text-xs transition shadow-sm whitespace-nowrap">Recherche Artistes</button>
+                        <button onclick="switchPage('manhwa-search')" id="tab-manhwa-search" class="px-3 sm:px-4 py-2 bg-slate-200 dark:bg-slate-800 hover:bg-emerald-600 hover:text-white text-slate-800 dark:text-slate-200 rounded-xl font-medium text-xs transition shadow-sm whitespace-nowrap">Recherche Manhwas</button>
+                        <button onclick="switchPage('add')" id="tab-add" class="px-3 sm:px-4 py-2 bg-slate-200 dark:bg-slate-800 hover:bg-emerald-600 hover:text-white text-slate-800 dark:text-slate-200 rounded-xl font-medium text-xs transition shadow-sm whitespace-nowrap">+ Artiste</button>
+                        <button onclick="switchPage('manhwa-add')" id="tab-manhwa-add" class="px-3 sm:px-4 py-2 bg-slate-200 dark:bg-slate-800 hover:bg-emerald-600 hover:text-white text-slate-800 dark:text-slate-200 rounded-xl font-medium text-xs transition shadow-sm whitespace-nowrap">+ Manhwa</button>
                     </nav>
 
                     <button onclick="toggleTheme()" id="theme-toggle-btn" class="p-2 bg-slate-200 dark:bg-slate-800 hover:bg-emerald-600 hover:text-white text-slate-800 dark:text-slate-200 rounded-xl text-xs transition shadow-sm flex items-center justify-center" title="Changer de mode">☀️</button>
@@ -49,33 +52,44 @@
             <section id="page-home" class="page flex flex-col items-center justify-center h-full text-center py-6">
                 <div class="bg-slate-50 dark:bg-slate-950 p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm max-w-xl w-full flex flex-col items-center">
                     <img src="https://github.com/AkurasuBe/GoonDeX/blob/main/c9442c18-267f-422d-89ab-d0a71b10127a.png?raw=true" alt="Logo Goon-Dex" class="w-full max-w-[240px] mb-6 rounded-2xl border border-slate-200 dark:border-slate-800">
-                    <p class="text-xs text-slate-500 dark:text-slate-400 mb-6 font-normal">Répertoire universel et collaboratif des artistes et de leurs œuvres.</p>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mb-6 font-normal">Répertoire universel et collaboratif des artistes et des manhwas.</p>
                     <div class="w-full bg-slate-100 dark:bg-slate-900 p-4 rounded-2xl mb-6 text-left text-xs font-mono leading-relaxed border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300">
                         <p>> Connexion au Cloud Supabase établie...</p>
                         <p>> Mode collaboratif public actif.</p>
-                        <p>> Système de notes par étoiles activé.</p>
-                        <p>> Prêt pour l'exploration.</p>
+                        <p>> Index Artistes & Index Manhwas (4:5) prêts.</p>
                     </div>
-                    <button onclick="switchPage('list')" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold py-3 px-6 rounded-xl transition tracking-wide text-xs shadow-md">
-                        Commencer l'exploration
-                    </button>
+                    <div class="flex gap-3 w-full">
+                        <button onclick="switchPage('list')" class="w-1/2 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold py-3 px-4 rounded-xl transition tracking-wide text-xs shadow-md">
+                            Index Artistes
+                        </button>
+                        <button onclick="switchPage('manhwa-list')" class="w-1/2 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold py-3 px-4 rounded-xl transition tracking-wide text-xs shadow-md">
+                            Index Manhwas
+                        </button>
+                    </div>
                 </div>
             </section>
 
-            <!-- LISTE -->
+            <!-- LISTE ARTISTES -->
             <section id="page-list" class="page hidden">
                 <div class="flex justify-between items-center mb-4">
                     <h2 class="text-slate-900 dark:text-slate-100 font-semibold text-xs tracking-wider uppercase">Dossiers Artistes (Cloud)</h2>
                     <span id="counter-badge" class="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 px-3 py-1 rounded-xl text-xs font-semibold border border-slate-200 dark:border-slate-700">Chargement...</span>
                 </div>
-                <div id="artists-list-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 max-h-[60vh] overflow-y-auto pr-2">
-                    <!-- Chargé dynamiquement -->
-                </div>
+                <div id="artists-list-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 max-h-[60vh] overflow-y-auto pr-2"></div>
             </section>
 
-            <!-- RECHERCHE -->
+            <!-- LISTE MANHWAS -->
+            <section id="page-manhwa-list" class="page hidden">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-slate-900 dark:text-slate-100 font-semibold text-xs tracking-wider uppercase">Index Manhwas (Format 4:5)</h2>
+                    <span id="manhwa-counter-badge" class="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 px-3 py-1 rounded-xl text-xs font-semibold border border-slate-200 dark:border-slate-700">Chargement...</span>
+                </div>
+                <div id="manhwas-list-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 max-h-[60vh] overflow-y-auto pr-2"></div>
+            </section>
+
+            <!-- RECHERCHE ARTISTES -->
             <section id="page-search" class="page hidden space-y-4">
-                <h2 class="text-slate-900 dark:text-slate-100 font-semibold text-xs tracking-wider uppercase">Recherche & Filtrage</h2>
+                <h2 class="text-slate-900 dark:text-slate-100 font-semibold text-xs tracking-wider uppercase">Recherche Artistes</h2>
                 <div class="bg-slate-50 dark:bg-slate-950 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-3">
                     <input type="text" id="search-input" oninput="filterArtists()" placeholder="Rechercher par nom ou description..." class="w-full p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 focus:outline-none focus:border-emerald-600 text-sm">
                     <div>
@@ -86,32 +100,48 @@
                 <div id="search-results-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 max-h-[45vh] overflow-y-auto pr-2"></div>
             </section>
 
-            <!-- FICHE DÉTAILLÉE -->
+            <!-- RECHERCHE MANHWAS -->
+            <section id="page-manhwa-search" class="page hidden space-y-4">
+                <h2 class="text-slate-900 dark:text-slate-100 font-semibold text-xs tracking-wider uppercase">Recherche Manhwas</h2>
+                <div class="bg-slate-50 dark:bg-slate-950 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-3">
+                    <input type="text" id="manhwa-search-input" oninput="filterManhwas()" placeholder="Rechercher par titre ou résumé..." class="w-full p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 focus:outline-none focus:border-emerald-600 text-sm">
+                    <div>
+                        <p class="text-xs font-semibold text-slate-500 dark:text-slate-400 mb-2 uppercase">Filtrer par genres / tags :</p>
+                        <div id="manhwa-tags-filter-container" class="flex flex-wrap gap-2"></div>
+                    </div>
+                </div>
+                <div id="manhwa-search-results-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 max-h-[45vh] overflow-y-auto pr-2"></div>
+            </section>
+
+            <!-- FICHE DÉTAILLÉE ARTISTE -->
             <section id="page-detail" class="page hidden max-w-5xl mx-auto">
                 <button onclick="switchPage('list')" class="mb-4 bg-slate-200 dark:bg-slate-800 hover:bg-emerald-600 hover:text-white text-slate-800 dark:text-slate-200 text-xs px-3 py-1.5 rounded-xl font-medium transition">← Retour</button>
                 <div id="artist-detail-content" class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-xl grid grid-cols-1 md:grid-cols-2 gap-6"></div>
             </section>
 
-            <!-- AJOUT -->
+            <!-- FICHE DÉTAILLÉE MANHWA -->
+            <section id="page-manhwa-detail" class="page hidden max-w-5xl mx-auto">
+                <button onclick="switchPage('manhwa-list')" class="mb-4 bg-slate-200 dark:bg-slate-800 hover:bg-emerald-600 hover:text-white text-slate-800 dark:text-slate-200 text-xs px-3 py-1.5 rounded-xl font-medium transition">← Retour</button>
+                <div id="manhwa-detail-content" class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-xl grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+            </section>
+
+            <!-- AJOUT ARTISTE -->
             <section id="page-add" class="page hidden max-w-2xl mx-auto bg-slate-50 dark:bg-slate-950 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
-                <h2 class="text-slate-900 dark:text-slate-100 font-semibold text-xs tracking-wider uppercase mb-4">Nouvelle entrée publique</h2>
+                <h2 class="text-slate-900 dark:text-slate-100 font-semibold text-xs tracking-wider uppercase mb-4">Nouvel Artiste</h2>
                 <form id="artist-form" class="space-y-3">
                     <div>
                         <label class="block text-xs font-semibold mb-1 uppercase text-slate-500 dark:text-slate-400">Nom de l'artiste</label>
                         <input type="text" id="name" required class="w-full p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 focus:outline-none focus:border-emerald-600 text-sm">
                     </div>
-
                     <div>
                         <label class="block text-xs font-semibold mb-1 uppercase text-slate-500 dark:text-slate-400">Image principale (URL)</label>
                         <input type="url" id="primary-image-url" required class="w-full p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 focus:outline-none focus:border-emerald-600 text-sm" placeholder="https://...">
                     </div>
-
                     <div>
-                        <label class="block text-xs font-semibold mb-1 uppercase text-slate-500 dark:text-slate-400">Images supplémentaires (Optionnel)</label>
+                        <label class="block text-xs font-semibold mb-1 uppercase text-slate-500 dark:text-slate-400">Images supplémentaires</label>
                         <div id="images-inputs-container" class="space-y-2 mb-2"></div>
                         <button type="button" onclick="addImageInput()" class="text-xs text-slate-700 dark:text-slate-300 font-semibold hover:underline">+ Ajouter une autre image</button>
                     </div>
-
                     <div>
                         <label class="block text-xs font-semibold mb-1 uppercase text-slate-500 dark:text-slate-400">Note initiale (Étoiles)</label>
                         <div id="form-star-rating" class="flex gap-1.5 cursor-pointer py-1">
@@ -123,7 +153,6 @@
                         </div>
                         <input type="hidden" id="artist-rating" value="5">
                     </div>
-
                     <div>
                         <label class="block text-xs font-semibold mb-1 uppercase text-slate-500 dark:text-slate-400">Description / Style</label>
                         <textarea id="description" rows="2" required class="w-full p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 focus:outline-none focus:border-emerald-600 text-sm"></textarea>
@@ -144,7 +173,59 @@
                         <input type="text" id="tag-autocomplete-input" oninput="handleTagInput(event)" placeholder="Tapez un tag..." class="w-full p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 focus:outline-none focus:border-emerald-600 text-sm" autocomplete="off">
                         <div id="tag-dropdown" class="hidden absolute left-0 right-0 mt-1 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl shadow-lg max-h-36 overflow-y-auto z-50"></div>
                     </div>
-                    <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold py-2.5 px-4 rounded-xl tracking-wide text-xs transition mt-2 shadow-sm">Publier la référence pour tous</button>
+                    <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold py-2.5 px-4 rounded-xl tracking-wide text-xs transition mt-2 shadow-sm">Publier l'artiste</button>
+                </form>
+            </section>
+
+            <!-- AJOUT MANHWA (Format 4:5) -->
+            <section id="page-manhwa-add" class="page hidden max-w-2xl mx-auto bg-slate-50 dark:bg-slate-950 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
+                <h2 class="text-slate-900 dark:text-slate-100 font-semibold text-xs tracking-wider uppercase mb-4">Nouveau Manhwa (Miniature 4:5)</h2>
+                <form id="manhwa-form" class="space-y-3">
+                    <div>
+                        <label class="block text-xs font-semibold mb-1 uppercase text-slate-500 dark:text-slate-400">Titre du Manhwa</label>
+                        <input type="text" id="manhwa-name" required class="w-full p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 focus:outline-none focus:border-emerald-600 text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold mb-1 uppercase text-slate-500 dark:text-slate-400">Couverture principale (URL - Format 4:5 conseillé)</label>
+                        <input type="url" id="manhwa-primary-image-url" required class="w-full p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 focus:outline-none focus:border-emerald-600 text-sm" placeholder="https://...">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold mb-1 uppercase text-slate-500 dark:text-slate-400">Images / Planches supplémentaires</label>
+                        <div id="manhwa-images-inputs-container" class="space-y-2 mb-2"></div>
+                        <button type="button" onclick="addManhwaImageInput()" class="text-xs text-slate-700 dark:text-slate-300 font-semibold hover:underline">+ Ajouter une autre image</button>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold mb-1 uppercase text-slate-500 dark:text-slate-400">Note initiale (Étoiles)</label>
+                        <div id="manhwa-form-star-rating" class="flex gap-1.5 cursor-pointer py-1">
+                            <span onclick="setManhwaFormRating(1)" class="text-2xl text-amber-400 manhwa-star-btn" data-value="1">★</span>
+                            <span onclick="setManhwaFormRating(2)" class="text-2xl text-amber-400 manhwa-star-btn" data-value="2">★</span>
+                            <span onclick="setManhwaFormRating(3)" class="text-2xl text-amber-400 manhwa-star-btn" data-value="3">★</span>
+                            <span onclick="setManhwaFormRating(4)" class="text-2xl text-amber-400 manhwa-star-btn" data-value="4">★</span>
+                            <span onclick="setManhwaFormRating(5)" class="text-2xl text-amber-400 manhwa-star-btn" data-value="5">★</span>
+                        </div>
+                        <input type="hidden" id="manhwa-rating" value="5">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold mb-1 uppercase text-slate-500 dark:text-slate-400">Résumé / Synopsis</label>
+                        <textarea id="manhwa-description" rows="2" required class="w-full p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 focus:outline-none focus:border-emerald-600 text-sm"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold mb-1 uppercase text-slate-500 dark:text-slate-400">Où le lire (Liens)</label>
+                        <div id="manhwa-links-inputs-container" class="space-y-2 mb-2">
+                            <div class="flex gap-2">
+                                <input type="text" class="manhwa-link-name-input w-1/3 p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 focus:outline-none focus:border-emerald-600 text-sm" placeholder="Nom du site">
+                                <input type="url" class="manhwa-link-url-input w-2/3 p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 focus:outline-none focus:border-emerald-600 text-sm" placeholder="https://...">
+                            </div>
+                        </div>
+                        <button type="button" onclick="addManhwaLinkInput()" class="text-xs text-slate-700 dark:text-slate-300 font-semibold hover:underline">+ Ajouter un autre lien</button>
+                    </div>
+                    <div class="relative">
+                        <label class="block text-xs font-semibold mb-1 uppercase text-slate-500 dark:text-slate-400">Genres / Tags</label>
+                        <div id="manhwa-selected-tags-container" class="flex flex-wrap gap-1.5 mb-2 p-2 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700 min-h-[40px]"></div>
+                        <input type="text" id="manhwa-tag-autocomplete-input" oninput="handleManhwaTagInput(event)" placeholder="Tapez un genre..." class="w-full p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 focus:outline-none focus:border-emerald-600 text-sm" autocomplete="off">
+                        <div id="manhwa-tag-dropdown" class="hidden absolute left-0 right-0 mt-1 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl shadow-lg max-h-36 overflow-y-auto z-50"></div>
+                    </div>
+                    <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold py-2.5 px-4 rounded-xl tracking-wide text-xs transition mt-2 shadow-sm">Publier le manhwa</button>
                 </form>
             </section>
 
@@ -164,20 +245,37 @@
         const dbClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
         let artists = [];
+        let manhwas = [];
+        
         let selectedTagFilter = null;
         let currentFormTags = [];
         let currentFormRating = 5;
         let currentArtistIndex = null;
         let currentDetailImageIndex = 0;
 
+        let selectedManhwaTagFilter = null;
+        let currentManhwaFormTags = [];
+        let currentManhwaFormRating = 5;
+        let currentManhwaIndex = null;
+        let currentManhwaDetailImageIndex = 0;
+
         async function fetchArtistsFromCloud() {
             const { data, error } = await dbClient.from('artists').select('*');
             if (error) {
                 console.error('Erreur de chargement:', error);
-                alert("Erreur Supabase : " + error.message);
             } else {
                 artists = data || [];
                 renderList();
+            }
+        }
+
+        async function fetchManhwasFromCloud() {
+            const { data, error } = await dbClient.from('manhwas').select('*');
+            if (error) {
+                console.error('Erreur de chargement des manhwas:', error);
+            } else {
+                manhwas = data || [];
+                renderManhwaList();
             }
         }
 
@@ -211,6 +309,10 @@
             return [...new Set(artists.flatMap(a => a.tags || []))].sort();
         }
 
+        function getAllManhwaTags() {
+            return [...new Set(manhwas.flatMap(m => m.tags || []))].sort();
+        }
+
         function switchPage(pageId) {
             document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
             const targetPage = document.getElementById(`page-${pageId}`);
@@ -227,8 +329,11 @@
             }
 
             if (pageId === 'list') fetchArtistsFromCloud();
+            if (pageId === 'manhwa-list') fetchManhwasFromCloud();
             if (pageId === 'search') { fetchArtistsFromCloud().then(() => initSearchPage()); }
+            if (pageId === 'manhwa-search') { fetchManhwasFromCloud().then(() => initManhwaSearchPage()); }
             if (pageId === 'add') initAddPage();
+            if (pageId === 'manhwa-add') initManhwaAddPage();
         }
 
         function renderStars(rating) {
@@ -241,6 +346,7 @@
             return html;
         }
 
+        /* --- LOGIQUE ARTISTES --- */
         function setFormRating(val) {
             currentFormRating = val;
             document.getElementById('artist-rating').value = val;
@@ -260,7 +366,6 @@
             const container = document.getElementById('artists-list-container');
             const counter = document.getElementById('counter-badge');
             if (!container) return;
-            
             container.innerHTML = '';
             counter.textContent = `${artists.length} Fichier${artists.length > 1 ? 's' : ''}`;
 
@@ -281,7 +386,6 @@
 
             const tagsHtml = (artist.tags || []).map(t => `<span class="bg-slate-200 dark:bg-slate-900 text-slate-600 dark:text-slate-400 text-[10px] px-2 py-0.5 rounded-lg border border-slate-300 dark:border-slate-800">${escapeHtml(t)}</span>`).join(' ');
             const coverImage = (artist.images && artist.images.length > 0) ? artist.images[0] : '';
-            const ratingHtml = renderStars(artist.rating);
 
             card.innerHTML = `
                 <div>
@@ -294,7 +398,7 @@
                     </div>
                     <div class="flex items-center justify-between gap-1 mb-1">
                         <h3 class="font-semibold text-sm truncate text-slate-900 dark:text-slate-100">${escapeHtml(artist.name)}</h3>
-                        <div>${ratingHtml}</div>
+                        <div>${renderStars(artist.rating)}</div>
                     </div>
                     <div class="flex flex-wrap gap-1 mt-2">${tagsHtml}</div>
                 </div>
@@ -305,6 +409,71 @@
             return card;
         }
 
+        /* --- LOGIQUE MANHWAS (FORMAT 4:5) --- */
+        function setManhwaFormRating(val) {
+            currentManhwaFormRating = val;
+            document.getElementById('manhwa-rating').value = val;
+            const stars = document.querySelectorAll('.manhwa-star-btn');
+            stars.forEach((s, idx) => {
+                if (idx < val) {
+                    s.classList.remove('text-slate-300', 'dark:text-slate-700');
+                    s.classList.add('text-amber-400');
+                } else {
+                    s.classList.remove('text-amber-400');
+                    s.classList.add('text-slate-300', 'dark:text-slate-700');
+                }
+            });
+        }
+
+        function renderManhwaList() {
+            const container = document.getElementById('manhwas-list-container');
+            const counter = document.getElementById('manhwa-counter-badge');
+            if (!container) return;
+            container.innerHTML = '';
+            counter.textContent = `${manhwas.length} Manhwa${manhwas.length > 1 ? 's' : ''}`;
+
+            if (manhwas.length === 0) {
+                container.innerHTML = `<p class="col-span-full text-center text-slate-500 py-8">Aucun manhwa trouvé dans le Cloud.</p>`;
+                return;
+            }
+
+            manhwas.forEach((manhwa, index) => {
+                container.appendChild(createManhwaCard(manhwa, index));
+            });
+        }
+
+        function createManhwaCard(manhwa, index) {
+            const card = document.createElement('div');
+            card.className = "bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-2xl p-3 text-slate-900 dark:text-slate-100 hover:border-emerald-600 transition cursor-pointer flex flex-col justify-between shadow-sm";
+            card.onclick = () => showManhwaDetail(index);
+
+            const tagsHtml = (manhwa.tags || []).map(t => `<span class="bg-slate-200 dark:bg-slate-900 text-slate-600 dark:text-slate-400 text-[10px] px-2 py-0.5 rounded-lg border border-slate-300 dark:border-slate-800">${escapeHtml(t)}</span>`).join(' ');
+            const coverImage = (manhwa.images && manhwa.images.length > 0) ? manhwa.images[0] : '';
+
+            card.innerHTML = `
+                <div>
+                    <div class="flex items-center justify-between mb-2 text-slate-400 dark:text-slate-500 text-xs font-semibold">
+                        <span>📖 #${String(index + 1).padStart(3, '0')}</span>
+                        ${manhwa.images && manhwa.images.length > 1 ? `<span class="bg-slate-200 dark:bg-slate-900 px-1.5 py-0.5 rounded text-[10px] border border-slate-300 dark:border-slate-800">📷 ${manhwa.images.length}</span>` : ''}
+                    </div>
+                    <!-- Miniature 4:5 -->
+                    <div class="aspect-[4/5] w-full rounded-xl overflow-hidden mb-2 bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center">
+                        <img src="${coverImage}" alt="${manhwa.name}" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/300x375?text=ErreurImage'">
+                    </div>
+                    <div class="flex items-center justify-between gap-1 mb-1">
+                        <h3 class="font-semibold text-sm truncate text-slate-900 dark:text-slate-100">${escapeHtml(manhwa.name)}</h3>
+                        <div>${renderStars(manhwa.rating)}</div>
+                    </div>
+                    <div class="flex flex-wrap gap-1 mt-2">${tagsHtml}</div>
+                </div>
+                <div class="mt-2 text-[11px] text-slate-500 dark:text-slate-400 truncate pt-2 border-t border-slate-200 dark:border-slate-800">
+                    🌐 ${manhwa.links && manhwa.links.length > 0 ? escapeHtml(manhwa.links[0].name) : 'Aucun lien'}
+                </div>
+            `;
+            return card;
+        }
+
+        /* --- RECHERCHE ARTISTES --- */
         function initSearchPage() {
             selectedTagFilter = null;
             document.getElementById('search-input').value = '';
@@ -316,14 +485,11 @@
             const container = document.getElementById('tags-filter-container');
             if(!container) return;
             const allTags = getAllTags();
-            
             let html = `<button onclick="setTagFilter(null)" class="px-3 py-1 rounded-xl text-xs font-semibold border transition ${selectedTagFilter === null ? 'bg-emerald-600 text-white border-emerald-600' : 'bg-slate-100 dark:bg-slate-900 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-800'}">Tous</button>`;
-            
             allTags.forEach(tag => {
                 const isActive = selectedTagFilter === tag;
                 html += `<button onclick="setTagFilter('${escapeHtml(tag)}')" class="px-3 py-1 rounded-xl text-xs font-semibold border transition ${isActive ? 'bg-emerald-600 text-white border-emerald-600' : 'bg-slate-100 dark:bg-slate-900 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-800'}">${escapeHtml(tag)}</button>`;
             });
-
             container.innerHTML = html;
         }
 
@@ -356,12 +522,62 @@
             });
         }
 
+        /* --- RECHERCHE MANHWAS --- */
+        function initManhwaSearchPage() {
+            selectedManhwaTagFilter = null;
+            document.getElementById('manhwa-search-input').value = '';
+            renderManhwaTagsFilter();
+            filterManhwas();
+        }
+
+        function renderManhwaTagsFilter() {
+            const container = document.getElementById('manhwa-tags-filter-container');
+            if(!container) return;
+            const allTags = getAllManhwaTags();
+            let html = `<button onclick="setManhwaTagFilter(null)" class="px-3 py-1 rounded-xl text-xs font-semibold border transition ${selectedManhwaTagFilter === null ? 'bg-emerald-600 text-white border-emerald-600' : 'bg-slate-100 dark:bg-slate-900 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-800'}">Tous</button>`;
+            allTags.forEach(tag => {
+                const isActive = selectedManhwaTagFilter === tag;
+                html += `<button onclick="setManhwaTagFilter('${escapeHtml(tag)}')" class="px-3 py-1 rounded-xl text-xs font-semibold border transition ${isActive ? 'bg-emerald-600 text-white border-emerald-600' : 'bg-slate-100 dark:bg-slate-900 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-800'}">${escapeHtml(tag)}</button>`;
+            });
+            container.innerHTML = html;
+        }
+
+        function setManhwaTagFilter(tag) {
+            selectedManhwaTagFilter = tag;
+            renderManhwaTagsFilter();
+            filterManhwas();
+        }
+
+        function filterManhwas() {
+            const queryElement = document.getElementById('manhwa-search-input');
+            if(!queryElement) return;
+            const query = queryElement.value.toLowerCase();
+            const resultsContainer = document.getElementById('manhwa-search-results-container');
+            resultsContainer.innerHTML = '';
+
+            const filtered = manhwas.map((manhwa, index) => ({ manhwa, index })).filter(({ manhwa }) => {
+                const matchesText = manhwa.name.toLowerCase().includes(query) || manhwa.description.toLowerCase().includes(query);
+                const matchesTag = selectedManhwaTagFilter === null || (manhwa.tags && manhwa.tags.includes(selectedManhwaTagFilter));
+                return matchesText && matchesTag;
+            });
+
+            if (filtered.length === 0) {
+                resultsContainer.innerHTML = `<p class="col-span-full text-center text-slate-500 py-8">Aucun résultat trouvé.</p>`;
+                return;
+            }
+
+            filtered.forEach(({ manhwa, index }) => {
+                resultsContainer.appendChild(createManhwaCard(manhwa, index));
+            });
+        }
+
+        /* --- FORMULAIRES AJOUT --- */
         function addImageInput() {
             const container = document.getElementById('images-inputs-container');
             const div = document.createElement('div');
             div.className = "flex gap-2";
             div.innerHTML = `
-                <input type="url" class="image-input w-full p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 focus:outline-none focus:border-emerald-600 text-sm" placeholder="https://... (Image supplémentaire)">
+                <input type="url" class="image-input w-full p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 focus:outline-none focus:border-emerald-600 text-sm" placeholder="https://...">
                 <button type="button" onclick="this.parentElement.remove()" class="px-3 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-xl border border-slate-300 dark:border-slate-700 font-semibold hover:bg-red-500 hover:text-white transition">×</button>
             `;
             container.appendChild(div);
@@ -379,12 +595,34 @@
             container.appendChild(div);
         }
 
+        function addManhwaImageInput() {
+            const container = document.getElementById('manhwa-images-inputs-container');
+            const div = document.createElement('div');
+            div.className = "flex gap-2";
+            div.innerHTML = `
+                <input type="url" class="manhwa-image-input w-full p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 focus:outline-none focus:border-emerald-600 text-sm" placeholder="https://...">
+                <button type="button" onclick="this.parentElement.remove()" class="px-3 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-xl border border-slate-300 dark:border-slate-700 font-semibold hover:bg-red-500 hover:text-white transition">×</button>
+            `;
+            container.appendChild(div);
+        }
+
+        function addManhwaLinkInput() {
+            const container = document.getElementById('manhwa-links-inputs-container');
+            const div = document.createElement('div');
+            div.className = "flex gap-2";
+            div.innerHTML = `
+                <input type="text" class="manhwa-link-name-input w-1/3 p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 focus:outline-none focus:border-emerald-600 text-sm" placeholder="Nom du site">
+                <input type="url" class="manhwa-link-url-input w-2/3 p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 focus:outline-none focus:border-emerald-600 text-sm" placeholder="https://...">
+                <button type="button" onclick="this.parentElement.remove()" class="px-3 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-xl border border-slate-300 dark:border-slate-700 font-semibold hover:bg-red-500 hover:text-white transition">×</button>
+            `;
+            container.appendChild(div);
+        }
+
         function initAddPage() {
             currentFormTags = [];
             setFormRating(5);
             const form = document.getElementById('artist-form');
             if(form) form.reset();
-            
             document.getElementById('images-inputs-container').innerHTML = '';
             document.getElementById('links-inputs-container').innerHTML = `
                 <div class="flex gap-2">
@@ -393,7 +631,21 @@
                 </div>
             `;
             renderSelectedFormTags();
-            document.getElementById('tag-dropdown').classList.add('hidden');
+        }
+
+        function initManhwaAddPage() {
+            currentManhwaFormTags = [];
+            setManhwaFormRating(5);
+            const form = document.getElementById('manhwa-form');
+            if(form) form.reset();
+            document.getElementById('manhwa-images-inputs-container').innerHTML = '';
+            document.getElementById('manhwa-links-inputs-container').innerHTML = `
+                <div class="flex gap-2">
+                    <input type="text" class="manhwa-link-name-input w-1/3 p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 focus:outline-none focus:border-emerald-600 text-sm" placeholder="Nom du site">
+                    <input type="url" class="manhwa-link-url-input w-2/3 p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 focus:outline-none focus:border-emerald-600 text-sm" placeholder="https://...">
+                </div>
+            `;
+            renderSelectedManhwaFormTags();
         }
 
         function renderSelectedFormTags() {
@@ -402,7 +654,6 @@
                 container.innerHTML = `<span class="text-xs text-slate-400 italic px-1">Aucun tag sélectionné...</span>`;
                 return;
             }
-
             container.innerHTML = currentFormTags.map((tag, idx) => `
                 <span class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200 text-xs px-2.5 py-1 rounded-lg border border-slate-300 dark:border-slate-700 flex items-center gap-1.5 font-medium">
                     ${escapeHtml(tag)}
@@ -416,56 +667,78 @@
             renderSelectedFormTags();
         }
 
+        function renderSelectedManhwaFormTags() {
+            const container = document.getElementById('manhwa-selected-tags-container');
+            if (currentManhwaFormTags.length === 0) {
+                container.innerHTML = `<span class="text-xs text-slate-400 italic px-1">Aucun genre sélectionné...</span>`;
+                return;
+            }
+            container.innerHTML = currentManhwaFormTags.map((tag, idx) => `
+                <span class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200 text-xs px-2.5 py-1 rounded-lg border border-slate-300 dark:border-slate-700 flex items-center gap-1.5 font-medium">
+                    ${escapeHtml(tag)}
+                    <button type="button" onclick="removeManhwaFormTag(${idx})" class="text-slate-500 hover:text-red-500 font-bold">×</button>
+                </span>
+            `).join('');
+        }
+
+        function removeManhwaFormTag(index) {
+            currentManhwaFormTags.splice(index, 1);
+            renderSelectedManhwaFormTags();
+        }
+
         function handleTagInput(e) {
             const query = e.target.value.trim().toLowerCase();
             const dropdown = document.getElementById('tag-dropdown');
-
-            if (query === '') {
-                dropdown.classList.add('hidden');
-                return;
-            }
-
+            if (query === '') { dropdown.classList.add('hidden'); return; }
             const allTags = getAllTags();
             const matchingTags = allTags.filter(t => t.toLowerCase().startsWith(query) && !currentFormTags.includes(t));
-
             let html = '';
-            if (matchingTags.length > 0) {
-                matchingTags.forEach(tag => {
-                    html += `<div onclick="selectTagFromDropdown('${escapeHtml(tag)}')" class="px-3 py-2 text-xs text-slate-900 dark:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer transition">${escapeHtml(tag)}</div>`;
-                });
-            }
-
+            matchingTags.forEach(tag => {
+                html += `<div onclick="selectTagFromDropdown('${escapeHtml(tag)}')" class="px-3 py-2 text-xs text-slate-900 dark:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer transition">${escapeHtml(tag)}</div>`;
+            });
             const exactMatchExists = allTags.some(t => t.toLowerCase() === query);
             if (!exactMatchExists && query.length > 0) {
                 const formattedQuery = query.charAt(0).toUpperCase() + query.slice(1);
                 html += `<div onclick="selectTagFromDropdown('${escapeHtml(formattedQuery)}')" class="px-3 py-2 text-xs text-slate-800 dark:text-slate-200 font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer transition border-t border-slate-200 dark:border-slate-800">+ Créer le tag "${escapeHtml(formattedQuery)}"</div>`;
             }
-
-            if (html === '') {
-                dropdown.classList.add('hidden');
-            } else {
-                dropdown.innerHTML = html;
-                dropdown.classList.remove('hidden');
-            }
+            dropdown.innerHTML = html;
+            dropdown.classList.remove('hidden');
         }
 
         function selectTagFromDropdown(tag) {
-            if (!currentFormTags.includes(tag)) {
-                currentFormTags.push(tag);
-            }
+            if (!currentFormTags.includes(tag)) currentFormTags.push(tag);
             document.getElementById('tag-autocomplete-input').value = '';
             document.getElementById('tag-dropdown').classList.add('hidden');
             renderSelectedFormTags();
         }
 
-        document.addEventListener('click', (e) => {
-            const dropdown = document.getElementById('tag-dropdown');
-            const input = document.getElementById('tag-autocomplete-input');
-            if (dropdown && input && !dropdown.contains(e.target) && e.target !== input) {
-                dropdown.classList.add('hidden');
+        function handleManhwaTagInput(e) {
+            const query = e.target.value.trim().toLowerCase();
+            const dropdown = document.getElementById('manhwa-tag-dropdown');
+            if (query === '') { dropdown.classList.add('hidden'); return; }
+            const allTags = getAllManhwaTags();
+            const matchingTags = allTags.filter(t => t.toLowerCase().startsWith(query) && !currentManhwaFormTags.includes(t));
+            let html = '';
+            matchingTags.forEach(tag => {
+                html += `<div onclick="selectManhwaTagFromDropdown('${escapeHtml(tag)}')" class="px-3 py-2 text-xs text-slate-900 dark:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer transition">${escapeHtml(tag)}</div>`;
+            });
+            const exactMatchExists = allTags.some(t => t.toLowerCase() === query);
+            if (!exactMatchExists && query.length > 0) {
+                const formattedQuery = query.charAt(0).toUpperCase() + query.slice(1);
+                html += `<div onclick="selectManhwaTagFromDropdown('${escapeHtml(formattedQuery)}')" class="px-3 py-2 text-xs text-slate-800 dark:text-slate-200 font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer transition border-t border-slate-200 dark:border-slate-800">+ Créer le tag "${escapeHtml(formattedQuery)}"</div>`;
             }
-        });
+            dropdown.innerHTML = html;
+            dropdown.classList.remove('hidden');
+        }
 
+        function selectManhwaTagFromDropdown(tag) {
+            if (!currentManhwaFormTags.includes(tag)) currentManhwaFormTags.push(tag);
+            document.getElementById('manhwa-tag-autocomplete-input').value = '';
+            document.getElementById('manhwa-tag-dropdown').classList.add('hidden');
+            renderSelectedManhwaFormTags();
+        }
+
+        /* --- DETAILS & ACTIONS ARTISTES --- */
         function showDetail(index) {
             currentArtistIndex = index;
             currentDetailImageIndex = 0;
@@ -492,10 +765,9 @@
         window.updateArtistRating = async function(newRating) {
             const artist = artists[currentArtistIndex];
             if (!artist) return;
-            
             const { error } = await dbClient.from('artists').update({ rating: newRating }).eq('name', artist.name);
             if (error) {
-                alert("Erreur lors de la mise à jour de la note : " + error.message);
+                alert("Erreur: " + error.message);
             } else {
                 artists[currentArtistIndex].rating = newRating;
                 renderDetailContent();
@@ -506,9 +778,7 @@
             const artist = artists[currentArtistIndex];
             const detailContainer = document.getElementById('artist-detail-content');
             if (!detailContainer) return;
-            
             const tagsHtml = (artist.tags || []).map(t => `<span class="bg-slate-200 dark:bg-slate-900 text-slate-600 dark:text-slate-400 text-xs px-2.5 py-1 rounded-xl border border-slate-300 dark:border-slate-800">${escapeHtml(t)}</span>`).join(' ');
-
             let images = artist.images || ['https://via.placeholder.com/400x300?text=PasImage'];
             if (currentDetailImageIndex >= images.length) currentDetailImageIndex = 0;
             let activeImage = images[currentDetailImageIndex];
@@ -516,13 +786,10 @@
             let imageCarouselHtml = `
                 <div class="relative h-80 md:h-96 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900 flex items-center justify-center">
                     <img src="${escapeHtml(activeImage)}" alt="${escapeHtml(artist.name)}" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/400x300?text=ErreurImage'">
-                    
                     ${images.length > 1 ? `
                         <button onclick="prevDetailImage()" class="absolute left-3 top-1/2 -translate-y-1/2 bg-slate-900/70 hover:bg-emerald-600 text-white p-2 rounded-full transition shadow-md flex items-center justify-center w-9 h-9 text-sm font-bold">‹</button>
                         <button onclick="nextDetailImage()" class="absolute right-3 top-1/2 -translate-y-1/2 bg-slate-900/70 hover:bg-emerald-600 text-white p-2 rounded-full transition shadow-md flex items-center justify-center w-9 h-9 text-sm font-bold">›</button>
-                        <div class="absolute bottom-3 right-3 bg-slate-900/70 text-white text-[11px] px-2.5 py-1 rounded-lg backdrop-blur-sm font-mono">
-                            ${currentDetailImageIndex + 1} / ${images.length}
-                        </div>
+                        <div class="absolute bottom-3 right-3 bg-slate-900/70 text-white text-[11px] px-2.5 py-1 rounded-lg backdrop-blur-sm font-mono">${currentDetailImageIndex + 1} / ${images.length}</div>
                     ` : ''}
                 </div>
             `;
@@ -541,23 +808,17 @@
                 <div class="flex items-center gap-2 mt-3">
                     <span class="text-xs text-slate-400 uppercase font-semibold">Note :</span>
                     <div class="flex gap-1 cursor-pointer">
-                        ${[1, 2, 3, 4, 5].map(i => `
-                            <span onclick="updateArtistRating(${i})" class="text-xl ${i <= currentRating ? 'text-amber-400' : 'text-slate-300 dark:text-slate-700'} hover:text-amber-400 transition">★</span>
-                        `).join('')}
+                        ${[1, 2, 3, 4, 5].map(i => `<span onclick="updateArtistRating(${i})" class="text-xl ${i <= currentRating ? 'text-amber-400' : 'text-slate-300 dark:text-slate-700'} hover:text-amber-400 transition">★</span>`).join('')}
                     </div>
                 </div>
             `;
 
             detailContainer.innerHTML = `
-                <div class="flex flex-col gap-3">
-                    ${imageCarouselHtml}
-                </div>
+                <div class="flex flex-col gap-3">${imageCarouselHtml}</div>
                 <div class="flex flex-col justify-between space-y-4">
                     <div>
-                        <span class="text-xs font-semibold text-slate-400 uppercase tracking-widest">Fiche Répertoire #${String(currentArtistIndex + 1).padStart(3, '0')}</span>
-                        <div class="flex items-center justify-between mt-1">
-                            <h2 class="text-2xl font-bold text-slate-900 dark:text-slate-100">${escapeHtml(artist.name)}</h2>
-                        </div>
+                        <span class="text-xs font-semibold text-slate-400 uppercase tracking-widest">Fiche Artiste #${String(currentArtistIndex + 1).padStart(3, '0')}</span>
+                        <h2 class="text-2xl font-bold text-slate-900 dark:text-slate-100 mt-1">${escapeHtml(artist.name)}</h2>
                         ${ratingInteractiveHtml}
                         <div class="flex flex-wrap gap-1.5 mt-3">${tagsHtml}</div>
                         <div class="mt-4 bg-slate-100 dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800">
@@ -569,25 +830,118 @@
                         <h4 class="text-xs text-slate-400 uppercase font-semibold mb-2">Où le trouver :</h4>
                         ${linksHtml}
                     </div>
-                    <button onclick="deleteArtist()" class="self-start text-xs text-red-500 hover:underline font-semibold">
-                        [ Supprimer cette référence ]
-                    </button>
+                    <button onclick="deleteArtist()" class="self-start text-xs text-red-500 hover:underline font-semibold">[ Supprimer cette référence ]</button>
                 </div>
             `;
         }
 
+        /* --- DETAILS & ACTIONS MANHWAS --- */
+        function showManhwaDetail(index) {
+            currentManhwaIndex = index;
+            currentManhwaDetailImageIndex = 0;
+            renderManhwaDetailContent();
+            switchPage('manhwa-detail');
+        }
+
+        function nextManhwaDetailImage() {
+            const manhwa = manhwas[currentManhwaIndex];
+            if (manhwa && manhwa.images && manhwa.images.length > 0) {
+                currentManhwaDetailImageIndex = (currentManhwaDetailImageIndex + 1) % manhwa.images.length;
+                renderManhwaDetailContent();
+            }
+        }
+
+        function prevManhwaDetailImage() {
+            const manhwa = manhwas[currentManhwaIndex];
+            if (manhwa && manhwa.images && manhwa.images.length > 0) {
+                currentManhwaDetailImageIndex = (currentManhwaDetailImageIndex - 1 + manhwa.images.length) % manhwa.images.length;
+                renderManhwaDetailContent();
+            }
+        }
+
+        window.updateManhwaRating = async function(newRating) {
+            const manhwa = manhwas[currentManhwaIndex];
+            if (!manhwa) return;
+            const { error } = await dbClient.from('manhwas').update({ rating: newRating }).eq('name', manhwa.name);
+            if (error) {
+                alert("Erreur: " + error.message);
+            } else {
+                manhwas[currentManhwaIndex].rating = newRating;
+                renderManhwaDetailContent();
+            }
+        }
+
+        function renderManhwaDetailContent() {
+            const manhwa = manhwas[currentManhwaIndex];
+            const detailContainer = document.getElementById('manhwa-detail-content');
+            if (!detailContainer) return;
+            const tagsHtml = (manhwa.tags || []).map(t => `<span class="bg-slate-200 dark:bg-slate-900 text-slate-600 dark:text-slate-400 text-xs px-2.5 py-1 rounded-xl border border-slate-300 dark:border-slate-800">${escapeHtml(t)}</span>`).join(' ');
+            let images = manhwa.images || ['https://via.placeholder.com/400x500?text=PasImage'];
+            if (currentManhwaDetailImageIndex >= images.length) currentManhwaDetailImageIndex = 0;
+            let activeImage = images[currentManhwaDetailImageIndex];
+            
+            // Format 4:5 également pour la visionneuse détaillée
+            let imageCarouselHtml = `
+                <div class="relative aspect-[4/5] w-full max-h-[500px] mx-auto rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900 flex items-center justify-center">
+                    <img src="${escapeHtml(activeImage)}" alt="${escapeHtml(manhwa.name)}" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/400x500?text=ErreurImage'">
+                    ${images.length > 1 ? `
+                        <button onclick="prevManhwaDetailImage()" class="absolute left-3 top-1/2 -translate-y-1/2 bg-slate-900/70 hover:bg-emerald-600 text-white p-2 rounded-full transition shadow-md flex items-center justify-center w-9 h-9 text-sm font-bold">‹</button>
+                        <button onclick="nextManhwaDetailImage()" class="absolute right-3 top-1/2 -translate-y-1/2 bg-slate-900/70 hover:bg-emerald-600 text-white p-2 rounded-full transition shadow-md flex items-center justify-center w-9 h-9 text-sm font-bold">›</button>
+                        <div class="absolute bottom-3 right-3 bg-slate-900/70 text-white text-[11px] px-2.5 py-1 rounded-lg backdrop-blur-sm font-mono">${currentManhwaDetailImageIndex + 1} / ${images.length}</div>
+                    ` : ''}
+                </div>
+            `;
+
+            let linksHtml = `<span class="text-xs text-slate-400 italic">Aucun lien répertorié</span>`;
+            if (manhwa.links && manhwa.links.length > 0) {
+                linksHtml = `<div class="flex flex-wrap gap-2">` + manhwa.links.map(l => `
+                    <a href="${escapeHtml(l.url)}" target="_blank" rel="noopener noreferrer" class="bg-slate-100 dark:bg-slate-900 hover:bg-emerald-600 hover:text-white text-slate-800 dark:text-slate-200 px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-800 text-xs font-semibold transition flex items-center gap-1.5 shadow-sm">
+                        🌐 ${escapeHtml(l.name)} ↗
+                    </a>
+                `).join('') + `</div>`;
+            }
+
+            const currentRating = manhwa.rating || 0;
+            let ratingInteractiveHtml = `
+                <div class="flex items-center gap-2 mt-3">
+                    <span class="text-xs text-slate-400 uppercase font-semibold">Note :</span>
+                    <div class="flex gap-1 cursor-pointer">
+                        ${[1, 2, 3, 4, 5].map(i => `<span onclick="updateManhwaRating(${i})" class="text-xl ${i <= currentRating ? 'text-amber-400' : 'text-slate-300 dark:text-slate-700'} hover:text-amber-400 transition">★</span>`).join('')}
+                    </div>
+                </div>
+            `;
+
+            detailContainer.innerHTML = `
+                <div class="flex flex-col gap-3">${imageCarouselHtml}</div>
+                <div class="flex flex-col justify-between space-y-4">
+                    <div>
+                        <span class="text-xs font-semibold text-slate-400 uppercase tracking-widest">Fiche Manhwa #${String(currentManhwaIndex + 1).padStart(3, '0')}</span>
+                        <h2 class="text-2xl font-bold text-slate-900 dark:text-slate-100 mt-1">${escapeHtml(manhwa.name)}</h2>
+                        ${ratingInteractiveHtml}
+                        <div class="flex flex-wrap gap-1.5 mt-3">${tagsHtml}</div>
+                        <div class="mt-4 bg-slate-100 dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800">
+                            <h4 class="text-xs text-slate-400 uppercase font-semibold mb-1">Synopsis :</h4>
+                            <p class="text-sm text-slate-700 dark:text-slate-300">${escapeHtml(manhwa.description)}</p>
+                        </div>
+                    </div>
+                    <div class="bg-slate-100 dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800">
+                        <h4 class="text-xs text-slate-400 uppercase font-semibold mb-2">Où le lire :</h4>
+                        ${linksHtml}
+                    </div>
+                    <button onclick="deleteManhwa()" class="self-start text-xs text-red-500 hover:underline font-semibold">[ Supprimer ce manhwa ]</button>
+                </div>
+            `;
+        }
+
+        /* --- SOUMISSION FORMULAIRES --- */
         const formElement = document.getElementById('artist-form');
         if (formElement) {
             formElement.addEventListener('submit', async (e) => {
                 e.preventDefault();
-                
                 let primaryImageUrl = document.getElementById('primary-image-url').value.trim();
                 const imageInputs = document.querySelectorAll('.image-input');
                 const extraImages = Array.from(imageInputs).map(input => input.value.trim()).filter(url => url.length > 0);
-
-                const imagesList = [];
-                if (primaryImageUrl) imagesList.push(primaryImageUrl);
-                imagesList.push(...extraImages);
+                const imagesList = [primaryImageUrl, ...extraImages].filter(Boolean);
 
                 const linkNameInputs = document.querySelectorAll('.link-name-input');
                 const linkUrlInputs = document.querySelectorAll('.link-url-input');
@@ -600,31 +954,60 @@
                     }
                 }
 
-                const leftoverInput = document.getElementById('tag-autocomplete-input').value.trim();
-                if (leftoverInput) {
-                    const formattedTag = leftoverInput.charAt(0).toUpperCase() + leftoverInput.slice(1);
-                    if (!currentFormTags.includes(formattedTag)) currentFormTags.push(formattedTag);
-                }
-
-                const ratingVal = parseInt(document.getElementById('artist-rating').value) || 5;
-
                 const newArtist = {
                     name: document.getElementById('name').value,
                     images: imagesList,
                     description: document.getElementById('description').value,
                     links: linksList,
                     tags: currentFormTags,
-                    rating: ratingVal
+                    rating: parseInt(document.getElementById('artist-rating').value) || 5
                 };
 
                 const { error } = await dbClient.from('artists').insert([newArtist]);
                 if (error) {
-                    alert("Erreur lors de l'enregistrement public : " + error.message);
+                    alert("Erreur: " + error.message);
                 } else {
-                    alert("Artiste ajouté et partagé avec succès !");
-                    e.target.reset();
-                    currentFormTags = [];
+                    alert("Artiste ajouté avec succès !");
                     switchPage('list');
+                }
+            });
+        }
+
+        const manhwaFormElement = document.getElementById('manhwa-form');
+        if (manhwaFormElement) {
+            manhwaFormElement.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                let primaryImageUrl = document.getElementById('manhwa-primary-image-url').value.trim();
+                const imageInputs = document.querySelectorAll('.manhwa-image-input');
+                const extraImages = Array.from(imageInputs).map(input => input.value.trim()).filter(url => url.length > 0);
+                const imagesList = [primaryImageUrl, ...extraImages].filter(Boolean);
+
+                const linkNameInputs = document.querySelectorAll('.manhwa-link-name-input');
+                const linkUrlInputs = document.querySelectorAll('.manhwa-link-url-input');
+                const linksList = [];
+                for (let i = 0; i < linkUrlInputs.length; i++) {
+                    const urlVal = linkUrlInputs[i].value.trim();
+                    if (urlVal) {
+                        const nameVal = linkNameInputs[i].value.trim() || urlVal;
+                        linksList.push({ name: nameVal, url: urlVal });
+                    }
+                }
+
+                const newManhwa = {
+                    name: document.getElementById('manhwa-name').value,
+                    images: imagesList,
+                    description: document.getElementById('manhwa-description').value,
+                    links: linksList,
+                    tags: currentManhwaFormTags,
+                    rating: parseInt(document.getElementById('manhwa-rating').value) || 5
+                };
+
+                const { error } = await dbClient.from('manhwas').insert([newManhwa]);
+                if (error) {
+                    alert("Erreur: " + error.message);
+                } else {
+                    alert("Manhwa ajouté avec succès !");
+                    switchPage('manhwa-list');
                 }
             });
         }
@@ -632,15 +1015,20 @@
         window.deleteArtist = async function() {
             const artist = artists[currentArtistIndex];
             if (!artist) return;
-            
-            if(confirm(`Effacer définitivement "${artist.name}" pour tout le monde ?`)) {
+            if(confirm(`Effacer définitivement "${artist.name}" ?`)) {
                 const { error } = await dbClient.from('artists').delete().eq('name', artist.name);
-                if(error) {
-                    alert("Erreur lors de la suppression : " + error.message);
-                } else {
-                    alert("Artiste supprimé avec succès !");
-                    switchPage('list');
-                }
+                if(error) alert("Erreur: " + error.message);
+                else { alert("Supprimé !"); switchPage('list'); }
+            }
+        }
+
+        window.deleteManhwa = async function() {
+            const manhwa = manhwas[currentManhwaIndex];
+            if (!manhwa) return;
+            if(confirm(`Effacer définitivement "${manhwa.name}" ?`)) {
+                const { error } = await dbClient.from('manhwas').delete().eq('name', manhwa.name);
+                if(error) alert("Erreur: " + error.message);
+                else { alert("Supprimé !"); switchPage('manhwa-list'); }
             }
         }
 
