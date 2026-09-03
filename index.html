@@ -11,10 +11,42 @@
     </script>
     <!-- SDK Supabase pour le cloud -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Cropper.js pour le recadrage de la prévisualisation index -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
     <!-- Police ultra-moderne (Plus Jakarta Sans) -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        
+        /* Personnalisation avancée du Cropper avec croix centrale et repères nets (Accent Vert Émeraude) */
+        .cropper-view-box {
+            outline: 2px solid #10b981;
+            outline-color: rgba(16, 185, 129, 0.85);
+        }
+        .cropper-center {
+            display: block !important;
+            width: 10px;
+            height: 10px;
+            margin-left: -5px;
+            margin-top: -5px;
+        }
+        .cropper-center::before, .cropper-center::after {
+            background-color: #10b981 !important;
+        }
+        .cropper-line {
+            background-color: rgba(16, 185, 129, 0.3) !important;
+        }
+        .cropper-point {
+            background-color: #10b981 !important;
+            width: 8px !important;
+            height: 8px !important;
+            opacity: 1 !important;
+        }
+        /* Style des croix d'angle personnalisées sur le cadre de recadrage */
+        .cropper-face {
+            background-color: rgba(16, 185, 129, 0.05);
+        }
     </style>
     <link rel="icon" type="image/png" href="https://github.com/AkurasuBe/GoonDeX/blob/main/c9442c18-267f-422d-89ab-d0a71b10127a.png?raw=true">
 </head>
@@ -100,9 +132,19 @@
                         <input type="text" id="name" required class="w-full p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 focus:outline-none focus:border-emerald-600 text-sm">
                     </div>
 
+                    <!-- RECADRAGE DE LA PRÉVISUALISATION INDEX AVEC CROIX ET REPÈRES VISUELS -->
                     <div>
-                        <label class="block text-xs font-semibold mb-1 uppercase text-slate-500 dark:text-slate-400">Image principale (URL)</label>
-                        <input type="url" id="primary-image-url" required class="w-full p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 focus:outline-none focus:border-emerald-600 text-sm" placeholder="https://...">
+                        <label class="block text-xs font-semibold mb-1 uppercase text-slate-500 dark:text-slate-400">Image principale & Cadrage Index (Vignette)</label>
+                        <div class="flex gap-2 mb-2">
+                            <input type="url" id="primary-image-url" required class="w-full p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 focus:outline-none focus:border-emerald-600 text-sm" placeholder="https://... (URL de l'image principale)">
+                            <button type="button" onclick="initCropper()" class="px-4 py-2 bg-emerald-600 text-white rounded-xl text-xs font-semibold hover:bg-emerald-500 transition whitespace-nowrap shadow-sm">Ajuster</button>
+                        </div>
+                        
+                        <!-- Zone interactive de recadrage -->
+                        <div id="cropper-container" class="hidden w-full h-64 bg-slate-100 dark:bg-slate-900 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 relative mb-2">
+                            <img id="image-to-crop" class="max-w-full">
+                        </div>
+                        <p class="text-[10px] text-slate-500 dark:text-slate-400 italic" id="cropper-hint">Astuce : Utilisez la croix centrale et les repères pour centrer et ajuster précisément la miniature.</p>
                     </div>
 
                     <div>
@@ -152,7 +194,10 @@
         let artists = [];
         let selectedTagFilter = null;
         let currentFormTags = [];
+        let currentImageIndex = 0;
         let currentArtistIndex = null;
+        
+        let cropper = null;
 
         async function fetchArtistsFromCloud() {
             const { data, error } = await dbClient.from('artists').select('*');
@@ -311,6 +356,41 @@
             });
         }
 
+        function initCropper() {
+            const urlInput = document.getElementById('primary-image-url').value.trim();
+            const container = document.getElementById('cropper-container');
+            const imageEl = document.getElementById('image-to-crop');
+            const hint = document.getElementById('cropper-hint');
+
+            if (!urlInput) {
+                alert("Veuillez d'abord entrer une URL d'image principale.");
+                return;
+            }
+
+            container.classList.remove('hidden');
+            imageEl.src = urlInput;
+
+            if (cropper) {
+                cropper.destroy();
+            }
+
+            cropper = new Cropper(imageEl, {
+                aspectRatio: 4 / 3,
+                viewMode: 1,
+                dragMode: 'move',
+                autoCropArea: 1,
+                restore: false,
+                guides: true,      // Affiche les lignes de grille
+                center: true,      // Affiche la croix centrale de visée
+                highlight: true,
+                cropBoxMovable: true,
+                cropBoxResizable: true,
+                toggleDragModeOnDblclick: false,
+            });
+
+            hint.textContent = "Utilisez la croix centrale et les repères d'alignement pour ajuster précisément la miniature.";
+        }
+
         function addImageInput() {
             const container = document.getElementById('images-inputs-container');
             const div = document.createElement('div');
@@ -339,6 +419,13 @@
             const form = document.getElementById('artist-form');
             if(form) form.reset();
             
+            if (cropper) {
+                cropper.destroy();
+                cropper = null;
+            }
+            document.getElementById('cropper-container').classList.add('hidden');
+            document.getElementById('cropper-hint').textContent = 'Astuce : Cliquez sur "Ajuster" pour choisir la zone visible de la miniature dans la liste.';
+
             document.getElementById('images-inputs-container').innerHTML = '';
             document.getElementById('links-inputs-container').innerHTML = `
                 <div class="flex gap-2">
@@ -422,6 +509,7 @@
 
         function showDetail(index) {
             currentArtistIndex = index;
+            currentImageIndex = 0;
             renderDetailContent();
             switchPage('detail');
         }
@@ -434,13 +522,35 @@
             const tagsHtml = (artist.tags || []).map(t => `<span class="bg-slate-200 dark:bg-slate-900 text-slate-600 dark:text-slate-400 text-xs px-2.5 py-1 rounded-xl border border-slate-300 dark:border-slate-800">${escapeHtml(t)}</span>`).join(' ');
 
             let images = artist.images || ['https://via.placeholder.com/400x300?text=PasImage'];
-            
-            // Utilisation de object-cover pour que l'image remplisse automatiquement le cadre
-            let imagesHtml = images.map(img => `
-                <div class="h-80 md:h-96 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900 mb-2">
-                    <img src="${escapeHtml(img)}" alt="${escapeHtml(artist.name)}" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/400x300?text=ErreurImage'">
-                </div>
-            `).join('');
+            const currentImg = images[currentImageIndex] || images[0];
+
+            let imageSectionHtml = `
+                <div class="flex flex-col gap-3">
+                    <div class="h-80 md:h-96 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900 relative shadow-inner flex items-center justify-center p-2">
+                        <img src="${currentImg}" alt="${artist.name}" class="max-h-full max-w-full object-contain transition-all duration-300" onerror="this.src='https://via.placeholder.com/400x300?text=ErreurImage'">
+                        ${images.length > 1 ? `
+                            <button onclick="prevImage()" class="absolute left-2 top-1/2 -translate-y-1/2 bg-slate-900/80 hover:bg-emerald-600 text-white px-3 py-2 rounded-xl border border-slate-700 font-bold text-sm transition shadow">‹</button>
+                            <button onclick="nextImage()" class="absolute right-2 top-1/2 -translate-y-1/2 bg-slate-900/80 hover:bg-emerald-600 text-white px-3 py-2 rounded-xl border border-slate-700 font-bold text-sm transition shadow">›</button>
+                            <div class="absolute bottom-2 right-2 bg-slate-900/80 text-white px-2.5 py-1 rounded-xl text-xs border border-slate-700 font-semibold">
+                                ${currentImageIndex + 1} / ${images.length}
+                            </div>
+                        ` : ''}
+                    </div>
+            `;
+
+            if (images.length > 1) {
+                imageSectionHtml += `<div class="flex gap-2 overflow-x-auto pb-2">`;
+                images.forEach((img, idx) => {
+                    const isSelected = idx === currentImageIndex;
+                    imageSectionHtml += `
+                        <div onclick="selectImageIndex(${idx})" class="w-14 h-14 rounded-xl overflow-hidden border cursor-pointer flex-shrink-0 transition flex items-center justify-center bg-slate-100 dark:bg-slate-900 ${isSelected ? 'border-emerald-600 scale-105' : 'border-slate-300 dark:border-slate-800 opacity-60 hover:opacity-100'}">
+                            <img src="${img}" class="max-h-full max-w-full object-contain">
+                        </div>
+                    `;
+                });
+                imageSectionHtml += `</div>`;
+            }
+            imageSectionHtml += `</div>`;
 
             let linksHtml = `<span class="text-xs text-slate-400 italic">Aucun lien répertorié</span>`;
             if (artist.links && artist.links.length > 0) {
@@ -452,9 +562,7 @@
             }
 
             detailContainer.innerHTML = `
-                <div class="flex flex-col gap-3 max-h-[70vh] overflow-y-auto pr-2">
-                    ${imagesHtml}
-                </div>
+                ${imageSectionHtml}
                 <div class="flex flex-col justify-between space-y-4">
                     <div>
                         <span class="text-xs font-semibold text-slate-400 uppercase tracking-widest">Fiche Répertoire #${String(currentArtistIndex + 1).padStart(3, '0')}</span>
@@ -476,17 +584,48 @@
             `;
         }
 
+        window.nextImage = function() {
+            const artist = artists[currentArtistIndex];
+            const images = artist.images || [];
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            renderDetailContent();
+        }
+
+        window.prevImage = function() {
+            const artist = artists[currentArtistIndex];
+            const images = artist.images || [];
+            currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+            renderDetailContent();
+        }
+
+        window.selectImageIndex = function(idx) {
+            currentImageIndex = idx;
+            renderDetailContent();
+        }
+
         const formElement = document.getElementById('artist-form');
         if (formElement) {
             formElement.addEventListener('submit', async (e) => {
                 e.preventDefault();
                 
                 let primaryImageUrl = document.getElementById('primary-image-url').value.trim();
+                let finalPrimaryImage = primaryImageUrl;
+
+                if (cropper) {
+                    const canvas = cropper.getCroppedCanvas({
+                        width: 600,
+                        height: 450
+                    });
+                    if (canvas) {
+                        finalPrimaryImage = canvas.toDataURL('image/jpeg', 0.85);
+                    }
+                }
+
                 const imageInputs = document.querySelectorAll('.image-input');
                 const extraImages = Array.from(imageInputs).map(input => input.value.trim()).filter(url => url.length > 0);
 
                 const imagesList = [];
-                if (primaryImageUrl) imagesList.push(primaryImageUrl);
+                if (finalPrimaryImage) imagesList.push(finalPrimaryImage);
                 imagesList.push(...extraImages);
 
                 const linkNameInputs = document.querySelectorAll('.link-name-input');
