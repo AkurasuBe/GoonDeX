@@ -184,6 +184,10 @@
         let currentImageIndex = 0;
         let currentArtistIndex = null;
 
+        // Variables pour le réglage de l'aperçu de l'image (type photo de profil)
+        let currentZoom = 1;
+        let currentFitMode = 'contain'; // 'contain' (entier) ou 'cover' (remplir)
+
         async function fetchArtistsFromCloud() {
             const { data, error } = await dbClient.from('artists').select('*');
             if (error) {
@@ -271,7 +275,6 @@
             const tagsHtml = (artist.tags || []).map(t => `<span class="bg-dex-dark text-dex-muted text-[10px] px-2 py-0.5 rounded-xl border border-dex-mid">${escapeHtml(t)}</span>`).join(' ');
             const coverImage = (artist.images && artist.images.length > 0) ? artist.images[0] : '';
 
-            // Card image container adaptatif (object-contain avec fond harmonieux pour ne rien couper)
             card.innerHTML = `
                 <div>
                     <div class="flex items-center justify-between mb-2 text-dex-muted text-xs font-bold">
@@ -457,6 +460,8 @@
         function showDetail(index) {
             currentArtistIndex = index;
             currentImageIndex = 0;
+            currentZoom = 1;
+            currentFitMode = 'contain';
             renderDetailContent();
             switchPage('detail');
         }
@@ -471,11 +476,19 @@
             let images = artist.images || ['https://via.placeholder.com/400x300?text=PasImage'];
             const currentImg = images[currentImageIndex] || images[0];
 
-            // Cadre détail image adaptatif (hauteur max adaptative, centré, sans coupure)
             let imageSectionHtml = `
                 <div class="flex flex-col gap-3">
-                    <div class="h-80 md:h-96 rounded-2xl overflow-hidden border-2 border-dex-mid bg-dex-dark/90 relative shadow-inner flex items-center justify-center p-2">
-                        <img src="${currentImg}" alt="${artist.name}" class="max-h-full max-w-full object-contain transition-all duration-300" onerror="this.src='https://via.placeholder.com/400x300?text=ErreurImage'">
+                    <div class="h-80 md:h-96 rounded-2xl overflow-hidden border-2 border-dex-mid bg-dex-dark/95 relative shadow-inner flex items-center justify-center p-2 select-none">
+                        <img src="${currentImg}" alt="${artist.name}" style="transform: scale(${currentZoom}); transition: transform 0.2s ease;" class="max-h-full max-w-full object-${currentFitMode}" onerror="this.src='https://via.placeholder.com/400x300?text=ErreurImage'">
+                        
+                        <!-- Barre de réglage type photo de profil -->
+                        <div class="absolute top-2 left-2 flex gap-1 bg-dex-darkest/90 p-1.5 rounded-xl border border-dex-mid backdrop-blur-sm z-10 shadow">
+                            <button onclick="adjustZoom(0.15)" class="px-2 py-1 bg-dex-dark hover:bg-dex-accent text-dex-lightest text-xs rounded-lg border border-dex-mid font-bold" title="Zoom +">🔍+</button>
+                            <button onclick="adjustZoom(-0.15)" class="px-2 py-1 bg-dex-dark hover:bg-dex-accent text-dex-lightest text-xs rounded-lg border border-dex-mid font-bold" title="Zoom -">🔍-</button>
+                            <button onclick="toggleFitMode()" class="px-2.5 py-1 bg-dex-dark hover:bg-dex-accent text-dex-lightest text-xs rounded-lg border border-dex-mid font-bold" title="Changer le mode d'affichage">🖼️ ${currentFitMode === 'contain' ? 'Entier' : 'Remplir'}</button>
+                            <button onclick="resetImageAdjustment()" class="px-2 py-1 bg-dex-dark hover:bg-dex-accent text-dex-lightest text-xs rounded-lg border border-dex-mid font-bold" title="Réinitialiser">↺</button>
+                        </div>
+
                         ${images.length > 1 ? `
                             <button onclick="prevImage()" class="absolute left-2 top-1/2 -translate-y-1/2 bg-dex-darkest/80 hover:bg-dex-accent text-white px-3 py-2 rounded-xl border border-dex-mid font-bold text-sm transition shadow">‹</button>
                             <button onclick="nextImage()" class="absolute right-2 top-1/2 -translate-y-1/2 bg-dex-darkest/80 hover:bg-dex-accent text-white px-3 py-2 rounded-xl border border-dex-mid font-bold text-sm transition shadow">›</button>
@@ -536,6 +549,7 @@
             const artist = artists[currentArtistIndex];
             const images = artist.images || [];
             currentImageIndex = (currentImageIndex + 1) % images.length;
+            currentZoom = 1;
             renderDetailContent();
         }
 
@@ -543,11 +557,29 @@
             const artist = artists[currentArtistIndex];
             const images = artist.images || [];
             currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+            currentZoom = 1;
             renderDetailContent();
         }
 
         window.selectImageIndex = function(idx) {
             currentImageIndex = idx;
+            currentZoom = 1;
+            renderDetailContent();
+        }
+
+        window.adjustZoom = function(delta) {
+            currentZoom = Math.max(0.5, Math.min(3, currentZoom + delta));
+            renderDetailContent();
+        }
+
+        window.toggleFitMode = function() {
+            currentFitMode = currentFitMode === 'contain' ? 'cover' : 'contain';
+            renderDetailContent();
+        }
+
+        window.resetImageAdjustment = function() {
+            currentZoom = 1;
+            currentFitMode = 'contain';
             renderDetailContent();
         }
 
@@ -596,7 +628,6 @@
             });
         }
 
-        // Suppression sécurisée par le nom de l'artiste
         window.deleteArtist = async function() {
             const artist = artists[currentArtistIndex];
             if (!artist) return;
