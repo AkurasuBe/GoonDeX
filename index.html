@@ -53,6 +53,7 @@
                     <div class="w-full bg-slate-100 dark:bg-slate-900 p-4 rounded-2xl mb-6 text-left text-xs font-mono leading-relaxed border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300">
                         <p>> Connexion au Cloud Supabase établie...</p>
                         <p>> Mode collaboratif public actif.</p>
+                        <p>> Système de notes par étoiles activé.</p>
                         <p>> Prêt pour l'exploration.</p>
                     </div>
                     <button onclick="switchPage('list')" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold py-3 px-6 rounded-xl transition tracking-wide text-xs shadow-md">
@@ -110,6 +111,19 @@
                         <div id="images-inputs-container" class="space-y-2 mb-2"></div>
                         <button type="button" onclick="addImageInput()" class="text-xs text-slate-700 dark:text-slate-300 font-semibold hover:underline">+ Ajouter une autre image</button>
                     </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold mb-1 uppercase text-slate-500 dark:text-slate-400">Note initiale (Étoiles)</label>
+                        <div id="form-star-rating" class="flex gap-1.5 cursor-pointer py-1">
+                            <span onclick="setFormRating(1)" class="text-2xl text-amber-400 star-btn" data-value="1">★</span>
+                            <span onclick="setFormRating(2)" class="text-2xl text-amber-400 star-btn" data-value="2">★</span>
+                            <span onclick="setFormRating(3)" class="text-2xl text-amber-400 star-btn" data-value="3">★</span>
+                            <span onclick="setFormRating(4)" class="text-2xl text-amber-400 star-btn" data-value="4">★</span>
+                            <span onclick="setFormRating(5)" class="text-2xl text-amber-400 star-btn" data-value="5">★</span>
+                        </div>
+                        <input type="hidden" id="artist-rating" value="5">
+                    </div>
+
                     <div>
                         <label class="block text-xs font-semibold mb-1 uppercase text-slate-500 dark:text-slate-400">Description / Style</label>
                         <textarea id="description" rows="2" required class="w-full p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 focus:outline-none focus:border-emerald-600 text-sm"></textarea>
@@ -152,6 +166,7 @@
         let artists = [];
         let selectedTagFilter = null;
         let currentFormTags = [];
+        let currentFormRating = 5;
         let currentArtistIndex = null;
         let currentDetailImageIndex = 0;
 
@@ -216,6 +231,31 @@
             if (pageId === 'add') initAddPage();
         }
 
+        function renderStars(rating) {
+            const r = rating || 0;
+            let html = '<div class="flex text-amber-400 text-xs gap-0.5">';
+            for (let i = 1; i <= 5; i++) {
+                html += i <= r ? '★' : '<span class="text-slate-300 dark:text-slate-700">★</span>';
+            }
+            html += '</div>';
+            return html;
+        }
+
+        function setFormRating(val) {
+            currentFormRating = val;
+            document.getElementById('artist-rating').value = val;
+            const stars = document.querySelectorAll('.star-btn');
+            stars.forEach((s, idx) => {
+                if (idx < val) {
+                    s.classList.remove('text-slate-300', 'dark:text-slate-700');
+                    s.classList.add('text-amber-400');
+                } else {
+                    s.classList.remove('text-amber-400');
+                    s.classList.add('text-slate-300', 'dark:text-slate-700');
+                }
+            });
+        }
+
         function renderList() {
             const container = document.getElementById('artists-list-container');
             const counter = document.getElementById('counter-badge');
@@ -241,6 +281,7 @@
 
             const tagsHtml = (artist.tags || []).map(t => `<span class="bg-slate-200 dark:bg-slate-900 text-slate-600 dark:text-slate-400 text-[10px] px-2 py-0.5 rounded-lg border border-slate-300 dark:border-slate-800">${escapeHtml(t)}</span>`).join(' ');
             const coverImage = (artist.images && artist.images.length > 0) ? artist.images[0] : '';
+            const ratingHtml = renderStars(artist.rating);
 
             card.innerHTML = `
                 <div>
@@ -251,7 +292,10 @@
                     <div class="h-32 rounded-xl overflow-hidden mb-2 bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center">
                         <img src="${coverImage}" alt="${artist.name}" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/300x200?text=ErreurImage'">
                     </div>
-                    <h3 class="font-semibold text-sm truncate text-slate-900 dark:text-slate-100">${escapeHtml(artist.name)}</h3>
+                    <div class="flex items-center justify-between gap-1 mb-1">
+                        <h3 class="font-semibold text-sm truncate text-slate-900 dark:text-slate-100">${escapeHtml(artist.name)}</h3>
+                        <div>${ratingHtml}</div>
+                    </div>
                     <div class="flex flex-wrap gap-1 mt-2">${tagsHtml}</div>
                 </div>
                 <div class="mt-2 text-[11px] text-slate-500 dark:text-slate-400 truncate pt-2 border-t border-slate-200 dark:border-slate-800">
@@ -337,6 +381,7 @@
 
         function initAddPage() {
             currentFormTags = [];
+            setFormRating(5);
             const form = document.getElementById('artist-form');
             if(form) form.reset();
             
@@ -444,6 +489,19 @@
             }
         }
 
+        window.updateArtistRating = async function(newRating) {
+            const artist = artists[currentArtistIndex];
+            if (!artist) return;
+            
+            const { error } = await dbClient.from('artists').update({ rating: newRating }).eq('name', artist.name);
+            if (error) {
+                alert("Erreur lors de la mise à jour de la note : " + error.message);
+            } else {
+                artists[currentArtistIndex].rating = newRating;
+                renderDetailContent();
+            }
+        }
+
         function renderDetailContent() {
             const artist = artists[currentArtistIndex];
             const detailContainer = document.getElementById('artist-detail-content');
@@ -478,6 +536,18 @@
                 `).join('') + `</div>`;
             }
 
+            const currentRating = artist.rating || 0;
+            let ratingInteractiveHtml = `
+                <div class="flex items-center gap-2 mt-3">
+                    <span class="text-xs text-slate-400 uppercase font-semibold">Note :</span>
+                    <div class="flex gap-1 cursor-pointer">
+                        ${[1, 2, 3, 4, 5].map(i => `
+                            <span onclick="updateArtistRating(${i})" class="text-xl ${i <= currentRating ? 'text-amber-400' : 'text-slate-300 dark:text-slate-700'} hover:text-amber-400 transition">★</span>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+
             detailContainer.innerHTML = `
                 <div class="flex flex-col gap-3">
                     ${imageCarouselHtml}
@@ -485,8 +555,11 @@
                 <div class="flex flex-col justify-between space-y-4">
                     <div>
                         <span class="text-xs font-semibold text-slate-400 uppercase tracking-widest">Fiche Répertoire #${String(currentArtistIndex + 1).padStart(3, '0')}</span>
-                        <h2 class="text-2xl font-bold text-slate-900 dark:text-slate-100 mt-1">${escapeHtml(artist.name)}</h2>
-                        <div class="flex flex-wrap gap-1.5 mt-2">${tagsHtml}</div>
+                        <div class="flex items-center justify-between mt-1">
+                            <h2 class="text-2xl font-bold text-slate-900 dark:text-slate-100">${escapeHtml(artist.name)}</h2>
+                        </div>
+                        ${ratingInteractiveHtml}
+                        <div class="flex flex-wrap gap-1.5 mt-3">${tagsHtml}</div>
                         <div class="mt-4 bg-slate-100 dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800">
                             <h4 class="text-xs text-slate-400 uppercase font-semibold mb-1">Description / Style :</h4>
                             <p class="text-sm text-slate-700 dark:text-slate-300">${escapeHtml(artist.description)}</p>
@@ -533,12 +606,15 @@
                     if (!currentFormTags.includes(formattedTag)) currentFormTags.push(formattedTag);
                 }
 
+                const ratingVal = parseInt(document.getElementById('artist-rating').value) || 5;
+
                 const newArtist = {
                     name: document.getElementById('name').value,
                     images: imagesList,
                     description: document.getElementById('description').value,
                     links: linksList,
-                    tags: currentFormTags
+                    tags: currentFormTags,
+                    rating: ratingVal
                 };
 
                 const { error } = await dbClient.from('artists').insert([newArtist]);
