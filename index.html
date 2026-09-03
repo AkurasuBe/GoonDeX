@@ -188,14 +188,15 @@
         let currentArtistIndex = null;
 
         async function fetchArtistsFromCloud() {
-            const { data, error } = await dbClient.from('artists').select('*');
-            if (error) {
-                console.error('Erreur de chargement:', error);
-            } else {
-                artists = data || [];
-                renderList();
-            }
-        }
+    const { data, error } = await dbClient.from('artists').select('*');
+    if (error) {
+        console.error('Erreur de chargement:', error);
+        alert("Erreur Supabase : " + error.message);
+    } else {
+        artists = data || [];
+        renderList();
+    }
+}
 
         function toggleTheme() {
             const htmlEl = document.documentElement;
