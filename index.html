@@ -100,7 +100,6 @@
                         <input type="text" id="name" required class="w-full p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 focus:outline-none focus:border-emerald-600 text-sm">
                     </div>
 
-                    <!-- ANCIEN SYSTÈME : URL DIRECTE -->
                     <div>
                         <label class="block text-xs font-semibold mb-1 uppercase text-slate-500 dark:text-slate-400">Image principale (URL)</label>
                         <input type="url" id="primary-image-url" required class="w-full p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 focus:outline-none focus:border-emerald-600 text-sm" placeholder="https://...">
@@ -436,10 +435,10 @@
 
             let images = artist.images || ['https://via.placeholder.com/400x300?text=PasImage'];
             
-            // Affichage de toutes les images verticalement, sans flèches
+            // Utilisation de object-cover pour que l'image remplisse automatiquement le cadre
             let imagesHtml = images.map(img => `
-                <div class="h-80 md:h-96 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900 flex items-center justify-center p-2 mb-2">
-                    <img src="${escapeHtml(img)}" alt="${escapeHtml(artist.name)}" class="max-h-full max-w-full object-contain" onerror="this.src='https://via.placeholder.com/400x300?text=ErreurImage'">
+                <div class="h-80 md:h-96 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900 mb-2">
+                    <img src="${escapeHtml(img)}" alt="${escapeHtml(artist.name)}" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/400x300?text=ErreurImage'">
                 </div>
             `).join('');
 
