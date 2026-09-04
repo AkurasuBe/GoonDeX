@@ -244,7 +244,7 @@
                     <div class="relative">
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Tags</label>
                         <div id="selected-tags-container" class="flex flex-wrap gap-1.5 mb-2 p-2 bg-zinc-900 rounded-xl border border-zinc-800 min-h-[40px]"></div>
-                        <input type="text" id="tag-autocomplete-input" oninput="handleTagInput(event)" placeholder="Tapez un tag..." class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" autocomplete="off">
+                        <input type="text" id="tag-autocomplete-input" oninput="handleTagInput(event)" placeholder="Tapez ou sélectionnez un tag..." class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" autocomplete="off">
                         <div id="tag-dropdown" class="hidden absolute left-0 right-0 mt-1 bg-zinc-900 border border-zinc-800 rounded-xl shadow-lg max-h-36 overflow-y-auto z-50"></div>
                     </div>
                     <button type="submit" class="w-full bg-rose-600 hover:bg-rose-700 text-white font-semibold py-2.5 px-4 rounded-xl tracking-wide text-xs transition-all duration-300 mt-2 shadow-sm hover:scale-[1.01]">Publier l'artiste</button>
@@ -294,7 +294,7 @@
                     <div class="relative">
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Tags</label>
                         <div id="edit-selected-tags-container" class="flex flex-wrap gap-1.5 mb-2 p-2 bg-zinc-900 rounded-xl border border-zinc-800 min-h-[40px]"></div>
-                        <input type="text" id="edit-tag-autocomplete-input" oninput="handleEditTagInput(event)" placeholder="Tapez un tag..." class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" autocomplete="off">
+                        <input type="text" id="edit-tag-autocomplete-input" oninput="handleEditTagInput(event)" placeholder="Tapez ou sélectionnez un tag..." class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" autocomplete="off">
                         <div id="edit-tag-dropdown" class="hidden absolute left-0 right-0 mt-1 bg-zinc-900 border border-zinc-800 rounded-xl shadow-lg max-h-36 overflow-y-auto z-50"></div>
                     </div>
                     <button type="submit" class="w-full bg-rose-600 hover:bg-rose-700 text-white font-semibold py-2.5 px-4 rounded-xl tracking-wide text-xs transition-all duration-300 mt-2 shadow-sm hover:scale-[1.01]">Enregistrer les modifications</button>
@@ -346,7 +346,7 @@
                     <div class="relative">
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Genres / Tags</label>
                         <div id="manhwa-selected-tags-container" class="flex flex-wrap gap-1.5 mb-2 p-2 bg-zinc-900 rounded-xl border border-zinc-800 min-h-[40px]"></div>
-                        <input type="text" id="manhwa-tag-autocomplete-input" oninput="handleManhwaTagInput(event)" placeholder="Tapez un genre..." class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" autocomplete="off">
+                        <input type="text" id="manhwa-tag-autocomplete-input" oninput="handleManhwaTagInput(event)" placeholder="Tapez ou sélectionnez un genre..." class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" autocomplete="off">
                         <div id="manhwa-tag-dropdown" class="hidden absolute left-0 right-0 mt-1 bg-zinc-900 border border-zinc-800 rounded-xl shadow-lg max-h-36 overflow-y-auto z-50"></div>
                     </div>
                     <button type="submit" class="w-full bg-rose-600 hover:bg-rose-700 text-white font-semibold py-2.5 px-4 rounded-xl tracking-wide text-xs transition-all duration-300 mt-2 shadow-sm hover:scale-[1.01]">Publier le manhwa</button>
@@ -396,7 +396,7 @@
                     <div class="relative">
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Genres / Tags</label>
                         <div id="edit-manhwa-selected-tags-container" class="flex flex-wrap gap-1.5 mb-2 p-2 bg-zinc-900 rounded-xl border border-zinc-800 min-h-[40px]"></div>
-                        <input type="text" id="edit-manhwa-tag-autocomplete-input" oninput="handleEditManhwaTagInput(event)" placeholder="Tapez un genre..." class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" autocomplete="off">
+                        <input type="text" id="edit-manhwa-tag-autocomplete-input" oninput="handleEditManhwaTagInput(event)" placeholder="Tapez ou sélectionnez un genre..." class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" autocomplete="off">
                         <div id="edit-manhwa-tag-dropdown" class="hidden absolute left-0 right-0 mt-1 bg-zinc-900 border border-zinc-800 rounded-xl shadow-lg max-h-36 overflow-y-auto z-50"></div>
                     </div>
                     <button type="submit" class="w-full bg-rose-600 hover:bg-rose-700 text-white font-semibold py-2.5 px-4 rounded-xl tracking-wide text-xs transition-all duration-300 mt-2 shadow-sm hover:scale-[1.01]">Enregistrer les modifications</button>
@@ -448,7 +448,7 @@
                     <div class="relative">
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Genres / Tags</label>
                         <div id="doujinshi-selected-tags-container" class="flex flex-wrap gap-1.5 mb-2 p-2 bg-zinc-900 rounded-xl border border-zinc-800 min-h-[40px]"></div>
-                        <input type="text" id="doujinshi-tag-autocomplete-input" oninput="handleDoujinshiTagInput(event)" placeholder="Tapez un genre..." class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" autocomplete="off">
+                        <input type="text" id="doujinshi-tag-autocomplete-input" oninput="handleDoujinshiTagInput(event)" placeholder="Tapez ou sélectionnez un genre..." class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" autocomplete="off">
                         <div id="doujinshi-tag-dropdown" class="hidden absolute left-0 right-0 mt-1 bg-zinc-900 border border-zinc-800 rounded-xl shadow-lg max-h-36 overflow-y-auto z-50"></div>
                     </div>
                     <button type="submit" class="w-full bg-rose-600 hover:bg-rose-700 text-white font-semibold py-2.5 px-4 rounded-xl tracking-wide text-xs transition-all duration-300 mt-2 shadow-sm hover:scale-[1.01]">Publier le doujinshi</button>
@@ -498,7 +498,7 @@
                     <div class="relative">
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Genres / Tags</label>
                         <div id="edit-doujinshi-selected-tags-container" class="flex flex-wrap gap-1.5 mb-2 p-2 bg-zinc-900 rounded-xl border border-zinc-800 min-h-[40px]"></div>
-                        <input type="text" id="edit-doujinshi-tag-autocomplete-input" oninput="handleEditDoujinshiTagInput(event)" placeholder="Tapez un genre..." class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" autocomplete="off">
+                        <input type="text" id="edit-doujinshi-tag-autocomplete-input" oninput="handleEditDoujinshiTagInput(event)" placeholder="Tapez ou sélectionnez un genre..." class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" autocomplete="off">
                         <div id="edit-doujinshi-tag-dropdown" class="hidden absolute left-0 right-0 mt-1 bg-zinc-900 border border-zinc-800 rounded-xl shadow-lg max-h-36 overflow-y-auto z-50"></div>
                     </div>
                     <button type="submit" class="w-full bg-rose-600 hover:bg-rose-700 text-white font-semibold py-2.5 px-4 rounded-xl tracking-wide text-xs transition-all duration-300 mt-2 shadow-sm hover:scale-[1.01]">Enregistrer les modifications</button>
@@ -550,7 +550,7 @@
                     <div class="relative">
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Tags</label>
                         <div id="cosplayeuse-selected-tags-container" class="flex flex-wrap gap-1.5 mb-2 p-2 bg-zinc-900 rounded-xl border border-zinc-800 min-h-[40px]"></div>
-                        <input type="text" id="cosplayeuse-tag-autocomplete-input" oninput="handleCosplayeuseTagInput(event)" placeholder="Tapez un tag..." class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" autocomplete="off">
+                        <input type="text" id="cosplayeuse-tag-autocomplete-input" oninput="handleCosplayeuseTagInput(event)" placeholder="Tapez ou sélectionnez un tag..." class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" autocomplete="off">
                         <div id="cosplayeuse-tag-dropdown" class="hidden absolute left-0 right-0 mt-1 bg-zinc-900 border border-zinc-800 rounded-xl shadow-lg max-h-36 overflow-y-auto z-50"></div>
                     </div>
                     <button type="submit" class="w-full bg-rose-600 hover:bg-rose-700 text-white font-semibold py-2.5 px-4 rounded-xl tracking-wide text-xs transition-all duration-300 mt-2 shadow-sm hover:scale-[1.01]">Publier la cosplayeuse</button>
@@ -600,7 +600,7 @@
                     <div class="relative">
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Tags</label>
                         <div id="edit-cosplayeuse-selected-tags-container" class="flex flex-wrap gap-1.5 mb-2 p-2 bg-zinc-900 rounded-xl border border-zinc-800 min-h-[40px]"></div>
-                        <input type="text" id="edit-cosplayeuse-tag-autocomplete-input" oninput="handleEditCosplayeuseTagInput(event)" placeholder="Tapez un tag..." class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" autocomplete="off">
+                        <input type="text" id="edit-cosplayeuse-tag-autocomplete-input" oninput="handleEditCosplayeuseTagInput(event)" placeholder="Tapez ou sélectionnez un tag..." class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" autocomplete="off">
                         <div id="edit-cosplayeuse-tag-dropdown" class="hidden absolute left-0 right-0 mt-1 bg-zinc-900 border border-zinc-800 rounded-xl shadow-lg max-h-36 overflow-y-auto z-50"></div>
                     </div>
                     <button type="submit" class="w-full bg-rose-600 hover:bg-rose-700 text-white font-semibold py-2.5 px-4 rounded-xl tracking-wide text-xs transition-all duration-300 mt-2 shadow-sm hover:scale-[1.01]">Enregistrer les modifications</button>
@@ -672,13 +672,12 @@
         let currentEditCosplayeuseFormTags = [];
         let currentEditCosplayeuseFormRating = 5;
 
-        /* --- FONCTIONS LIGHTBOX (AGRANDISSEMENT D'IMAGE) --- */
+        /* --- FONCTIONS LIGHTBOX --- */
         function openLightbox(url) {
             const modal = document.getElementById('lightbox-modal');
             const img = document.getElementById('lightbox-img');
             img.src = url;
             modal.classList.remove('hidden');
-            // Léger délai pour déclencher la transition d'opacité et de zoom
             setTimeout(() => {
                 modal.classList.remove('opacity-0');
                 img.classList.remove('scale-95');
@@ -777,6 +776,15 @@
             if (addContainer && !addContainer.contains(e.target)) {
                 closeAddDropdown();
             }
+            // Fermer les dropdowns de tags si clic en dehors
+            ['tag-dropdown', 'edit-tag-dropdown', 'manhwa-tag-dropdown', 'edit-manhwa-tag-dropdown', 'doujinshi-tag-dropdown', 'edit-doujinshi-tag-dropdown', 'cosplayeuse-tag-dropdown', 'edit-cosplayeuse-tag-dropdown'].forEach(id => {
+                const drop = document.getElementById(id);
+                const inputId = id.replace('-dropdown', '-autocomplete-input');
+                const inp = document.getElementById(inputId);
+                if (drop && inp && !drop.contains(e.target) && !inp.contains(e.target)) {
+                    drop.classList.add('hidden');
+                }
+            });
         });
 
         function getAllTags() {
@@ -849,6 +857,118 @@
             if (!str) return '';
             return String(str).replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;').replace('"', '&quot;').replace("'", '&#039;');
         }
+
+        /* --- SYSTÈMES DE TAGS INTERactifs (PROBLÈME 1) --- */
+        function setupTagAutocomplete(inputEl, dropdownEl, selectedContainerEl, tagsArrayRef, allTagsSource) {
+            if (!inputEl) return;
+            
+            // Afficher le dropdown au focus
+            inputEl.onfocus = () => {
+                showTagDropdown(inputEl, dropdownEl, selectedContainerEl, tagsArrayRef, allTagsSource, '');
+            };
+
+            inputEl.onkeydown = (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    const val = inputEl.value.trim();
+                    if (val && !tagsArrayRef.includes(val)) {
+                        tagsArrayRef.push(val);
+                        inputEl.value = '';
+                        renderSelectedTags(selectedContainerEl, tagsArrayRef, () => setupTagAutocomplete(inputEl, dropdownEl, selectedContainerEl, tagsArrayRef, allTagsSource));
+                        dropdownEl.classList.add('hidden');
+                    }
+                }
+            };
+        }
+
+        function showTagDropdown(inputEl, dropdownEl, selectedContainerEl, tagsArrayRef, allTagsSource, query) {
+            const allTags = allTagsSource();
+            const filtered = allTags.filter(t => t.toLowerCase().includes(query.toLowerCase()) && !tagsArrayRef.includes(t));
+            
+            let html = '';
+            if (query.trim() && !allTags.map(t=>t.toLowerCase()).includes(query.trim().toLowerCase()) && !tagsArrayRef.includes(query.trim())) {
+                html += `<div onclick="addTagValue('${escapeHtml(query.trim())}', '${inputEl.id}', '${dropdownEl.id}', '${selectedContainerEl.id}')" class="px-3 py-2 text-xs hover:bg-rose-600 hover:text-white cursor-pointer text-rose-400 font-semibold border-b border-zinc-800">+ Créer le tag "${escapeHtml(query.trim())}"</div>`;
+            }
+
+            if (filtered.length === 0 && !html) {
+                html += `<div class="px-3 py-2 text-xs text-zinc-500 italic">Aucun tag trouvé. Appuyez sur Entrée pour créer.</div>`;
+            } else {
+                filtered.forEach(tag => {
+                    html += `<div onclick="addTagValue('${escapeHtml(tag)}', '${inputEl.id}', '${dropdownEl.id}', '${selectedContainerEl.id}')" class="px-3 py-2 text-xs hover:bg-rose-600 hover:text-white cursor-pointer text-zinc-200 transition">${escapeHtml(tag)}</div>`;
+                });
+            }
+
+            dropdownEl.innerHTML = html;
+            dropdownEl.classList.remove('hidden');
+        }
+
+        // Fonctions globales d'aide pour les tags reliées aux formulaires
+        window.activeTagStates = {
+            'tag-autocomplete-input': { ref: () => currentFormTags, container: 'selected-tags-container', source: getAllTags, dropdown: 'tag-dropdown' },
+            'edit-tag-autocomplete-input': { ref: () => currentEditFormTags, container: 'edit-selected-tags-container', source: getAllTags, dropdown: 'edit-tag-dropdown' },
+            'manhwa-tag-autocomplete-input': { ref: () => currentManhwaFormTags, container: 'manhwa-selected-tags-container', source: getAllManhwaTags, dropdown: 'manhwa-tag-dropdown' },
+            'edit-manhwa-tag-autocomplete-input': { ref: () => currentEditManhwaFormTags, container: 'edit-manhwa-selected-tags-container', source: getAllManhwaTags, dropdown: 'edit-manhwa-tag-dropdown' },
+            'doujinshi-tag-autocomplete-input': { ref: () => currentDoujinshiFormTags, container: 'doujinshi-selected-tags-container', source: getAllDoujinshiTags, dropdown: 'doujinshi-tag-dropdown' },
+            'edit-doujinshi-tag-autocomplete-input': { ref: () => currentEditDoujinshiFormTags, container: 'edit-doujinshi-selected-tags-container', source: getAllDoujinshiTags, dropdown: 'edit-doujinshi-tag-dropdown' },
+            'cosplayeuse-tag-autocomplete-input': { ref: () => currentCosplayeuseFormTags, container: 'cosplayeuse-selected-tags-container', source: getAllCosplayeuseTags, dropdown: 'cosplayeuse-tag-dropdown' },
+            'edit-cosplayeuse-tag-autocomplete-input': { ref: () => currentEditCosplayeuseFormTags, container: 'edit-cosplayeuse-selected-tags-container', source: getAllCosplayeuseTags, dropdown: 'edit-cosplayeuse-tag-dropdown' }
+        };
+
+        function handleTagInput(e) { handleGenericTagInput(e, 'tag-autocomplete-input', 'tag-dropdown', 'selected-tags-container', () => currentFormTags, getAllTags); }
+        function handleEditTagInput(e) { handleGenericTagInput(e, 'edit-tag-autocomplete-input', 'edit-tag-dropdown', 'edit-selected-tags-container', () => currentEditFormTags, getAllTags); }
+        function handleManhwaTagInput(e) { handleGenericTagInput(e, 'manhwa-tag-autocomplete-input', 'manhwa-tag-dropdown', 'manhwa-selected-tags-container', () => currentManhwaFormTags, getAllManhwaTags); }
+        function handleEditManhwaTagInput(e) { handleGenericTagInput(e, 'edit-manhwa-tag-autocomplete-input', 'edit-manhwa-tag-dropdown', 'edit-manhwa-selected-tags-container', () => currentEditManhwaFormTags, getAllManhwaTags); }
+        function handleDoujinshiTagInput(e) { handleGenericTagInput(e, 'doujinshi-tag-autocomplete-input', 'doujinshi-tag-dropdown', 'doujinshi-selected-tags-container', () => currentDoujinshiFormTags, getAllDoujinshiTags); }
+        function handleEditDoujinshiTagInput(e) { handleGenericTagInput(e, 'edit-doujinshi-tag-autocomplete-input', 'edit-doujinshi-tag-dropdown', 'edit-doujinshi-selected-tags-container', () => currentEditDoujinshiFormTags, getAllDoujinshiTags); }
+        function handleCosplayeuseTagInput(e) { handleGenericTagInput(e, 'cosplayeuse-tag-autocomplete-input', 'cosplayeuse-tag-dropdown', 'cosplayeuse-selected-tags-container', () => currentCosplayeuseFormTags, getAllCosplayeuseTags); }
+        function handleEditCosplayeuseTagInput(e) { handleGenericTagInput(e, 'edit-cosplayeuse-tag-autocomplete-input', 'edit-cosplayeuse-tag-dropdown', 'edit-cosplayeuse-selected-tags-container', () => currentEditCosplayeuseFormTags, getAllCosplayeuseTags); }
+
+        function handleGenericTagInput(e, inputId, dropdownId, containerId, refFunc, sourceFunc) {
+            const val = e.target.value;
+            const dropdown = document.getElementById(dropdownId);
+            const input = document.getElementById(inputId);
+            const container = document.getElementById(containerId);
+            showTagDropdown(input, dropdown, container, refFunc(), sourceFunc, val);
+        }
+
+        window.addTagValue = function(tag, inputId, dropdownId, containerId) {
+            const stateObj = window.activeTagStates[inputId];
+            if (!stateObj) return;
+            const arr = stateObj.ref();
+            if (!arr.includes(tag)) {
+                arr.push(tag);
+            }
+            const input = document.getElementById(inputId);
+            const dropdown = document.getElementById(dropdownId);
+            const container = document.getElementById(containerId);
+            if (input) input.value = '';
+            if (dropdown) dropdown.classList.add('hidden');
+            renderSelectedTags(container, arr, () => setupTagAutocomplete(input, dropdown, container, arr, stateObj.source));
+        };
+
+        function renderSelectedTags(containerEl, tagsArray, removeCallback) {
+            if (!containerEl) return;
+            containerEl.innerHTML = tagsArray.map((t, idx) => `
+                <span class="bg-zinc-800 text-zinc-200 text-xs px-2.5 py-1 rounded-xl border border-zinc-700 flex items-center gap-1.5">
+                    ${escapeHtml(t)}
+                    <button type="button" onclick="removeTagByIndex(${idx}, '${containerEl.id}')" class="text-rose-400 hover:text-white font-bold">×</button>
+                </span>
+            `).join('') || '<span class="text-xs text-zinc-500 italic p-1">Aucun tag sélectionné</span>';
+        }
+
+        window.removeTagByIndex = function(idx, containerId) {
+            for (let key in window.activeTagStates) {
+                if (window.activeTagStates[key].container === containerId) {
+                    const arr = window.activeTagStates[key].ref();
+                    arr.splice(idx, 1);
+                    const container = document.getElementById(containerId);
+                    const input = document.getElementById(key);
+                    const dropdown = document.getElementById(window.activeTagStates[key].dropdown);
+                    renderSelectedTags(container, arr, () => setupTagAutocomplete(input, dropdown, container, arr, window.activeTagStates[key].source));
+                    break;
+                }
+            }
+        };
 
         /* --- CARTES COMPOSANTS AVEC ANIMATIONS --- */
         function createArtistCard(artist, index) {
@@ -971,7 +1091,7 @@
             return card;
         }
 
-        /* --- PAGES DE DÉTAILS AVEC CLIC POUR AGRANDIR L'IMAGE --- */
+        /* --- PAGES DE DÉTAILS ET MODIFICATION (PROBLÈME 2 & 3) --- */
         function showDetail(index) {
             currentArtistIndex = index;
             const artist = artists[index];
@@ -1044,6 +1164,127 @@
             renderArtistDetailContent();
         }
 
+        // --- PRÉPARATION DE LA MODIFICATION ARTISTE ---
+        function prepareEditArtist() {
+            const artist = artists[currentArtistIndex];
+            if (!artist) return;
+            document.getElementById('edit-name').value = artist.name || '';
+            document.getElementById('edit-primary-image-url.value', artist.images?.[0] || '');
+            document.getElementById('edit-primary-image-url').value = artist.images?.[0] || '';
+            document.getElementById('edit-description').value = artist.description || '';
+            setEditFormRating(artist.rating || 5);
+
+            currentEditFormTags = [...(artist.tags || [])];
+            renderSelectedTags(document.getElementById('edit-selected-tags-container'), currentEditFormTags, () => {});
+
+            // Images sup
+            const imgContainer = document.getElementById('edit-images-inputs-container');
+            imgContainer.innerHTML = '';
+            if (artist.images && artist.images.length > 1) {
+                artist.images.slice(1).forEach(img => addEditImageInput(img));
+            }
+
+            // Liens
+            const linkContainer = document.getElementById('edit-links-inputs-container');
+            linkContainer.innerHTML = '';
+            if (artist.links && artist.links.length > 0) {
+                artist.links.forEach(l => addEditLinkInput(l.name, l.url));
+            } else {
+                addEditLinkInput();
+            }
+
+            setupTagAutocomplete(document.getElementById('edit-tag-autocomplete-input'), document.getElementById('edit-tag-dropdown'), document.getElementById('edit-selected-tags-container'), currentEditFormTags, getAllTags);
+            switchPage('artist-edit');
+        }
+
+        function addEditImageInput(val = '') {
+            const container = document.getElementById('edit-images-inputs-container');
+            const div = document.createElement('div');
+            div.className = "flex gap-2";
+            div.innerHTML = `
+                <input type="url" value="${escapeHtml(val)}" class="edit-extra-image-input w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" placeholder="https://...">
+                <button type="button" onclick="this.parentElement.remove()" class="px-3 bg-zinc-800 hover:bg-red-600 text-zinc-300 rounded-xl text-xs">✕</button>
+            `;
+            container.appendChild(div);
+        }
+
+        function addEditLinkInput(name = '', url = '') {
+            const container = document.getElementById('edit-links-inputs-container');
+            const div = document.createElement('div');
+            div.className = "flex gap-2";
+            div.innerHTML = `
+                <input type="text" value="${escapeHtml(name)}" class="edit-link-name-input w-1/3 p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" placeholder="Nom du site">
+                <input type="url" value="${escapeHtml(url)}" class="edit-link-url-input w-2/3 p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" placeholder="https://...">
+                <button type="button" onclick="this.parentElement.remove()" class="px-3 bg-zinc-800 hover:bg-red-600 text-zinc-300 rounded-xl text-xs">✕</button>
+            `;
+            container.appendChild(div);
+        }
+
+        function setEditFormRating(r) {
+            currentEditFormRating = r;
+            document.getElementById('edit-artist-rating').value = r;
+            document.querySelectorAll('.edit-star-btn').forEach((btn, idx) => {
+                if (idx < r) {
+                    btn.classList.remove('text-zinc-700');
+                    btn.classList.add('text-amber-400');
+                } else {
+                    btn.classList.remove('text-amber-400');
+                    btn.classList.add('text-zinc-700');
+                }
+            });
+        }
+
+        // Soumission modification Artiste
+        document.getElementById('artist-edit-form').onsubmit = async function(e) {
+            e.preventDefault();
+            const name = document.getElementById('edit-name').value.trim();
+            const primaryImg = document.getElementById('edit-primary-image-url').value.trim();
+            const description = document.getElementById('edit-description').value.trim();
+            const rating = parseInt(document.getElementById('edit-artist-rating').value) || 5;
+
+            const extraImgs = Array.from(document.querySelectorAll('.edit-extra-image-input')).map(i => i.value.trim()).filter(Boolean);
+            const images = [primaryImg, ...extraImgs];
+
+            const linkNames = Array.from(document.querySelectorAll('.edit-link-name-input'));
+            const linkUrls = Array.from(document.querySelectorAll('.edit-link-url-input'));
+            const links = [];
+            for (let i = 0; i < linkNames.length; i++) {
+                if (linkNames[i].value.trim() && linkUrls[i].value.trim()) {
+                    links.push({ name: linkNames[i].value.trim(), url: linkUrls[i].value.trim() });
+                }
+            }
+
+            const updatedData = { name, images, description, rating, tags: [...currentEditFormTags], links };
+
+            const { error } = await dbClient.from('artists').update(updatedData).eq('name', originalArtistName);
+            if (error) {
+                alert('Erreur lors de la modification : ' + error.message);
+            } else {
+                await fetchArtistsFromCloud();
+                switchPage('search');
+            }
+        };
+
+        // --- SUPPRESSION ARTISTE AVEC MOT DE PASSE (PROBLÈME 3) ---
+       async function deleteArtist() {
+            const artist = artists[currentArtistIndex];
+            if (!artist) return;
+
+            const pwd = prompt("Veuillez entrer le mot de passe pour supprimer cet artiste :");
+            if (pwd !== "DRAGONIMPERIAL") {
+                if (pwd !== null) alert("Mot de passe incorrect !");
+                return;
+            }
+
+            const { error } = await dbClient.from('artists').delete().eq('name', artist.name);
+            if (error) {
+                alert('Erreur lors de la suppression : ' + error.message);
+            } else {
+                await fetchArtistsFromCloud();
+                switchPage('search');
+            }
+        }
+        // --- FONCTIONS MANHWAS, DOUJINSHIS, COSPLAYEUSES (SIMILAIRES AVEC GESTION EDIT / DELETE / TAGS) ---
         function showManhwaDetail(index) {
             currentManhwaIndex = index;
             const manhwa = manhwas[index];
@@ -1116,6 +1357,122 @@
             renderManhwaDetailContent();
         }
 
+        function prepareEditManhwa() {
+            const manhwa = manhwas[currentManhwaIndex];
+            if (!manhwa) return;
+            document.getElementById('edit-manhwa-name').value = manhwa.name || '';
+            document.getElementById('edit-manhwa-primary-image-url').value = manhwa.images?.[0] || '';
+            document.getElementById('edit-manhwa-description').value = manhwa.description || '';
+            setEditManhwaFormRating(manhwa.rating || 5);
+
+            currentEditManhwaFormTags = [...(manhwa.tags || [])];
+            renderSelectedTags(document.getElementById('edit-manhwa-selected-tags-container'), currentEditManhwaFormTags, () => {});
+
+            const imgContainer = document.getElementById('edit-manhwa-images-inputs-container');
+            imgContainer.innerHTML = '';
+            if (manhwa.images && manhwa.images.length > 1) {
+                manhwa.images.slice(1).forEach(img => addEditManhwaImageInput(img));
+            }
+
+            const linkContainer = document.getElementById('edit-manhwa-links-inputs-container');
+            linkContainer.innerHTML = '';
+            if (manhwa.links && manhwa.links.length > 0) {
+                manhwa.links.forEach(l => addEditManhwaLinkInput(l.name, l.url));
+            } else {
+                addEditManhwaLinkInput();
+            }
+
+            setupTagAutocomplete(document.getElementById('edit-manhwa-tag-autocomplete-input'), document.getElementById('edit-manhwa-tag-dropdown'), document.getElementById('edit-manhwa-selected-tags-container'), currentEditManhwaFormTags, getAllManhwaTags);
+            switchPage('manhwa-edit');
+        }
+
+        function addEditManhwaImageInput(val = '') {
+            const container = document.getElementById('edit-manhwa-images-inputs-container');
+            const div = document.createElement('div');
+            div.className = "flex gap-2";
+            div.innerHTML = `
+                <input type="url" value="${escapeHtml(val)}" class="edit-manhwa-extra-image-input w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" placeholder="https://...">
+                <button type="button" onclick="this.parentElement.remove()" class="px-3 bg-zinc-800 hover:bg-red-600 text-zinc-300 rounded-xl text-xs">✕</button>
+            `;
+            container.appendChild(div);
+        }
+
+        function addEditManhwaLinkInput(name = '', url = '') {
+            const container = document.getElementById('edit-manhwa-links-inputs-container');
+            const div = document.createElement('div');
+            div.className = "flex gap-2";
+            div.innerHTML = `
+                <input type="text" value="${escapeHtml(name)}" class="edit-manhwa-link-name-input w-1/3 p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" placeholder="Nom du site">
+                <input type="url" value="${escapeHtml(url)}" class="edit-manhwa-link-url-input w-2/3 p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" placeholder="https://...">
+                <button type="button" onclick="this.parentElement.remove()" class="px-3 bg-zinc-800 hover:bg-red-600 text-zinc-300 rounded-xl text-xs">✕</button>
+            `;
+            container.appendChild(div);
+        }
+
+        function setEditManhwaFormRating(r) {
+            currentEditManhwaFormRating = r;
+            document.getElementById('edit-manhwa-rating').value = r;
+            document.querySelectorAll('.edit-manhwa-star-btn').forEach((btn, idx) => {
+                if (idx < r) {
+                    btn.classList.remove('text-zinc-700');
+                    btn.classList.add('text-amber-400');
+                } else {
+                    btn.classList.remove('text-amber-400');
+                    btn.classList.add('text-zinc-700');
+                }
+            });
+        }
+
+        document.getElementById('manhwa-edit-form').onsubmit = async function(e) {
+            e.preventDefault();
+            const name = document.getElementById('edit-manhwa-name').value.trim();
+            const primaryImg = document.getElementById('edit-manhwa-primary-image-url').value.trim();
+            const description = document.getElementById('edit-manhwa-description').value.trim();
+            const rating = parseInt(document.getElementById('edit-manhwa-rating').value) || 5;
+
+            const extraImgs = Array.from(document.querySelectorAll('.edit-manhwa-extra-image-input')).map(i => i.value.trim()).filter(Boolean);
+            const images = [primaryImg, ...extraImgs];
+
+            const linkNames = Array.from(document.querySelectorAll('.edit-manhwa-link-name-input'));
+            const linkUrls = Array.from(document.querySelectorAll('.edit-manhwa-link-url-input'));
+            const links = [];
+            for (let i = 0; i < linkNames.length; i++) {
+                if (linkNames[i].value.trim() && linkUrls[i].value.trim()) {
+                    links.push({ name: linkNames[i].value.trim(), url: linkUrls[i].value.trim() });
+                }
+            }
+
+            const updatedData = { name, images, description, rating, tags: [...currentEditManhwaFormTags], links };
+
+            const { error } = await dbClient.from('manhwas').update(updatedData).eq('name', originalManhwaName);
+            if (error) {
+                alert('Erreur lors de la modification : ' + error.message);
+            } else {
+                await fetchManhwasFromCloud();
+                switchPage('manhwa-search');
+            }
+        };
+
+        async function deleteManhwa() {
+            const manhwa = manhwas[currentManhwaIndex];
+            if (!manhwa) return;
+
+            const pwd = prompt("Veuillez entrer le mot de passe pour supprimer ce manhwa (DRAGONIMPERIAL) :");
+            if (pwd !== "DRAGONIMPERIAL") {
+                if (pwd !== null) alert("Mot de passe incorrect !");
+                return;
+            }
+
+            const { error } = await dbClient.from('manhwas').delete().eq('name', manhwa.name);
+            if (error) {
+                alert('Erreur lors de la suppression : ' + error.message);
+            } else {
+                await fetchManhwasFromCloud();
+                switchPage('manhwa-search');
+            }
+        }
+
+        // --- DOUJINSHIS EDIT / DELETE ---
         function showDoujinshiDetail(index) {
             currentDoujinshiIndex = index;
             const doujinshi = doujinshis[index];
@@ -1188,6 +1545,122 @@
             renderDoujinshiDetailContent();
         }
 
+        function prepareEditDoujinshi() {
+            const doujinshi = doujinshis[currentDoujinshiIndex];
+            if (!doujinshi) return;
+            document.getElementById('edit-doujinshi-name').value = doujinshi.name || '';
+            document.getElementById('edit-doujinshi-primary-image-url').value = doujinshi.images?.[0] || '';
+            document.getElementById('edit-doujinshi-description').value = doujinshi.description || '';
+            setEditDoujinshiFormRating(doujinshi.rating || 5);
+
+            currentEditDoujinshiFormTags = [...(doujinshi.tags || [])];
+            renderSelectedTags(document.getElementById('edit-doujinshi-selected-tags-container'), currentEditDoujinshiFormTags, () => {});
+
+            const imgContainer = document.getElementById('edit-doujinshi-images-inputs-container');
+            imgContainer.innerHTML = '';
+            if (doujinshi.images && doujinshi.images.length > 1) {
+                doujinshi.images.slice(1).forEach(img => addEditDoujinshiImageInput(img));
+            }
+
+            const linkContainer = document.getElementById('edit-doujinshi-links-inputs-container');
+            linkContainer.innerHTML = '';
+            if (doujinshi.links && doujinshi.links.length > 0) {
+                doujinshi.links.forEach(l => addEditDoujinshiLinkInput(l.name, l.url));
+            } else {
+                addEditDoujinshiLinkInput();
+            }
+
+            setupTagAutocomplete(document.getElementById('edit-doujinshi-tag-autocomplete-input'), document.getElementById('edit-doujinshi-tag-dropdown'), document.getElementById('edit-doujinshi-selected-tags-container'), currentEditDoujinshiFormTags, getAllDoujinshiTags);
+            switchPage('doujinshi-edit');
+        }
+
+        function addEditDoujinshiImageInput(val = '') {
+            const container = document.getElementById('edit-doujinshi-images-inputs-container');
+            const div = document.createElement('div');
+            div.className = "flex gap-2";
+            div.innerHTML = `
+                <input type="url" value="${escapeHtml(val)}" class="edit-doujinshi-extra-image-input w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" placeholder="https://...">
+                <button type="button" onclick="this.parentElement.remove()" class="px-3 bg-zinc-800 hover:bg-red-600 text-zinc-300 rounded-xl text-xs">✕</button>
+            `;
+            container.appendChild(div);
+        }
+
+        function addEditDoujinshiLinkInput(name = '', url = '') {
+            const container = document.getElementById('edit-doujinshi-links-inputs-container');
+            const div = document.createElement('div');
+            div.className = "flex gap-2";
+            div.innerHTML = `
+                <input type="text" value="${escapeHtml(name)}" class="edit-doujinshi-link-name-input w-1/3 p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" placeholder="Nom du site">
+                <input type="url" value="${escapeHtml(url)}" class="edit-doujinshi-link-url-input w-2/3 p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" placeholder="https://...">
+                <button type="button" onclick="this.parentElement.remove()" class="px-3 bg-zinc-800 hover:bg-red-600 text-zinc-300 rounded-xl text-xs">✕</button>
+            `;
+            container.appendChild(div);
+        }
+
+        function setEditDoujinshiFormRating(r) {
+            currentEditDoujinshiFormRating = r;
+            document.getElementById('edit-doujinshi-rating').value = r;
+            document.querySelectorAll('.edit-doujinshi-star-btn').forEach((btn, idx) => {
+                if (idx < r) {
+                    btn.classList.remove('text-zinc-700');
+                    btn.classList.add('text-amber-400');
+                } else {
+                    btn.classList.remove('text-amber-400');
+                    btn.classList.add('text-zinc-700');
+                }
+            });
+        }
+
+        document.getElementById('doujinshi-edit-form').onsubmit = async function(e) {
+            e.preventDefault();
+            const name = document.getElementById('edit-doujinshi-name').value.trim();
+            const primaryImg = document.getElementById('edit-doujinshi-primary-image-url').value.trim();
+            const description = document.getElementById('edit-doujinshi-description').value.trim();
+            const rating = parseInt(document.getElementById('edit-doujinshi-rating').value) || 5;
+
+            const extraImgs = Array.from(document.querySelectorAll('.edit-doujinshi-extra-image-input')).map(i => i.value.trim()).filter(Boolean);
+            const images = [primaryImg, ...extraImgs];
+
+            const linkNames = Array.from(document.querySelectorAll('.edit-doujinshi-link-name-input'));
+            const linkUrls = Array.from(document.querySelectorAll('.edit-doujinshi-link-url-input'));
+            const links = [];
+            for (let i = 0; i < linkNames.length; i++) {
+                if (linkNames[i].value.trim() && linkUrls[i].value.trim()) {
+                    links.push({ name: linkNames[i].value.trim(), url: linkUrls[i].value.trim() });
+                }
+            }
+
+            const updatedData = { name, images, description, rating, tags: [...currentEditDoujinshiFormTags], links };
+
+            const { error } = await dbClient.from('doujinshis').update(updatedData).eq('name', originalDoujinshiName);
+            if (error) {
+                alert('Erreur lors de la modification : ' + error.message);
+            } else {
+                await fetchDoujinshisFromCloud();
+                switchPage('doujinshi-search');
+            }
+        };
+
+        async function deleteDoujinshi() {
+            const doujinshi = doujinshis[currentDoujinshiIndex];
+            if (!doujinshi) return;
+
+            const pwd = prompt("Veuillez entrer le mot de passe pour supprimer ce doujinshi (DRAGONIMPERIAL) :");
+            if (pwd !== "DRAGONIMPERIAL") {
+                if (pwd !== null) alert("Mot de passe incorrect !");
+                return;
+            }
+
+            const { error } = await dbClient.from('doujinshis').delete().eq('name', doujinshi.name);
+            if (error) {
+                alert('Erreur lors de la suppression : ' + error.message);
+            } else {
+                await fetchDoujinshisFromCloud();
+                switchPage('doujinshi-search');
+            }
+        }
+
+        // --- COSPLAYEUSES EDIT / DELETE ---
         function showCosplayeuseDetail(index) {
             currentCosplayeuseIndex = index;
             const cosplayeuse = cosplayeuses[index];
@@ -1260,380 +1733,619 @@
             renderCosplayeuseDetailContent();
         }
 
-        /* --- SUPPRESSIONS --- */
-        async function deleteArtist() {
-            const artist = artists[currentArtistIndex];
-            if (!artist) return;
-            if (!confirm(`Supprimer l'artiste "${artist.name}" ?`)) return;
-            const { error } = await dbClient.from('artists').delete().eq('name', artist.name);
-            if (error) alert('Erreur: ' + error.message);
-            else { switchPage('search'); fetchArtistsFromCloud(); }
-        }
-
-        async function deleteManhwa() {
-            const manhwa = manhwas[currentManhwaIndex];
-            if (!manhwa) return;
-            if (!confirm(`Supprimer le manhwa "${manhwa.name}" ?`)) return;
-            const { error } = await dbClient.from('manhwas').delete().eq('name', manhwa.name);
-            if (error) alert('Erreur: ' + error.message);
-            else { switchPage('manhwa-search'); fetchManhwasFromCloud(); }
-        }
-
-        async function deleteDoujinshi() {
-            const doujinshi = doujinshis[currentDoujinshiIndex];
-            if (!doujinshi) return;
-            if (!confirm(`Supprimer le doujinshi "${doujinshi.name}" ?`)) return;
-            const { error } = await dbClient.from('doujinshis').delete().eq('name', doujinshi.name);
-            if (error) alert('Erreur: ' + error.message);
-            else { switchPage('doujinshi-search'); fetchDoujinshisFromCloud(); }
-        }
-
-        async function deleteCosplayeuse() {
-            const cosplayeuse = cosplayeuses[currentCosplayeuseIndex];
-            if (!cosplayeuse) return;
-            if (!confirm(`Supprimer la cosplayeuse "${cosplayeuse.name}" ?`)) return;
-            const { error } = await dbClient.from('cosplayeuses').delete().eq('name', cosplayeuse.name);
-            if (error) alert('Erreur: ' + error.message);
-            else { switchPage('cosplayeuse-search'); fetchCosplayeusesFromCloud(); }
-        }
-
-        /* --- PRÉPARATION MODIFICATION --- */
-        function prepareEditArtist() {
-            const artist = artists[currentArtistIndex];
-            if (!artist) return;
-            document.getElementById('edit-name').value = artist.name;
-            document.getElementById('edit-primary-image-url').value = artist.images && artist.images.length > 0 ? artist.images[0] : '';
-            document.getElementById('edit-description').value = artist.description;
-            setEditFormRating(artist.rating || 5);
-
-            currentEditFormTags = [...(artist.tags || [])];
-            renderEditSelectedFormTags();
-
-            const imgContainer = document.getElementById('edit-images-inputs-container');
-            imgContainer.innerHTML = '';
-            if (artist.images && artist.images.length > 1) {
-                for (let i = 1; i < artist.images.length; i++) {
-                    addImageInput('edit-images-inputs-container', 'edit-image-input');
-                    const inputs = imgContainer.querySelectorAll('.edit-image-input');
-                    inputs[inputs.length - 1].value = artist.images[i];
-                }
-            }
-
-            const linkContainer = document.getElementById('edit-links-inputs-container');
-            linkContainer.innerHTML = '';
-            if (artist.links && artist.links.length > 0) {
-                artist.links.forEach(l => {
-                    addLinkInput('edit-links-inputs-container', 'edit-link-name-input', 'edit-link-url-input', l.name, l.url);
-                });
-            }
-            document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
-            document.getElementById('page-artist-edit').classList.remove('hidden');
-        }
-
-        function prepareEditManhwa() {
-            const manhwa = manhwas[currentManhwaIndex];
-            if (!manhwa) return;
-            document.getElementById('edit-manhwa-name').value = manhwa.name;
-            document.getElementById('edit-manhwa-primary-image-url').value = manhwa.images && manhwa.images.length > 0 ? manhwa.images[0] : '';
-            document.getElementById('edit-manhwa-description').value = manhwa.description;
-            setEditManhwaFormRating(manhwa.rating || 5);
-
-            currentEditManhwaFormTags = [...(manhwa.tags || [])];
-            renderEditManhwaSelectedFormTags();
-
-            const imgContainer = document.getElementById('edit-manhwa-images-inputs-container');
-            imgContainer.innerHTML = '';
-            if (manhwa.images && manhwa.images.length > 1) {
-                for (let i = 1; i < manhwa.images.length; i++) {
-                    addImageInput('edit-manhwa-images-inputs-container', 'edit-manhwa-image-input');
-                    const inputs = imgContainer.querySelectorAll('.edit-manhwa-image-input');
-                    inputs[inputs.length - 1].value = manhwa.images[i];
-                }
-            }
-
-            const linkContainer = document.getElementById('edit-manhwa-links-inputs-container');
-            linkContainer.innerHTML = '';
-            if (manhwa.links && manhwa.links.length > 0) {
-                manhwa.links.forEach(l => {
-                    addLinkInput('edit-manhwa-links-inputs-container', 'edit-manhwa-link-name-input', 'edit-manhwa-link-url-input', l.name, l.url);
-                });
-            }
-            document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
-            document.getElementById('page-manhwa-edit').classList.remove('hidden');
-        }
-
-        function prepareEditDoujinshi() {
-            const doujinshi = doujinshis[currentDoujinshiIndex];
-            if (!doujinshi) return;
-            document.getElementById('edit-doujinshi-name').value = doujinshi.name;
-            document.getElementById('edit-doujinshi-primary-image-url').value = doujinshi.images && doujinshi.images.length > 0 ? doujinshi.images[0] : '';
-            document.getElementById('edit-doujinshi-description').value = doujinshi.description;
-            setEditDoujinshiFormRating(doujinshi.rating || 5);
-
-            currentEditDoujinshiFormTags = [...(doujinshi.tags || [])];
-            renderEditDoujinshiSelectedFormTags();
-
-            const imgContainer = document.getElementById('edit-doujinshi-images-inputs-container');
-            imgContainer.innerHTML = '';
-            if (doujinshi.images && doujinshi.images.length > 1) {
-                for (let i = 1; i < doujinshi.images.length; i++) {
-                    addImageInput('edit-doujinshi-images-inputs-container', 'edit-doujinshi-image-input');
-                    const inputs = imgContainer.querySelectorAll('.edit-doujinshi-image-input');
-                    inputs[inputs.length - 1].value = doujinshi.images[i];
-                }
-            }
-
-            const linkContainer = document.getElementById('edit-doujinshi-links-inputs-container');
-            linkContainer.innerHTML = '';
-            if (doujinshi.links && doujinshi.links.length > 0) {
-                doujinshi.links.forEach(l => {
-                    addLinkInput('edit-doujinshi-links-inputs-container', 'edit-doujinshi-link-name-input', 'edit-doujinshi-link-url-input', l.name, l.url);
-                });
-            }
-            document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
-            document.getElementById('page-doujinshi-edit').classList.remove('hidden');
-        }
-
         function prepareEditCosplayeuse() {
             const cosplayeuse = cosplayeuses[currentCosplayeuseIndex];
             if (!cosplayeuse) return;
-            document.getElementById('edit-cosplayeuse-name').value = cosplayeuse.name;
-            document.getElementById('edit-cosplayeuse-primary-image-url').value = cosplayeuse.images && cosplayeuse.images.length > 0 ? cosplayeuse.images[0] : '';
-            document.getElementById('edit-cosplayeuse-description').value = cosplayeuse.description;
+            document.getElementById('edit-cosplayeuse-name').value = cosplayeuse.name || '';
+            document.getElementById('edit-cosplayeuse-primary-image-url').value = cosplayeuse.images?.[0] || '';
+            document.getElementById('edit-cosplayeuse-description').value = cosplayeuse.description || '';
             setEditCosplayeuseFormRating(cosplayeuse.rating || 5);
 
             currentEditCosplayeuseFormTags = [...(cosplayeuse.tags || [])];
-            renderEditCosplayeuseSelectedFormTags();
+            renderSelectedTags(document.getElementById('edit-cosplayeuse-selected-tags-container'), currentEditCosplayeuseFormTags, () => {});
 
             const imgContainer = document.getElementById('edit-cosplayeuse-images-inputs-container');
             imgContainer.innerHTML = '';
             if (cosplayeuse.images && cosplayeuse.images.length > 1) {
-                for (let i = 1; i < cosplayeuse.images.length; i++) {
-                    addImageInput('edit-cosplayeuse-images-inputs-container', 'edit-cosplayeuse-image-input');
-                    const inputs = imgContainer.querySelectorAll('.edit-cosplayeuse-image-input');
-                    inputs[inputs.length - 1].value = cosplayeuse.images[i];
-                }
+                cosplayeuse.images.slice(1).forEach(img => addEditCosplayeuseImageInput(img));
             }
 
             const linkContainer = document.getElementById('edit-cosplayeuse-links-inputs-container');
             linkContainer.innerHTML = '';
             if (cosplayeuse.links && cosplayeuse.links.length > 0) {
-                cosplayeuse.links.forEach(l => {
-                    addLinkInput('edit-cosplayeuse-links-inputs-container', 'edit-cosplayeuse-link-name-input', 'edit-cosplayeuse-link-url-input', l.name, l.url);
-                });
+                cosplayeuse.links.forEach(l => addEditCosplayeuseLinkInput(l.name, l.url));
+            } else {
+                addEditCosplayeuseLinkInput();
             }
-            document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
-            document.getElementById('page-cosplayeuse-edit').classList.remove('hidden');
+
+            setupTagAutocomplete(document.getElementById('edit-cosplayeuse-tag-autocomplete-input'), document.getElementById('edit-cosplayeuse-tag-dropdown'), document.getElementById('edit-cosplayeuse-selected-tags-container'), currentEditCosplayeuseFormTags, getAllCosplayeuseTags);
+            switchPage('cosplayeuse-edit');
         }
 
-        /* --- RECHERCHE & FILTRES ARTISTES --- */
-        function initSearchPage() {
-            selectedTagFilter = null;
-            const input = document.getElementById('search-input');
-            if(input) input.value = '';
-            renderTagsFilter();
-            filterArtists();
+        function addEditCosplayeuseImageInput(val = '') {
+            const container = document.getElementById('edit-cosplayeuse-images-inputs-container');
+            const div = document.createElement('div');
+            div.className = "flex gap-2";
+            div.innerHTML = `
+                <input type="url" value="${escapeHtml(val)}" class="edit-cosplayeuse-extra-image-input w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" placeholder="https://...">
+                <button type="button" onclick="this.parentElement.remove()" class="px-3 bg-zinc-800 hover:bg-red-600 text-zinc-300 rounded-xl text-xs">✕</button>
+            `;
+            container.appendChild(div);
         }
 
-        function renderTagsFilter() {
-            const container = document.getElementById('tags-filter-container');
-            if(!container) return;
-            const allTags = getAllTags();
-            let html = `<button onclick="setTagFilter(null)" class="px-3 py-1 rounded-xl text-xs font-semibold border transition ${selectedTagFilter === null ? 'bg-rose-600 text-white border-rose-600' : 'bg-zinc-900 text-zinc-400 border-zinc-800'}">Tous</button>`;
-            allTags.forEach(tag => {
-                const isActive = selectedTagFilter === tag;
-                html += `<button onclick="setTagFilter('${escapeHtml(tag)}')" class="px-3 py-1 rounded-xl text-xs font-semibold border transition ${isActive ? 'bg-rose-600 text-white border-rose-600' : 'bg-zinc-900 text-zinc-400 border-zinc-800'}">${escapeHtml(tag)}</button>`;
+        function addEditCosplayeuseLinkInput(name = '', url = '') {
+            const container = document.getElementById('edit-cosplayeuse-links-inputs-container');
+            const div = document.createElement('div');
+            div.className = "flex gap-2";
+            div.innerHTML = `
+                <input type="text" value="${escapeHtml(name)}" class="edit-cosplayeuse-link-name-input w-1/3 p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" placeholder="Nom du site">
+                <input type="url" value="${escapeHtml(url)}" class="edit-cosplayeuse-link-url-input w-2/3 p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" placeholder="https://...">
+                <button type="button" onclick="this.parentElement.remove()" class="px-3 bg-zinc-800 hover:bg-red-600 text-zinc-300 rounded-xl text-xs">✕</button>
+            `;
+            container.appendChild(div);
+        }
+
+        function setEditCosplayeuseFormRating(r) {
+            currentEditCosplayeuseFormRating = r;
+            document.getElementById('edit-cosplayeuse-rating').value = r;
+            document.querySelectorAll('.edit-cosplayeuse-star-btn').forEach((btn, idx) => {
+                if (idx < r) {
+                    btn.classList.remove('text-zinc-700');
+                    btn.classList.add('text-amber-400');
+                } else {
+                    btn.classList.remove('text-amber-400');
+                    btn.classList.add('text-zinc-700');
+                }
             });
-            container.innerHTML = html;
         }
 
-        function setTagFilter(tag) {
-            selectedTagFilter = tag;
+        document.getElementById('cosplayeuse-edit-form').onsubmit = async function(e) {
+            e.preventDefault();
+            const name = document.getElementById('edit-cosplayeuse-name').value.trim();
+            const primaryImg = document.getElementById('edit-cosplayeuse-primary-image-url').value.trim();
+            const description = document.getElementById('edit-cosplayeuse-description').value.trim();
+            const rating = parseInt(document.getElementById('edit-cosplayeuse-rating').value) || 5;
+
+            const extraImgs = Array.from(document.querySelectorAll('.edit-cosplayeuse-extra-image-input')).map(i => i.value.trim()).filter(Boolean);
+            const images = [primaryImg, ...extraImgs];
+
+            const linkNames = Array.from(document.querySelectorAll('.edit-cosplayeuse-link-name-input'));
+            const linkUrls = Array.from(document.querySelectorAll('.edit-cosplayeuse-link-url-input'));
+            const links = [];
+            for (let i = 0; i < linkNames.length; i++) {
+                if (linkNames[i].value.trim() && linkUrls[i].value.trim()) {
+                    links.push({ name: linkNames[i].value.trim(), url: linkUrls[i].value.trim() });
+                }
+            }
+
+            const updatedData = { name, images, description, rating, tags: [...currentEditCosplayeuseFormTags], links };
+
+            const { error } = await dbClient.from('cosplayeuses').update(updatedData).eq('name', originalCosplayeuseName);
+            if (error) {
+                alert('Erreur lors de la modification : ' + error.message);
+            } else {
+                await fetchCosplayeusesFromCloud();
+                switchPage('cosplayeuse-search');
+            }
+        };
+
+        async function deleteCosplayeuse() {
+            const cosplayeuse = cosplayeuses[currentCosplayeuseIndex];
+            if (!cosplayeuse) return;
+
+            const pwd = prompt("Veuillez entrer le mot de passe pour supprimer cette cosplayeuse (DRAGONIMPERIAL) :");
+            if (pwd !== "DRAGONIMPERIAL") {
+                if (pwd !== null) alert("Mot de passe incorrect !");
+                return;
+            }
+
+            const { error } = await dbClient.from('cosplayeuses').delete().eq('name', cosplayeuse.name);
+            if (error) {
+                alert('Erreur lors de la suppression : ' + error.message);
+            } else {
+                await fetchCosplayeusesFromCloud();
+                switchPage('cosplayeuse-search');
+            }
+        }
+
+        // --- INITIALISATION DES PAGES D'AJOUT ET DE RECHERCHE ---
+        function initAddPage() {
+            document.getElementById('artist-form').reset();
+            currentFormTags = [];
+            setFormRating(5);
+            document.getElementById('images-inputs-container').innerHTML = '';
+            document.getElementById('links-inputs-container').innerHTML = `
+                <div class="flex gap-2">
+                    <input type="text" class="link-name-input w-1/3 p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" placeholder="Nom du site">
+                    <input type="url" class="link-url-input w-2/3 p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" placeholder="https://...">
+                </div>
+            `;
+            renderSelectedTags(document.getElementById('selected-tags-container'), currentFormTags, () => {});
+            setupTagAutocomplete(document.getElementById('tag-autocomplete-input'), document.getElementById('tag-dropdown'), document.getElementById('selected-tags-container'), currentFormTags, getAllTags);
+        }
+
+        function initManhwaAddPage() {
+            document.getElementById('manhwa-form').reset();
+            currentManhwaFormTags = [];
+            setManhwaFormRating(5);
+            document.getElementById('manhwa-images-inputs-container').innerHTML = '';
+            document.getElementById('manhwa-links-inputs-container').innerHTML = `
+                <div class="flex gap-2">
+                    <input type="text" class="manhwa-link-name-input w-1/3 p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" placeholder="Nom du site">
+                    <input type="url" class="manhwa-link-url-input w-2/3 p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" placeholder="https://...">
+                </div>
+            `;
+            renderSelectedTags(document.getElementById('manhwa-selected-tags-container'), currentManhwaFormTags, () => {});
+            setupTagAutocomplete(document.getElementById('manhwa-tag-autocomplete-input'), document.getElementById('manhwa-tag-dropdown'), document.getElementById('manhwa-selected-tags-container'), currentManhwaFormTags, getAllManhwaTags);
+        }
+
+        function initDoujinshiAddPage() {
+            document.getElementById('doujinshi-form').reset();
+            currentDoujinshiFormTags = [];
+            setDoujinshiFormRating(5);
+            document.getElementById('doujinshi-images-inputs-container').innerHTML = '';
+            document.getElementById('doujinshi-links-inputs-container').innerHTML = `
+                <div class="flex gap-2">
+                    <input type="text" class="doujinshi-link-name-input w-1/3 p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" placeholder="Nom du site">
+                    <input type="url" class="doujinshi-link-url-input w-2/3 p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" placeholder="https://...">
+                </div>
+            `;
+            renderSelectedTags(document.getElementById('doujinshi-selected-tags-container'), currentDoujinshiFormTags, () => {});
+            setupTagAutocomplete(document.getElementById('doujinshi-tag-autocomplete-input'), document.getElementById('doujinshi-tag-dropdown'), document.getElementById('doujinshi-selected-tags-container'), currentDoujinshiFormTags, getAllDoujinshiTags);
+        }
+
+        function initCosplayeuseAddPage() {
+            document.getElementById('cosplayeuse-form').reset();
+            currentCosplayeuseFormTags = [];
+            setCosplayeuseFormRating(5);
+            document.getElementById('cosplayeuse-images-inputs-container').innerHTML = '';
+            document.getElementById('cosplayeuse-links-inputs-container').innerHTML = `
+                <div class="flex gap-2">
+                    <input type="text" class="cosplayeuse-link-name-input w-1/3 p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" placeholder="Nom du site">
+                    <input type="url" class="cosplayeuse-link-url-input w-2/3 p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" placeholder="https://...">
+                </div>
+            `;
+            renderSelectedTags(document.getElementById('cosplayeuse-selected-tags-container'), currentCosplayeuseFormTags, () => {});
+            setupTagAutocomplete(document.getElementById('cosplayeuse-tag-autocomplete-input'), document.getElementById('cosplayeuse-tag-dropdown'), document.getElementById('cosplayeuse-selected-tags-container'), currentCosplayeuseFormTags, getAllCosplayeuseTags);
+        }
+
+        function setFormRating(r) {
+            currentFormRating = r;
+            document.getElementById('artist-rating').value = r;
+            document.querySelectorAll('.star-btn').forEach((btn, idx) => {
+                if (idx < r) {
+                    btn.classList.remove('text-zinc-700');
+                    btn.classList.add('text-amber-400');
+                } else {
+                    btn.classList.remove('text-amber-400');
+                    btn.classList.add('text-zinc-700');
+                }
+            });
+        }
+
+        function setManhwaFormRating(r) {
+            currentManhwaFormRating = r;
+            document.getElementById('manhwa-rating').value = r;
+            document.querySelectorAll('.manhwa-star-btn').forEach((btn, idx) => {
+                if (idx < r) {
+                    btn.classList.remove('text-zinc-700');
+                    btn.classList.add('text-amber-400');
+                } else {
+                    btn.classList.remove('text-amber-400');
+                    btn.classList.add('text-zinc-700');
+                }
+            });
+        }
+
+        function setDoujinshiFormRating(r) {
+            currentDoujinshiFormRating = r;
+            document.getElementById('doujinshi-rating').value = r;
+            document.querySelectorAll('.doujinshi-star-btn').forEach((btn, idx) => {
+                if (idx < r) {
+                    btn.classList.remove('text-zinc-700');
+                    btn.classList.add('text-amber-400');
+                } else {
+                    btn.classList.remove('text-amber-400');
+                    btn.classList.add('text-zinc-700');
+                }
+            });
+        }
+
+        function setCosplayeuseFormRating(r) {
+            currentCosplayeuseFormRating = r;
+            document.getElementById('cosplayeuse-rating').value = r;
+            document.querySelectorAll('.cosplayeuse-star-btn').forEach((btn, idx) => {
+                if (idx < r) {
+                    btn.classList.remove('text-zinc-700');
+                    btn.classList.add('text-amber-400');
+                } else {
+                    btn.classList.remove('text-amber-400');
+                    btn.classList.add('text-zinc-700');
+                }
+            });
+        }
+
+        function addImageInput() {
+            const container = document.getElementById('images-inputs-container');
+            const div = document.createElement('div');
+            div.className = "flex gap-2";
+            div.innerHTML = `
+                <input type="url" class="extra-image-input w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" placeholder="https://...">
+                <button type="button" onclick="this.parentElement.remove()" class="px-3 bg-zinc-800 hover:bg-red-600 text-zinc-300 rounded-xl text-xs">✕</button>
+            `;
+            container.appendChild(div);
+        }
+
+        function addLinkInput() {
+            const container = document.getElementById('links-inputs-container');
+            const div = document.createElement('div');
+            div.className = "flex gap-2";
+            div.innerHTML = `
+                <input type="text" class="link-name-input w-1/3 p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" placeholder="Nom du site">
+                <input type="url" class="link-url-input w-2/3 p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" placeholder="https://...">
+                <button type="button" onclick="this.parentElement.remove()" class="px-3 bg-zinc-800 hover:bg-red-600 text-zinc-300 rounded-xl text-xs">✕</button>
+            `;
+            container.appendChild(div);
+        }
+
+        function addManhwaImageInput() {
+            const container = document.getElementById('manhwa-images-inputs-container');
+            const div = document.createElement('div');
+            div.className = "flex gap-2";
+            div.innerHTML = `
+                <input type="url" class="manhwa-extra-image-input w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" placeholder="https://...">
+                <button type="button" onclick="this.parentElement.remove()" class="px-3 bg-zinc-800 hover:bg-red-600 text-zinc-300 rounded-xl text-xs">✕</button>
+            `;
+            container.appendChild(div);
+        }
+
+        function addManhwaLinkInput() {
+            const container = document.getElementById('manhwa-links-inputs-container');
+            const div = document.createElement('div');
+            div.className = "flex gap-2";
+            div.innerHTML = `
+                <input type="text" class="manhwa-link-name-input w-1/3 p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" placeholder="Nom du site">
+                <input type="url" class="manhwa-link-url-input w-2/3 p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" placeholder="https://...">
+                <button type="button" onclick="this.parentElement.remove()" class="px-3 bg-zinc-800 hover:bg-red-600 text-zinc-300 rounded-xl text-xs">✕</button>
+            `;
+            container.appendChild(div);
+        }
+
+        function addDoujinshiImageInput() {
+            const container = document.getElementById('doujinshi-images-inputs-container');
+            const div = document.createElement('div');
+            div.className = "flex gap-2";
+            div.innerHTML = `
+                <input type="url" class="doujinshi-extra-image-input w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" placeholder="https://...">
+                <button type="button" onclick="this.parentElement.remove()" class="px-3 bg-zinc-800 hover:bg-red-600 text-zinc-300 rounded-xl text-xs">✕</button>
+            `;
+            container.appendChild(div);
+        }
+
+        function addDoujinshiLinkInput() {
+            const container = document.getElementById('doujinshi-links-inputs-container');
+            const div = document.createElement('div');
+            div.className = "flex gap-2";
+            div.innerHTML = `
+                <input type="text" class="doujinshi-link-name-input w-1/3 p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" placeholder="Nom du site">
+                <input type="url" class="doujinshi-link-url-input w-2/3 p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" placeholder="https://...">
+                <button type="button" onclick="this.parentElement.remove()" class="px-3 bg-zinc-800 hover:bg-red-600 text-zinc-300 rounded-xl text-xs">✕</button>
+            `;
+            container.appendChild(div);
+        }
+
+        function addCosplayeuseImageInput() {
+            const container = document.getElementById('cosplayeuse-images-inputs-container');
+            const div = document.createElement('div');
+            div.className = "flex gap-2";
+            div.innerHTML = `
+                <input type="url" class="cosplayeuse-extra-image-input w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" placeholder="https://...">
+                <button type="button" onclick="this.parentElement.remove()" class="px-3 bg-zinc-800 hover:bg-red-600 text-zinc-300 rounded-xl text-xs">✕</button>
+            `;
+            container.appendChild(div);
+        }
+
+        function addCosplayeuseLinkInput() {
+            const container = document.getElementById('cosplayeuse-links-inputs-container');
+            const div = document.createElement('div');
+            div.className = "flex gap-2";
+            div.innerHTML = `
+                <input type="text" class="cosplayeuse-link-name-input w-1/3 p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" placeholder="Nom du site">
+                <input type="url" class="cosplayeuse-link-url-input w-2/3 p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" placeholder="https://...">
+                <button type="button" onclick="this.parentElement.remove()" class="px-3 bg-zinc-800 hover:bg-red-600 text-zinc-300 rounded-xl text-xs">✕</button>
+            `;
+            container.appendChild(div);
+        }
+
+        // Soumission Formulaires d'ajout
+        document.getElementById('artist-form').onsubmit = async function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value.trim();
+            const primaryImg = document.getElementById('primary-image-url').value.trim();
+            const description = document.getElementById('description').value.trim();
+            const rating = parseInt(document.getElementById('artist-rating').value) || 5;
+
+            const extraImgs = Array.from(document.querySelectorAll('.extra-image-input')).map(i => i.value.trim()).filter(Boolean);
+            const images = [primaryImg, ...extraImgs];
+
+            const linkNames = Array.from(document.querySelectorAll('.link-name-input'));
+            const linkUrls = Array.from(document.querySelectorAll('.link-url-input'));
+            const links = [];
+            for (let i = 0; i < linkNames.length; i++) {
+                if (linkNames[i].value.trim() && linkUrls[i].value.trim()) {
+                    links.push({ name: linkNames[i].value.trim(), url: linkUrls[i].value.trim() });
+                }
+            }
+
+            const newArtist = { name, images, description, rating, tags: [...currentFormTags], links };
+            const { error } = await dbClient.from('artists').insert([newArtist]);
+            if (error) alert('Erreur : ' + error.message);
+            else {
+                await fetchArtistsFromCloud();
+                switchPage('search');
+            }
+        };
+
+        document.getElementById('manhwa-form').onsubmit = async function(e) {
+            e.preventDefault();
+            const name = document.getElementById('manhwa-name').value.trim();
+            const primaryImg = document.getElementById('manhwa-primary-image-url').value.trim();
+            const description = document.getElementById('manhwa-description').value.trim();
+            const rating = parseInt(document.getElementById('manhwa-rating').value) || 5;
+
+            const extraImgs = Array.from(document.querySelectorAll('.manhwa-extra-image-input')).map(i => i.value.trim()).filter(Boolean);
+            const images = [primaryImg, ...extraImgs];
+
+            const linkNames = Array.from(document.querySelectorAll('.manhwa-link-name-input'));
+            const linkUrls = Array.from(document.querySelectorAll('.manhwa-link-url-input'));
+            const links = [];
+            for (let i = 0; i < linkNames.length; i++) {
+                if (linkNames[i].value.trim() && linkUrls[i].value.trim()) {
+                    links.push({ name: linkNames[i].value.trim(), url: linkUrls[i].value.trim() });
+                }
+            }
+
+            const newManhwa = { name, images, description, rating, tags: [...currentManhwaFormTags], links };
+            const { error } = await dbClient.from('manhwas').insert([newManhwa]);
+            if (error) alert('Erreur : ' + error.message);
+            else {
+                await fetchManhwasFromCloud();
+                switchPage('manhwa-search');
+            }
+        };
+
+        document.getElementById('doujinshi-form').onsubmit = async function(e) {
+            e.preventDefault();
+            const name = document.getElementById('doujinshi-name').value.trim();
+            const primaryImg = document.getElementById('doujinshi-primary-image-url').value.trim();
+            const description = document.getElementById('doujinshi-description').value.trim();
+            const rating = parseInt(document.getElementById('doujinshi-rating').value) || 5;
+
+            const extraImgs = Array.from(document.querySelectorAll('.doujinshi-extra-image-input')).map(i => i.value.trim()).filter(Boolean);
+            const images = [primaryImg, ...extraImgs];
+
+            const linkNames = Array.from(document.querySelectorAll('.doujinshi-link-name-input'));
+            const linkUrls = Array.from(document.querySelectorAll('.doujinshi-link-url-input'));
+            const links = [];
+            for (let i = 0; i < linkNames.length; i++) {
+                if (linkNames[i].value.trim() && linkUrls[i].value.trim()) {
+                    links.push({ name: linkNames[i].value.trim(), url: linkUrls[i].value.trim() });
+                }
+            }
+
+            const newDoujinshi = { name, images, description, rating, tags: [...currentDoujinshiFormTags], links };
+            const { error } = await dbClient.from('doujinshis').insert([newDoujinshi]);
+            if (error) alert('Erreur : ' + error.message);
+            else {
+                await fetchDoujinshisFromCloud();
+                switchPage('doujinshi-search');
+            }
+        };
+
+        document.getElementById('cosplayeuse-form').onsubmit = async function(e) {
+            e.preventDefault();
+            const name = document.getElementById('cosplayeuse-name').value.trim();
+            const primaryImg = document.getElementById('cosplayeuse-primary-image-url').value.trim();
+            const description = document.getElementById('cosplayeuse-description').value.trim();
+            const rating = parseInt(document.getElementById('cosplayeuse-rating').value) || 5;
+
+            const extraImgs = Array.from(document.querySelectorAll('.cosplayeuse-extra-image-input')).map(i => i.value.trim()).filter(Boolean);
+            const images = [primaryImg, ...extraImgs];
+
+            const linkNames = Array.from(document.querySelectorAll('.cosplayeuse-link-name-input'));
+            const linkUrls = Array.from(document.querySelectorAll('.cosplayeuse-link-url-input'));
+            const links = [];
+            for (let i = 0; i < linkNames.length; i++) {
+                if (linkNames[i].value.trim() && linkUrls[i].value.trim()) {
+                    links.push({ name: linkNames[i].value.trim(), url: linkUrls[i].value.trim() });
+                }
+            }
+
+            const newCosplayeuse = { name, images, description, rating, tags: [...currentCosplayeuseFormTags], links };
+            const { error } = await dbClient.from('cosplayeuses').insert([newCosplayeuse]);
+            if (error) alert('Erreur : ' + error.message);
+            else {
+                await fetchCosplayeusesFromCloud();
+                switchPage('cosplayeuse-search');
+            }
+        };
+
+        // --- FONCTIONS DE FILTRAGE ET RECHERCHE ---
+        function initSearchPage() {
+            const container = document.getElementById('search-results-container');
+            const counter = document.getElementById('counter-badge');
+            container.innerHTML = '';
+            counter.textContent = `${artists.length} Fichier${artists.length > 1 ? 's' : ''}`;
+
+            artists.forEach((art, idx) => {
+                if (selectedTagFilter && (!art.tags || !art.tags.includes(selectedTagFilter))) return;
+                container.appendChild(createArtistCard(art, idx));
+            });
+
             renderTagsFilter();
-            filterArtists();
         }
 
         function filterArtists() {
-            const queryElement = document.getElementById('search-input');
-            const counter = document.getElementById('counter-badge');
-            if(!queryElement) return;
-            const query = queryElement.value.toLowerCase();
-            const resultsContainer = document.getElementById('search-results-container');
-            resultsContainer.innerHTML = '';
+            const query = document.getElementById('search-input').value.toLowerCase();
+            const container = document.getElementById('search-results-container');
+            container.innerHTML = '';
 
-            const filtered = artists.map((artist, index) => ({ artist, index })).filter(({ artist }) => {
-                const matchesText = artist.name.toLowerCase().includes(query) || artist.description.toLowerCase().includes(query);
-                const matchesTag = selectedTagFilter === null || (artist.tags && artist.tags.includes(selectedTagFilter));
-                return matchesText && matchesTag;
+            let count = 0;
+            artists.forEach((art, idx) => {
+                if (selectedTagFilter && (!art.tags || !art.tags.includes(selectedTagFilter))) return;
+                const matches = art.name.toLowerCase().includes(query) || (art.description && art.description.toLowerCase().includes(query));
+                if (matches) {
+                    container.appendChild(createArtistCard(art, idx));
+                    count++;
+                }
             });
+            document.getElementById('counter-badge').textContent = `${count} Fichier${count > 1 ? 's' : ''}`;
+        }
 
-            if (counter) counter.textContent = `${filtered.length} Fichier${filtered.length > 1 ? 's' : ''}`;
-
-            if (filtered.length === 0) {
-                resultsContainer.innerHTML = `<p class="col-span-full text-center text-zinc-500 py-8">Aucun résultat trouvé.</p>`;
-                return;
-            }
-
-            filtered.forEach(({ artist, index }) => {
-                resultsContainer.appendChild(createArtistCard(artist, index));
+        function renderTagsFilter() {
+            const filterContainer = document.getElementById('tags-filter-container');
+            const tags = getAllTags();
+            let html = `<button onclick="selectedTagFilter = null; initSearchPage();" class="px-2.5 py-1 rounded-xl text-xs font-semibold border transition ${!selectedTagFilter ? 'bg-rose-600 text-white border-rose-600' : 'bg-zinc-900 text-zinc-400 border-zinc-800 hover:border-zinc-700'}">Tous</button>`;
+            tags.forEach(t => {
+                const active = selectedTagFilter === t;
+                html += `<button onclick="selectedTagFilter = '${escapeHtml(t)}'; initSearchPage();" class="px-2.5 py-1 rounded-xl text-xs font-semibold border transition ${active ? 'bg-rose-600 text-white border-rose-600' : 'bg-zinc-900 text-zinc-400 border-zinc-800 hover:border-zinc-700'}">${escapeHtml(t)}</button>`;
             });
+            filterContainer.innerHTML = html;
         }
 
         function initManhwaSearchPage() {
-            selectedManhwaTagFilter = null;
-            const input = document.getElementById('manhwa-search-input');
-            if(input) input.value = '';
-            renderManhwaTagsFilter();
-            filterManhwas();
-        }
+            const container = document.getElementById('manhwa-search-results-container');
+            const counter = document.getElementById('manhwa-counter-badge');
+            container.innerHTML = '';
+            counter.textContent = `${manhwas.length} Manhwa${manhwas.length > 1 ? 's' : ''}`;
 
-        function renderManhwaTagsFilter() {
-            const container = document.getElementById('manhwa-tags-filter-container');
-            if(!container) return;
-            const allTags = getAllManhwaTags();
-            let html = `<button onclick="setManhwaTagFilter(null)" class="px-3 py-1 rounded-xl text-xs font-semibold border transition ${selectedManhwaTagFilter === null ? 'bg-rose-600 text-white border-rose-600' : 'bg-zinc-900 text-zinc-400 border-zinc-800'}">Tous</button>`;
-            allTags.forEach(tag => {
-                const isActive = selectedManhwaTagFilter === tag;
-                html += `<button onclick="setManhwaTagFilter('${escapeHtml(tag)}')" class="px-3 py-1 rounded-xl text-xs font-semibold border transition ${isActive ? 'bg-rose-600 text-white border-rose-600' : 'bg-zinc-900 text-zinc-400 border-zinc-800'}">${escapeHtml(tag)}</button>`;
+            manhwas.forEach((m, idx) => {
+                if (selectedManhwaTagFilter && (!m.tags || !m.tags.includes(selectedManhwaTagFilter))) return;
+                container.appendChild(createManhwaCard(m, idx));
             });
-            container.innerHTML = html;
-        }
 
-        function setManhwaTagFilter(tag) {
-            selectedManhwaTagFilter = tag;
             renderManhwaTagsFilter();
-            filterManhwas();
         }
 
         function filterManhwas() {
-            const queryElement = document.getElementById('manhwa-search-input');
-            const counter = document.getElementById('manhwa-counter-badge');
-            if(!queryElement) return;
-            const query = queryElement.value.toLowerCase();
-            const resultsContainer = document.getElementById('manhwa-search-results-container');
-            resultsContainer.innerHTML = '';
+            const query = document.getElementById('manhwa-search-input').value.toLowerCase();
+            const container = document.getElementById('manhwa-search-results-container');
+            container.innerHTML = '';
 
-            const filtered = manhwas.map((manhwa, index) => ({ manhwa, index })).filter(({ manhwa }) => {
-                const matchesText = manhwa.name.toLowerCase().includes(query) || manhwa.description.toLowerCase().includes(query);
-                const matchesTag = selectedManhwaTagFilter === null || (manhwa.tags && manhwa.tags.includes(selectedManhwaTagFilter));
-                return matchesText && matchesTag;
+            let count = 0;
+            manhwas.forEach((m, idx) => {
+                if (selectedManhwaTagFilter && (!m.tags || !m.tags.includes(selectedManhwaTagFilter))) return;
+                const matches = m.name.toLowerCase().includes(query) || (m.description && m.description.toLowerCase().includes(query));
+                if (matches) {
+                    container.appendChild(createManhwaCard(m, idx));
+                    count++;
+                }
             });
+            document.getElementById('manhwa-counter-badge').textContent = `${count} Manhwa${count > 1 ? 's' : ''}`;
+        }
 
-            if (counter) counter.textContent = `${filtered.length} Manhwa${filtered.length > 1 ? 's' : ''}`;
-
-            if (filtered.length === 0) {
-                resultsContainer.innerHTML = `<p class="col-span-full text-center text-zinc-500 py-8">Aucun manhwa trouvé.</p>`;
-                return;
-            }
-
-            filtered.forEach(({ manhwa, index }) => {
-                resultsContainer.appendChild(createManhwaCard(manhwa, index));
+        function renderManhwaTagsFilter() {
+            const filterContainer = document.getElementById('manhwa-tags-filter-container');
+            const tags = getAllManhwaTags();
+            let html = `<button onclick="selectedManhwaTagFilter = null; initManhwaSearchPage();" class="px-2.5 py-1 rounded-xl text-xs font-semibold border transition ${!selectedManhwaTagFilter ? 'bg-rose-600 text-white border-rose-600' : 'bg-zinc-900 text-zinc-400 border-zinc-800 hover:border-zinc-700'}">Tous</button>`;
+            tags.forEach(t => {
+                const active = selectedManhwaTagFilter === t;
+                html += `<button onclick="selectedManhwaTagFilter = '${escapeHtml(t)}'; initManhwaSearchPage();" class="px-2.5 py-1 rounded-xl text-xs font-semibold border transition ${active ? 'bg-rose-600 text-white border-rose-600' : 'bg-zinc-900 text-zinc-400 border-zinc-800 hover:border-zinc-700'}">${escapeHtml(t)}</button>`;
             });
+            filterContainer.innerHTML = html;
         }
 
         function initDoujinshiSearchPage() {
-            selectedDoujinshiTagFilter = null;
-            const input = document.getElementById('doujinshi-search-input');
-            if(input) input.value = '';
-            renderDoujinshiTagsFilter();
-            filterDoujinshis();
-        }
+            const container = document.getElementById('doujinshi-search-results-container');
+            const counter = document.getElementById('doujinshi-counter-badge');
+            container.innerHTML = '';
+            counter.textContent = `${doujinshis.length} Doujinshi${doujinshis.length > 1 ? 's' : ''}`;
 
-        function renderDoujinshiTagsFilter() {
-            const container = document.getElementById('doujinshi-tags-filter-container');
-            if(!container) return;
-            const allTags = getAllDoujinshiTags();
-            let html = `<button onclick="setDoujinshiTagFilter(null)" class="px-3 py-1 rounded-xl text-xs font-semibold border transition ${selectedDoujinshiTagFilter === null ? 'bg-rose-600 text-white border-rose-600' : 'bg-zinc-900 text-zinc-400 border-zinc-800'}">Tous</button>`;
-            allTags.forEach(tag => {
-                const isActive = selectedDoujinshiTagFilter === tag;
-                html += `<button onclick="setDoujinshiTagFilter('${escapeHtml(tag)}')" class="px-3 py-1 rounded-xl text-xs font-semibold border transition ${isActive ? 'bg-rose-600 text-white border-rose-600' : 'bg-zinc-900 text-zinc-400 border-zinc-800'}">${escapeHtml(tag)}</button>`;
+            doujinshis.forEach((d, idx) => {
+                if (selectedDoujinshiTagFilter && (!d.tags || !d.tags.includes(selectedDoujinshiTagFilter))) return;
+                container.appendChild(createDoujinshiCard(d, idx));
             });
-            container.innerHTML = html;
-        }
 
-        function setDoujinshiTagFilter(tag) {
-            selectedDoujinshiTagFilter = tag;
             renderDoujinshiTagsFilter();
-            filterDoujinshis();
         }
 
         function filterDoujinshis() {
-            const queryElement = document.getElementById('doujinshi-search-input');
-            const counter = document.getElementById('doujinshi-counter-badge');
-            if(!queryElement) return;
-            const query = queryElement.value.toLowerCase();
-            const resultsContainer = document.getElementById('doujinshi-search-results-container');
-            resultsContainer.innerHTML = '';
+            const query = document.getElementById('doujinshi-search-input').value.toLowerCase();
+            const container = document.getElementById('doujinshi-search-results-container');
+            container.innerHTML = '';
 
-            const filtered = doujinshis.map((doujinshi, index) => ({ doujinshi, index })).filter(({ doujinshi }) => {
-                const matchesText = doujinshi.name.toLowerCase().includes(query) || doujinshi.description.toLowerCase().includes(query);
-                const matchesTag = selectedDoujinshiTagFilter === null || (doujinshi.tags && doujinshi.tags.includes(selectedDoujinshiTagFilter));
-                return matchesText && matchesTag;
+            let count = 0;
+            doujinshis.forEach((d, idx) => {
+                if (selectedDoujinshiTagFilter && (!d.tags || !d.tags.includes(selectedDoujinshiTagFilter))) return;
+                const matches = d.name.toLowerCase().includes(query) || (d.description && d.description.toLowerCase().includes(query));
+                if (matches) {
+                    container.appendChild(createDoujinshiCard(d, idx));
+                    count++;
+                }
             });
+            document.getElementById('doujinshi-counter-badge').textContent = `${count} Doujinshi${count > 1 ? 's' : ''}`;
+        }
 
-            if (counter) counter.textContent = `${filtered.length} Doujinshi${filtered.length > 1 ? 's' : ''}`;
-
-            if (filtered.length === 0) {
-                resultsContainer.innerHTML = `<p class="col-span-full text-center text-zinc-500 py-8">Aucun doujinshi trouvé.</p>`;
-                return;
-            }
-
-            filtered.forEach(({ doujinshi, index }) => {
-                resultsContainer.appendChild(createDoujinshiCard(doujinshi, index));
+        function renderDoujinshiTagsFilter() {
+            const filterContainer = document.getElementById('doujinshi-tags-filter-container');
+            const tags = getAllDoujinshiTags();
+            let html = `<button onclick="selectedDoujinshiTagFilter = null; initDoujinshiSearchPage();" class="px-2.5 py-1 rounded-xl text-xs font-semibold border transition ${!selectedDoujinshiTagFilter ? 'bg-rose-600 text-white border-rose-600' : 'bg-zinc-900 text-zinc-400 border-zinc-800 hover:border-zinc-700'}">Tous</button>`;
+            tags.forEach(t => {
+                const active = selectedDoujinshiTagFilter === t;
+                html += `<button onclick="selectedDoujinshiTagFilter = '${escapeHtml(t)}'; initDoujinshiSearchPage();" class="px-2.5 py-1 rounded-xl text-xs font-semibold border transition ${active ? 'bg-rose-600 text-white border-rose-600' : 'bg-zinc-900 text-zinc-400 border-zinc-800 hover:border-zinc-700'}">${escapeHtml(t)}</button>`;
             });
+            filterContainer.innerHTML = html;
         }
 
         function initCosplayeuseSearchPage() {
-            selectedCosplayeuseTagFilter = null;
-            const input = document.getElementById('cosplayeuse-search-input');
-            if(input) input.value = '';
-            renderCosplayeuseTagsFilter();
-            filterCosplayeuses();
-        }
+            const container = document.getElementById('cosplayeuse-search-results-container');
+            const counter = document.getElementById('cosplayeuse-counter-badge');
+            container.innerHTML = '';
+            counter.textContent = `${cosplayeuses.length} Cosplayeuse${cosplayeuses.length > 1 ? 's' : ''}`;
 
-        function renderCosplayeuseTagsFilter() {
-            const container = document.getElementById('cosplayeuse-tags-filter-container');
-            if(!container) return;
-            const allTags = getAllCosplayeuseTags();
-            let html = `<button onclick="setCosplayeuseTagFilter(null)" class="px-3 py-1 rounded-xl text-xs font-semibold border transition ${selectedCosplayeuseTagFilter === null ? 'bg-rose-600 text-white border-rose-600' : 'bg-zinc-900 text-zinc-400 border-zinc-800'}">Tous</button>`;
-            allTags.forEach(tag => {
-                const isActive = selectedCosplayeuseTagFilter === tag;
-                html += `<button onclick="setCosplayeuseTagFilter('${escapeHtml(tag)}')" class="px-3 py-1 rounded-xl text-xs font-semibold border transition ${isActive ? 'bg-rose-600 text-white border-rose-600' : 'bg-zinc-900 text-zinc-400 border-zinc-800'}">${escapeHtml(tag)}</button>`;
+            cosplayeuses.forEach((c, idx) => {
+                if (selectedCosplayeuseTagFilter && (!c.tags || !c.tags.includes(selectedCosplayeuseTagFilter))) return;
+                container.appendChild(createCosplayeuseCard(c, idx));
             });
-            container.innerHTML = html;
-        }
 
-        function setCosplayeuseTagFilter(tag) {
-            selectedCosplayeuseTagFilter = tag;
             renderCosplayeuseTagsFilter();
-            filterCosplayeuses();
         }
 
         function filterCosplayeuses() {
-            const queryElement = document.getElementById('cosplayeuse-search-input');
-            const counter = document.getElementById('cosplayeuse-counter-badge');
-            if(!queryElement) return;
-            const query = queryElement.value.toLowerCase();
-            const resultsContainer = document.getElementById('cosplayeuse-search-results-container');
-            resultsContainer.innerHTML = '';
+            const query = document.getElementById('cosplayeuse-search-input').value.toLowerCase();
+            const container = document.getElementById('cosplayeuse-search-results-container');
+            container.innerHTML = '';
 
-            const filtered = cosplayeuses.map((cosplayeuse, index) => ({ cosplayeuse, index })).filter(({ cosplayeuse }) => {
-                const matchesText = cosplayeuse.name.toLowerCase().includes(query) || cosplayeuse.description.toLowerCase().includes(query);
-                const matchesTag = selectedCosplayeuseTagFilter === null || (cosplayeuse.tags && cosplayeuse.tags.includes(selectedCosplayeuseTagFilter));
-                return matchesText && matchesTag;
+            let count = 0;
+            cosplayeuses.forEach((c, idx) => {
+                if (selectedCosplayeuseTagFilter && (!c.tags || !c.tags.includes(selectedCosplayeuseTagFilter))) return;
+                const matches = c.name.toLowerCase().includes(query) || (c.description && c.description.toLowerCase().includes(query));
+                if (matches) {
+                    container.appendChild(createCosplayeuseCard(c, idx));
+                    count++;
+                }
             });
-
-            if (counter) counter.textContent = `${filtered.length} Cosplayeuse${filtered.length > 1 ? 's' : ''}`;
-
-            if (filtered.length === 0) {
-                resultsContainer.innerHTML = `<p class="col-span-full text-center text-zinc-500 py-8">Aucune cosplayeuse trouvée.</p>`;
-                return;
-            }
-
-            filtered.forEach(({ cosplayeuse, index }) => {
-                resultsContainer.appendChild(createCosplayeuseCard(cosplayeuse, index));
-            });
+            document.getElementById('cosplayeuse-counter-badge').textContent = `${count} Cosplayeuse${count > 1 ? 's' : ''}`;
         }
+
+        function renderCosplayeuseTagsFilter() {
+            const filterContainer = document.getElementById('cosplayeuse-tags-filter-container');
+            const tags = getAllCosplayeuseTags();
+            let html = `<button onclick="selectedCosplayeuseTagFilter = null; initCosplayeuseSearchPage();" class="px-2.5 py-1 rounded-xl text-xs font-semibold border transition ${!selectedCosplayeuseTagFilter ? 'bg-rose-600 text-white border-rose-600' : 'bg-zinc-900 text-zinc-400 border-zinc-800 hover:border-zinc-700'}">Tous</button>`;
+            tags.forEach(t => {
+                const active = selectedCosplayeuseTagFilter === t;
+                html += `<button onclick="selectedCosplayeuseTagFilter = '${escapeHtml(t)}'; initCosplayeuseSearchPage();" class="px-2.5 py-1 rounded-xl text-xs font-semibold border transition ${active ? 'bg-rose-600 text-white border-rose-600' : 'bg-zinc-900 text-zinc-400 border-zinc-800 hover:border-zinc-700'}">${escapeHtml(t)}</button>`;
+            });
+            filterContainer.innerHTML = html;
+        }
+
+        // Chargement initial au démarrage
+        window.addEventListener('DOMContentLoaded', () => {
+            fetchArtistsFromCloud();
+            fetchManhwasFromCloud();
+            fetchDoujinshisFromCloud();
+            fetchCosplayeusesFromCloud();
+        });
     </script>
 </body>
 </html>
