@@ -35,27 +35,27 @@
 </head>
 <body class="bg-black dark:bg-black text-zinc-100 min-h-screen flex flex-col justify-between selection:bg-rose-600 selection:text-white p-2 sm:p-4 transition-colors duration-300">
 
-    <!-- Correction du conteneur principal : passage de overflow-hidden à overflow-visible pour éviter de couper les menus déroulants -->
+    <!-- Conteneur principal -->
     <div class="max-w-7xl mx-auto w-full my-2 bg-zinc-950 dark:bg-zinc-950 rounded-3xl border border-zinc-800 shadow-xl overflow-visible flex flex-col flex-grow transition-colors duration-300">
         
         <header class="bg-zinc-900 dark:bg-zinc-900 border-b border-zinc-800 p-4 rounded-t-3xl transition-colors duration-300 relative z-40">
             <div class="flex flex-row justify-between items-center gap-4 px-2 flex-wrap">
                 <div class="flex items-center gap-2">
-                    <div class="w-7 h-7 bg-rose-600 rounded-full shadow-md"></div>
+                    <div class="w-7 h-7 bg-rose-600 rounded-full shadow-md animate-pulse"></div>
                     <div class="w-3 h-3 bg-rose-400 rounded-full"></div>
                     <div class="w-3 h-3 bg-zinc-800 rounded-full"></div>
                 </div>
 
                 <div class="flex items-center gap-3 flex-wrap">
                     <nav class="flex gap-2 sm:gap-3 flex-row items-center flex-wrap">
-                        <button onclick="switchPage('home')" id="tab-home" class="px-3 sm:px-4 py-2 bg-zinc-800 text-zinc-200 hover:bg-rose-600 hover:text-white rounded-xl font-medium text-xs transition shadow-sm whitespace-nowrap">Accueil</button>
+                        <button onclick="switchPage('home')" id="tab-home" class="px-3 sm:px-4 py-2 bg-zinc-800 text-zinc-200 hover:bg-rose-600 hover:text-white rounded-xl font-medium text-xs transition-all duration-300 shadow-sm whitespace-nowrap hover:scale-105">Accueil</button>
                         
                         <!-- Menu déroulant pour les recherches -->
                         <div class="relative inline-block text-left" id="search-dropdown-container">
-                            <button onclick="toggleSearchDropdown()" id="tab-search-dropdown" class="px-3 sm:px-4 py-2 bg-zinc-800 text-zinc-200 hover:bg-rose-600 hover:text-white rounded-xl font-medium text-xs transition shadow-sm whitespace-nowrap flex items-center gap-1">
+                            <button onclick="toggleSearchDropdown()" id="tab-search-dropdown" class="px-3 sm:px-4 py-2 bg-zinc-800 text-zinc-200 hover:bg-rose-600 hover:text-white rounded-xl font-medium text-xs transition-all duration-300 shadow-sm whitespace-nowrap flex items-center gap-1 hover:scale-105">
                                 Recherche ▾
                             </button>
-                            <div id="search-dropdown-menu" class="hidden absolute left-0 mt-2 w-48 bg-zinc-900 border border-zinc-800 rounded-xl shadow-xl z-50 overflow-hidden">
+                            <div id="search-dropdown-menu" class="hidden absolute left-0 mt-2 w-48 bg-zinc-900 border border-zinc-800 rounded-xl shadow-xl z-50 overflow-hidden transition-all duration-300 transform origin-top">
                                 <button onclick="switchPage('search'); closeSearchDropdown();" class="w-full text-left px-4 py-2.5 text-xs hover:bg-rose-600 hover:text-white text-zinc-200 transition font-medium">Artistes</button>
                                 <button onclick="switchPage('manhwa-search'); closeSearchDropdown();" class="w-full text-left px-4 py-2.5 text-xs hover:bg-rose-600 hover:text-white text-zinc-200 transition font-medium border-t border-zinc-800">Manhwas</button>
                                 <button onclick="switchPage('doujinshi-search'); closeSearchDropdown();" class="w-full text-left px-4 py-2.5 text-xs hover:bg-rose-600 hover:text-white text-zinc-200 transition font-medium border-t border-zinc-800">Doujinshis</button>
@@ -65,10 +65,10 @@
 
                         <!-- Menu déroulant pour les ajouts -->
                         <div class="relative inline-block text-left" id="add-dropdown-container">
-                            <button onclick="toggleAddDropdown()" id="tab-add-dropdown" class="px-3 sm:px-4 py-2 bg-zinc-800 text-zinc-200 hover:bg-rose-600 hover:text-white rounded-xl font-medium text-xs transition shadow-sm whitespace-nowrap flex items-center gap-1">
+                            <button onclick="toggleAddDropdown()" id="tab-add-dropdown" class="px-3 sm:px-4 py-2 bg-zinc-800 text-zinc-200 hover:bg-rose-600 hover:text-white rounded-xl font-medium text-xs transition-all duration-300 shadow-sm whitespace-nowrap flex items-center gap-1 hover:scale-105">
                                 Ajouter ▾
                             </button>
-                            <div id="add-dropdown-menu" class="hidden absolute left-0 mt-2 w-48 bg-zinc-900 border border-zinc-800 rounded-xl shadow-xl z-50 overflow-hidden">
+                            <div id="add-dropdown-menu" class="hidden absolute left-0 mt-2 w-48 bg-zinc-900 border border-zinc-800 rounded-xl shadow-xl z-50 overflow-hidden transition-all duration-300 transform origin-top">
                                 <button onclick="switchPage('add'); closeAddDropdown();" class="w-full text-left px-4 py-2.5 text-xs hover:bg-rose-600 hover:text-white text-zinc-200 transition font-medium">+ Artiste</button>
                                 <button onclick="switchPage('manhwa-add'); closeAddDropdown();" class="w-full text-left px-4 py-2.5 text-xs hover:bg-rose-600 hover:text-white text-zinc-200 transition font-medium border-t border-zinc-800">+ Manhwa</button>
                                 <button onclick="switchPage('doujinshi-add'); closeAddDropdown();" class="w-full text-left px-4 py-2.5 text-xs hover:bg-rose-600 hover:text-white text-zinc-200 transition font-medium border-t border-zinc-800">+ Doujinshi</button>
@@ -77,7 +77,7 @@
                         </div>
                     </nav>
 
-                    <button onclick="toggleTheme()" id="theme-toggle-btn" class="p-2 bg-zinc-800 text-zinc-200 hover:bg-rose-600 hover:text-white rounded-xl text-xs transition shadow-sm flex items-center justify-center" title="Changer de mode">☀️</button>
+                    <button onclick="toggleTheme()" id="theme-toggle-btn" class="p-2 bg-zinc-800 text-zinc-200 hover:bg-rose-600 hover:text-white rounded-xl text-xs transition-all duration-300 shadow-sm flex items-center justify-center hover:scale-105" title="Changer de mode">☀️</button>
                 </div>
             </div>
         </header>
@@ -85,9 +85,9 @@
         <main class="p-6 sm:p-8 flex-grow bg-zinc-950 rounded-b-3xl transition-colors duration-300 relative">
 
             <!-- ACCUEIL -->
-            <section id="page-home" class="page flex flex-col items-center justify-center h-full text-center py-6">
-                <div class="bg-black p-8 rounded-3xl border border-zinc-800 shadow-sm max-w-xl w-full flex flex-col items-center">
-                    <img src="https://github.com/AkurasuBe/GoonDeX/blob/main/GoonDex_logo_separe.png?raw=true" alt="Logo Goon-Dex" class="w-full max-w-[240px] mb-6">
+            <section id="page-home" class="page flex flex-col items-center justify-center h-full text-center py-6 transition-all duration-300">
+                <div class="bg-black p-8 rounded-3xl border border-zinc-800 shadow-sm max-w-xl w-full flex flex-col items-center hover:border-zinc-700 transition duration-300">
+                    <img src="https://github.com/AkurasuBe/GoonDeX/blob/main/GoonDex_logo_separe.png?raw=true" alt="Logo Goon-Dex" class="w-full max-w-[240px] mb-6 transition duration-500 hover:scale-105">
                     <p class="text-xs text-zinc-400 mb-6 font-normal">Répertoire universel et collaboratif des artistes, manhwas, doujinshis et cosplayeuses.</p>
                     <div class="w-full bg-zinc-900 p-4 rounded-2xl mb-6 text-left text-xs font-mono leading-relaxed border border-zinc-800 text-zinc-300 shadow-inner">
                         <p class="text-rose-400 font-semibold">> Connexion au Cloud Supabase établie...</p>
@@ -95,16 +95,16 @@
                         <p>> Index Artistes, Manhwas, Doujinshis & Cosplayeuses prêts.</p>
                     </div>
                     <div class="grid grid-cols-2 gap-2 w-full">
-                        <button onclick="switchPage('search')" class="bg-rose-600 hover:bg-rose-700 text-white font-semibold py-2.5 px-3 rounded-xl transition tracking-wide text-xs shadow-md">
+                        <button onclick="switchPage('search')" class="bg-rose-600 hover:bg-rose-700 text-white font-semibold py-2.5 px-3 rounded-xl transition-all duration-300 tracking-wide text-xs shadow-md hover:scale-[1.02]">
                             Artistes
                         </button>
-                        <button onclick="switchPage('manhwa-search')" class="bg-rose-600 hover:bg-rose-700 text-white font-semibold py-2.5 px-3 rounded-xl transition tracking-wide text-xs shadow-md">
+                        <button onclick="switchPage('manhwa-search')" class="bg-rose-600 hover:bg-rose-700 text-white font-semibold py-2.5 px-3 rounded-xl transition-all duration-300 tracking-wide text-xs shadow-md hover:scale-[1.02]">
                             Manhwas
                         </button>
-                        <button onclick="switchPage('doujinshi-search')" class="bg-rose-600 hover:bg-rose-700 text-white font-semibold py-2.5 px-3 rounded-xl transition tracking-wide text-xs shadow-md">
+                        <button onclick="switchPage('doujinshi-search')" class="bg-rose-600 hover:bg-rose-700 text-white font-semibold py-2.5 px-3 rounded-xl transition-all duration-300 tracking-wide text-xs shadow-md hover:scale-[1.02]">
                             Doujinshis
                         </button>
-                        <button onclick="switchPage('cosplayeuse-search')" class="bg-rose-600 hover:bg-rose-700 text-white font-semibold py-2.5 px-3 rounded-xl transition tracking-wide text-xs shadow-md">
+                        <button onclick="switchPage('cosplayeuse-search')" class="bg-rose-600 hover:bg-rose-700 text-white font-semibold py-2.5 px-3 rounded-xl transition-all duration-300 tracking-wide text-xs shadow-md hover:scale-[1.02]">
                             Cosplayeuses
                         </button>
                     </div>
@@ -112,30 +112,29 @@
             </section>
 
             <!-- RECHERCHE ARTISTES -->
-            <section id="page-search" class="page hidden space-y-4">
+            <section id="page-search" class="page hidden space-y-4 transition-all duration-300">
                 <div class="flex justify-between items-center">
                     <h2 class="text-zinc-100 font-semibold text-xs tracking-wider uppercase">Recherche Artistes</h2>
                     <span id="counter-badge" class="bg-zinc-900 text-zinc-300 px-3 py-1 rounded-xl text-xs font-semibold border border-zinc-800">0 Fichiers</span>
                 </div>
                 <div class="bg-black p-4 rounded-2xl border border-zinc-800 space-y-3 shadow-sm">
-                    <input type="text" id="search-input" oninput="filterArtists()" placeholder="Rechercher par nom ou description..." class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm">
+                    <input type="text" id="search-input" oninput="filterArtists()" placeholder="Rechercher par nom ou description..." class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition">
                     <div>
                         <p class="text-xs font-semibold text-zinc-400 mb-2 uppercase">Filtrer par tags :</p>
                         <div id="tags-filter-container" class="flex flex-wrap gap-2"></div>
                     </div>
                 </div>
-                <!-- Correction : suppression de max-h-[45vh] et overflow-y-auto pour éviter que le conteneur ne bloque ou coupe les images du bas -->
                 <div id="search-results-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4"></div>
             </section>
 
             <!-- RECHERCHE MANHWAS -->
-            <section id="page-manhwa-search" class="page hidden space-y-4">
+            <section id="page-manhwa-search" class="page hidden space-y-4 transition-all duration-300">
                 <div class="flex justify-between items-center">
                     <h2 class="text-zinc-100 font-semibold text-xs tracking-wider uppercase">Recherche Manhwas</h2>
                     <span id="manhwa-counter-badge" class="bg-zinc-900 text-zinc-300 px-3 py-1 rounded-xl text-xs font-semibold border border-zinc-800">0 Manhwas</span>
                 </div>
                 <div class="bg-black p-4 rounded-2xl border border-zinc-800 space-y-3 shadow-sm">
-                    <input type="text" id="manhwa-search-input" oninput="filterManhwas()" placeholder="Rechercher par titre ou résumé..." class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm">
+                    <input type="text" id="manhwa-search-input" oninput="filterManhwas()" placeholder="Rechercher par titre ou résumé..." class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition">
                     <div>
                         <p class="text-xs font-semibold text-zinc-400 mb-2 uppercase">Filtrer par genres / tags :</p>
                         <div id="manhwa-tags-filter-container" class="flex flex-wrap gap-2"></div>
@@ -145,13 +144,13 @@
             </section>
 
             <!-- RECHERCHE DOUJINSHIS -->
-            <section id="page-doujinshi-search" class="page hidden space-y-4">
+            <section id="page-doujinshi-search" class="page hidden space-y-4 transition-all duration-300">
                 <div class="flex justify-between items-center">
                     <h2 class="text-zinc-100 font-semibold text-xs tracking-wider uppercase">Recherche Doujinshis</h2>
                     <span id="doujinshi-counter-badge" class="bg-zinc-900 text-zinc-300 px-3 py-1 rounded-xl text-xs font-semibold border border-zinc-800">0 Doujinshis</span>
                 </div>
                 <div class="bg-black p-4 rounded-2xl border border-zinc-800 space-y-3 shadow-sm">
-                    <input type="text" id="doujinshi-search-input" oninput="filterDoujinshis()" placeholder="Rechercher par titre ou résumé..." class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm">
+                    <input type="text" id="doujinshi-search-input" oninput="filterDoujinshis()" placeholder="Rechercher par titre ou résumé..." class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition">
                     <div>
                         <p class="text-xs font-semibold text-zinc-400 mb-2 uppercase">Filtrer par genres / tags :</p>
                         <div id="doujinshi-tags-filter-container" class="flex flex-wrap gap-2"></div>
@@ -161,13 +160,13 @@
             </section>
 
             <!-- RECHERCHE COSPLAYEUSES -->
-            <section id="page-cosplayeuse-search" class="page hidden space-y-4">
+            <section id="page-cosplayeuse-search" class="page hidden space-y-4 transition-all duration-300">
                 <div class="flex justify-between items-center">
                     <h2 class="text-zinc-100 font-semibold text-xs tracking-wider uppercase">Recherche Cosplayeuses</h2>
                     <span id="cosplayeuse-counter-badge" class="bg-zinc-900 text-zinc-300 px-3 py-1 rounded-xl text-xs font-semibold border border-zinc-800">0 Cosplayeuses</span>
                 </div>
                 <div class="bg-black p-4 rounded-2xl border border-zinc-800 space-y-3 shadow-sm">
-                    <input type="text" id="cosplayeuse-search-input" oninput="filterCosplayeuses()" placeholder="Rechercher par nom ou description..." class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm">
+                    <input type="text" id="cosplayeuse-search-input" oninput="filterCosplayeuses()" placeholder="Rechercher par nom ou description..." class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition">
                     <div>
                         <p class="text-xs font-semibold text-zinc-400 mb-2 uppercase">Filtrer par tags :</p>
                         <div id="cosplayeuse-tags-filter-container" class="flex flex-wrap gap-2"></div>
@@ -177,40 +176,40 @@
             </section>
 
             <!-- FICHE DÉTAILLÉE ARTISTE -->
-            <section id="page-detail" class="page hidden max-w-5xl mx-auto">
-                <button onclick="switchPage('search')" class="mb-4 bg-zinc-800 text-zinc-200 hover:bg-rose-600 hover:text-white text-xs px-3 py-1.5 rounded-xl font-medium transition shadow-sm">← Retour à la recherche</button>
+            <section id="page-detail" class="page hidden max-w-5xl mx-auto transition-all duration-300">
+                <button onclick="switchPage('search')" class="mb-4 bg-zinc-800 text-zinc-200 hover:bg-rose-600 hover:text-white text-xs px-3 py-1.5 rounded-xl font-medium transition-all shadow-sm hover:scale-105">← Retour à la recherche</button>
                 <div id="artist-detail-content" class="bg-black text-zinc-100 p-6 rounded-3xl border border-zinc-800 shadow-xl grid grid-cols-1 md:grid-cols-2 gap-6"></div>
             </section>
 
             <!-- FICHE DÉTAILLÉE MANHWA -->
-            <section id="page-manhwa-detail" class="page hidden max-w-5xl mx-auto">
-                <button onclick="switchPage('manhwa-search')" class="mb-4 bg-zinc-800 text-zinc-200 hover:bg-rose-600 hover:text-white text-xs px-3 py-1.5 rounded-xl font-medium transition shadow-sm">← Retour à la recherche</button>
+            <section id="page-manhwa-detail" class="page hidden max-w-5xl mx-auto transition-all duration-300">
+                <button onclick="switchPage('manhwa-search')" class="mb-4 bg-zinc-800 text-zinc-200 hover:bg-rose-600 hover:text-white text-xs px-3 py-1.5 rounded-xl font-medium transition-all shadow-sm hover:scale-105">← Retour à la recherche</button>
                 <div id="manhwa-detail-content" class="bg-black text-zinc-100 p-6 rounded-3xl border border-zinc-800 shadow-xl grid grid-cols-1 md:grid-cols-2 gap-6"></div>
             </section>
 
             <!-- FICHE DÉTAILLÉE DOUJINSHI -->
-            <section id="page-doujinshi-detail" class="page hidden max-w-5xl mx-auto">
-                <button onclick="switchPage('doujinshi-search')" class="mb-4 bg-zinc-800 text-zinc-200 hover:bg-rose-600 hover:text-white text-xs px-3 py-1.5 rounded-xl font-medium transition shadow-sm">← Retour à la recherche</button>
+            <section id="page-doujinshi-detail" class="page hidden max-w-5xl mx-auto transition-all duration-300">
+                <button onclick="switchPage('doujinshi-search')" class="mb-4 bg-zinc-800 text-zinc-200 hover:bg-rose-600 hover:text-white text-xs px-3 py-1.5 rounded-xl font-medium transition-all shadow-sm hover:scale-105">← Retour à la recherche</button>
                 <div id="doujinshi-detail-content" class="bg-black text-zinc-100 p-6 rounded-3xl border border-zinc-800 shadow-xl grid grid-cols-1 md:grid-cols-2 gap-6"></div>
             </section>
 
             <!-- FICHE DÉTAILLÉE COSPLAYEUSE -->
-            <section id="page-cosplayeuse-detail" class="page hidden max-w-5xl mx-auto">
-                <button onclick="switchPage('cosplayeuse-search')" class="mb-4 bg-zinc-800 text-zinc-200 hover:bg-rose-600 hover:text-white text-xs px-3 py-1.5 rounded-xl font-medium transition shadow-sm">← Retour à la recherche</button>
+            <section id="page-cosplayeuse-detail" class="page hidden max-w-5xl mx-auto transition-all duration-300">
+                <button onclick="switchPage('cosplayeuse-search')" class="mb-4 bg-zinc-800 text-zinc-200 hover:bg-rose-600 hover:text-white text-xs px-3 py-1.5 rounded-xl font-medium transition-all shadow-sm hover:scale-105">← Retour à la recherche</button>
                 <div id="cosplayeuse-detail-content" class="bg-black text-zinc-100 p-6 rounded-3xl border border-zinc-800 shadow-xl grid grid-cols-1 md:grid-cols-2 gap-6"></div>
             </section>
 
             <!-- AJOUT ARTISTE -->
-            <section id="page-add" class="page hidden max-w-2xl mx-auto bg-black p-6 rounded-3xl border border-zinc-800 text-zinc-100 shadow-xl">
+            <section id="page-add" class="page hidden max-w-2xl mx-auto bg-black p-6 rounded-3xl border border-zinc-800 text-zinc-100 shadow-xl transition-all duration-300">
                 <h2 class="text-zinc-100 font-semibold text-xs tracking-wider uppercase mb-4">Nouvel Artiste</h2>
                 <form id="artist-form" class="space-y-3">
                     <div>
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Nom de l'artiste</label>
-                        <input type="text" id="name" required class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm">
+                        <input type="text" id="name" required class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Image principale (URL)</label>
-                        <input type="url" id="primary-image-url" required class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm" placeholder="https://...">
+                        <input type="url" id="primary-image-url" required class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" placeholder="https://...">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Images supplémentaires</label>
@@ -220,24 +219,24 @@
                     <div>
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Note initiale (Étoiles)</label>
                         <div id="form-star-rating" class="flex gap-1.5 cursor-pointer py-1">
-                            <span onclick="setFormRating(1)" class="text-2xl text-amber-400 star-btn" data-value="1">★</span>
-                            <span onclick="setFormRating(2)" class="text-2xl text-amber-400 star-btn" data-value="2">★</span>
-                            <span onclick="setFormRating(3)" class="text-2xl text-amber-400 star-btn" data-value="3">★</span>
-                            <span onclick="setFormRating(4)" class="text-2xl text-amber-400 star-btn" data-value="4">★</span>
-                            <span onclick="setFormRating(5)" class="text-2xl text-amber-400 star-btn" data-value="5">★</span>
+                            <span onclick="setFormRating(1)" class="text-2xl text-amber-400 star-btn transition hover:scale-125" data-value="1">★</span>
+                            <span onclick="setFormRating(2)" class="text-2xl text-amber-400 star-btn transition hover:scale-125" data-value="2">★</span>
+                            <span onclick="setFormRating(3)" class="text-2xl text-amber-400 star-btn transition hover:scale-125" data-value="3">★</span>
+                            <span onclick="setFormRating(4)" class="text-2xl text-amber-400 star-btn transition hover:scale-125" data-value="4">★</span>
+                            <span onclick="setFormRating(5)" class="text-2xl text-amber-400 star-btn transition hover:scale-125" data-value="5">★</span>
                         </div>
                         <input type="hidden" id="artist-rating" value="5">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Description / Style</label>
-                        <textarea id="description" rows="2" required class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm"></textarea>
+                        <textarea id="description" rows="2" required class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition"></textarea>
                     </div>
                     <div>
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Où le trouver (Liens)</label>
                         <div id="links-inputs-container" class="space-y-2 mb-2">
                             <div class="flex gap-2">
-                                <input type="text" class="link-name-input w-1/3 p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm" placeholder="Nom du site">
-                                <input type="url" class="link-url-input w-2/3 p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm" placeholder="https://...">
+                                <input type="text" class="link-name-input w-1/3 p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" placeholder="Nom du site">
+                                <input type="url" class="link-url-input w-2/3 p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" placeholder="https://...">
                             </div>
                         </div>
                         <button type="button" onclick="addLinkInput()" class="text-xs text-rose-400 font-semibold hover:underline">+ Ajouter un autre lien</button>
@@ -245,15 +244,15 @@
                     <div class="relative">
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Tags</label>
                         <div id="selected-tags-container" class="flex flex-wrap gap-1.5 mb-2 p-2 bg-zinc-900 rounded-xl border border-zinc-800 min-h-[40px]"></div>
-                        <input type="text" id="tag-autocomplete-input" oninput="handleTagInput(event)" placeholder="Tapez un tag..." class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm" autocomplete="off">
+                        <input type="text" id="tag-autocomplete-input" oninput="handleTagInput(event)" placeholder="Tapez un tag..." class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" autocomplete="off">
                         <div id="tag-dropdown" class="hidden absolute left-0 right-0 mt-1 bg-zinc-900 border border-zinc-800 rounded-xl shadow-lg max-h-36 overflow-y-auto z-50"></div>
                     </div>
-                    <button type="submit" class="w-full bg-rose-600 hover:bg-rose-700 text-white font-semibold py-2.5 px-4 rounded-xl tracking-wide text-xs transition mt-2 shadow-sm">Publier l'artiste</button>
+                    <button type="submit" class="w-full bg-rose-600 hover:bg-rose-700 text-white font-semibold py-2.5 px-4 rounded-xl tracking-wide text-xs transition-all duration-300 mt-2 shadow-sm hover:scale-[1.01]">Publier l'artiste</button>
                 </form>
             </section>
 
             <!-- MODIFICATION ARTISTE -->
-            <section id="page-artist-edit" class="page hidden max-w-2xl mx-auto bg-black p-6 rounded-3xl border border-zinc-800 text-zinc-100 shadow-xl">
+            <section id="page-artist-edit" class="page hidden max-w-2xl mx-auto bg-black p-6 rounded-3xl border border-zinc-800 text-zinc-100 shadow-xl transition-all duration-300">
                 <div class="flex justify-between items-center mb-4">
                     <h2 class="text-zinc-100 font-semibold text-xs tracking-wider uppercase">Modifier l'Artiste</h2>
                     <button onclick="switchPage('detail')" class="text-xs text-zinc-400 hover:underline">Annuler</button>
@@ -261,11 +260,11 @@
                 <form id="artist-edit-form" class="space-y-3">
                     <div>
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Nom de l'artiste</label>
-                        <input type="text" id="edit-name" required class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm">
+                        <input type="text" id="edit-name" required class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Image principale (URL)</label>
-                        <input type="url" id="edit-primary-image-url" required class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm" placeholder="https://...">
+                        <input type="url" id="edit-primary-image-url" required class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" placeholder="https://...">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Images supplémentaires</label>
@@ -275,17 +274,17 @@
                     <div>
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Note (Étoiles)</label>
                         <div id="edit-form-star-rating" class="flex gap-1.5 cursor-pointer py-1">
-                            <span onclick="setEditFormRating(1)" class="text-2xl text-amber-400 edit-star-btn" data-value="1">★</span>
-                            <span onclick="setEditFormRating(2)" class="text-2xl text-amber-400 edit-star-btn" data-value="2">★</span>
-                            <span onclick="setEditFormRating(3)" class="text-2xl text-amber-400 edit-star-btn" data-value="3">★</span>
-                            <span onclick="setEditFormRating(4)" class="text-2xl text-amber-400 edit-star-btn" data-value="4">★</span>
-                            <span onclick="setEditFormRating(5)" class="text-2xl text-amber-400 edit-star-btn" data-value="5">★</span>
+                            <span onclick="setEditFormRating(1)" class="text-2xl text-amber-400 edit-star-btn transition hover:scale-125" data-value="1">★</span>
+                            <span onclick="setEditFormRating(2)" class="text-2xl text-amber-400 edit-star-btn transition hover:scale-125" data-value="2">★</span>
+                            <span onclick="setEditFormRating(3)" class="text-2xl text-amber-400 edit-star-btn transition hover:scale-125" data-value="3">★</span>
+                            <span onclick="setEditFormRating(4)" class="text-2xl text-amber-400 edit-star-btn transition hover:scale-125" data-value="4">★</span>
+                            <span onclick="setEditFormRating(5)" class="text-2xl text-amber-400 edit-star-btn transition hover:scale-125" data-value="5">★</span>
                         </div>
                         <input type="hidden" id="edit-artist-rating" value="5">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Description / Style</label>
-                        <textarea id="edit-description" rows="2" required class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm"></textarea>
+                        <textarea id="edit-description" rows="2" required class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition"></textarea>
                     </div>
                     <div>
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Où le trouver (Liens)</label>
@@ -295,24 +294,24 @@
                     <div class="relative">
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Tags</label>
                         <div id="edit-selected-tags-container" class="flex flex-wrap gap-1.5 mb-2 p-2 bg-zinc-900 rounded-xl border border-zinc-800 min-h-[40px]"></div>
-                        <input type="text" id="edit-tag-autocomplete-input" oninput="handleEditTagInput(event)" placeholder="Tapez un tag..." class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm" autocomplete="off">
+                        <input type="text" id="edit-tag-autocomplete-input" oninput="handleEditTagInput(event)" placeholder="Tapez un tag..." class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" autocomplete="off">
                         <div id="edit-tag-dropdown" class="hidden absolute left-0 right-0 mt-1 bg-zinc-900 border border-zinc-800 rounded-xl shadow-lg max-h-36 overflow-y-auto z-50"></div>
                     </div>
-                    <button type="submit" class="w-full bg-rose-600 hover:bg-rose-700 text-white font-semibold py-2.5 px-4 rounded-xl tracking-wide text-xs transition mt-2 shadow-sm">Enregistrer les modifications</button>
+                    <button type="submit" class="w-full bg-rose-600 hover:bg-rose-700 text-white font-semibold py-2.5 px-4 rounded-xl tracking-wide text-xs transition-all duration-300 mt-2 shadow-sm hover:scale-[1.01]">Enregistrer les modifications</button>
                 </form>
             </section>
 
             <!-- AJOUT MANHWA -->
-            <section id="page-manhwa-add" class="page hidden max-w-2xl mx-auto bg-black p-6 rounded-3xl border border-zinc-800 text-zinc-100 shadow-xl">
+            <section id="page-manhwa-add" class="page hidden max-w-2xl mx-auto bg-black p-6 rounded-3xl border border-zinc-800 text-zinc-100 shadow-xl transition-all duration-300">
                 <h2 class="text-zinc-100 font-semibold text-xs tracking-wider uppercase mb-4">Nouveau Manhwa (Miniature 4:5)</h2>
                 <form id="manhwa-form" class="space-y-3">
                     <div>
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Titre du Manhwa</label>
-                        <input type="text" id="manhwa-name" required class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm">
+                        <input type="text" id="manhwa-name" required class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Couverture principale (URL - Format 4:5 conseillé)</label>
-                        <input type="url" id="manhwa-primary-image-url" required class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm" placeholder="https://...">
+                        <input type="url" id="manhwa-primary-image-url" required class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" placeholder="https://...">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Images / Planches supplémentaires</label>
@@ -322,24 +321,24 @@
                     <div>
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Note initiale (Étoiles)</label>
                         <div id="manhwa-form-star-rating" class="flex gap-1.5 cursor-pointer py-1">
-                            <span onclick="setManhwaFormRating(1)" class="text-2xl text-amber-400 manhwa-star-btn" data-value="1">★</span>
-                            <span onclick="setManhwaFormRating(2)" class="text-2xl text-amber-400 manhwa-star-btn" data-value="2">★</span>
-                            <span onclick="setManhwaFormRating(3)" class="text-2xl text-amber-400 manhwa-star-btn" data-value="3">★</span>
-                            <span onclick="setManhwaFormRating(4)" class="text-2xl text-amber-400 manhwa-star-btn" data-value="4">★</span>
-                            <span onclick="setManhwaFormRating(5)" class="text-2xl text-amber-400 manhwa-star-btn" data-value="5">★</span>
+                            <span onclick="setManhwaFormRating(1)" class="text-2xl text-amber-400 manhwa-star-btn transition hover:scale-125" data-value="1">★</span>
+                            <span onclick="setManhwaFormRating(2)" class="text-2xl text-amber-400 manhwa-star-btn transition hover:scale-125" data-value="2">★</span>
+                            <span onclick="setManhwaFormRating(3)" class="text-2xl text-amber-400 manhwa-star-btn transition hover:scale-125" data-value="3">★</span>
+                            <span onclick="setManhwaFormRating(4)" class="text-2xl text-amber-400 manhwa-star-btn transition hover:scale-125" data-value="4">★</span>
+                            <span onclick="setManhwaFormRating(5)" class="text-2xl text-amber-400 manhwa-star-btn transition hover:scale-125" data-value="5">★</span>
                         </div>
                         <input type="hidden" id="manhwa-rating" value="5">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Résumé / Synopsis</label>
-                        <textarea id="manhwa-description" rows="2" required class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm"></textarea>
+                        <textarea id="manhwa-description" rows="2" required class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition"></textarea>
                     </div>
                     <div>
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Où le lire (Liens)</label>
                         <div id="manhwa-links-inputs-container" class="space-y-2 mb-2">
                             <div class="flex gap-2">
-                                <input type="text" class="manhwa-link-name-input w-1/3 p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm" placeholder="Nom du site">
-                                <input type="url" class="manhwa-link-url-input w-2/3 p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm" placeholder="https://...">
+                                <input type="text" class="manhwa-link-name-input w-1/3 p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" placeholder="Nom du site">
+                                <input type="url" class="manhwa-link-url-input w-2/3 p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" placeholder="https://...">
                             </div>
                         </div>
                         <button type="button" onclick="addManhwaLinkInput()" class="text-xs text-rose-400 font-semibold hover:underline">+ Ajouter un autre lien</button>
@@ -347,15 +346,15 @@
                     <div class="relative">
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Genres / Tags</label>
                         <div id="manhwa-selected-tags-container" class="flex flex-wrap gap-1.5 mb-2 p-2 bg-zinc-900 rounded-xl border border-zinc-800 min-h-[40px]"></div>
-                        <input type="text" id="manhwa-tag-autocomplete-input" oninput="handleManhwaTagInput(event)" placeholder="Tapez un genre..." class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm" autocomplete="off">
+                        <input type="text" id="manhwa-tag-autocomplete-input" oninput="handleManhwaTagInput(event)" placeholder="Tapez un genre..." class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" autocomplete="off">
                         <div id="manhwa-tag-dropdown" class="hidden absolute left-0 right-0 mt-1 bg-zinc-900 border border-zinc-800 rounded-xl shadow-lg max-h-36 overflow-y-auto z-50"></div>
                     </div>
-                    <button type="submit" class="w-full bg-rose-600 hover:bg-rose-700 text-white font-semibold py-2.5 px-4 rounded-xl tracking-wide text-xs transition mt-2 shadow-sm">Publier le manhwa</button>
+                    <button type="submit" class="w-full bg-rose-600 hover:bg-rose-700 text-white font-semibold py-2.5 px-4 rounded-xl tracking-wide text-xs transition-all duration-300 mt-2 shadow-sm hover:scale-[1.01]">Publier le manhwa</button>
                 </form>
             </section>
 
             <!-- MODIFICATION MANHWA -->
-            <section id="page-manhwa-edit" class="page hidden max-w-2xl mx-auto bg-black p-6 rounded-3xl border border-zinc-800 text-zinc-100 shadow-xl">
+            <section id="page-manhwa-edit" class="page hidden max-w-2xl mx-auto bg-black p-6 rounded-3xl border border-zinc-800 text-zinc-100 shadow-xl transition-all duration-300">
                 <div class="flex justify-between items-center mb-4">
                     <h2 class="text-zinc-100 font-semibold text-xs tracking-wider uppercase">Modifier le Manhwa</h2>
                     <button onclick="switchPage('manhwa-detail')" class="text-xs text-zinc-400 hover:underline">Annuler</button>
@@ -363,11 +362,11 @@
                 <form id="manhwa-edit-form" class="space-y-3">
                     <div>
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Titre du Manhwa</label>
-                        <input type="text" id="edit-manhwa-name" required class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm">
+                        <input type="text" id="edit-manhwa-name" required class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Couverture principale (URL)</label>
-                        <input type="url" id="edit-manhwa-primary-image-url" required class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm" placeholder="https://...">
+                        <input type="url" id="edit-manhwa-primary-image-url" required class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" placeholder="https://...">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Images supplémentaires</label>
@@ -377,17 +376,17 @@
                     <div>
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Note (Étoiles)</label>
                         <div id="edit-manhwa-form-star-rating" class="flex gap-1.5 cursor-pointer py-1">
-                            <span onclick="setEditManhwaFormRating(1)" class="text-2xl text-amber-400 edit-manhwa-star-btn" data-value="1">★</span>
-                            <span onclick="setEditManhwaFormRating(2)" class="text-2xl text-amber-400 edit-manhwa-star-btn" data-value="2">★</span>
-                            <span onclick="setEditManhwaFormRating(3)" class="text-2xl text-amber-400 edit-manhwa-star-btn" data-value="3">★</span>
-                            <span onclick="setEditManhwaFormRating(4)" class="text-2xl text-amber-400 edit-manhwa-star-btn" data-value="4">★</span>
-                            <span onclick="setEditManhwaFormRating(5)" class="text-2xl text-amber-400 edit-manhwa-star-btn" data-value="5">★</span>
+                            <span onclick="setEditManhwaFormRating(1)" class="text-2xl text-amber-400 edit-manhwa-star-btn transition hover:scale-125" data-value="1">★</span>
+                            <span onclick="setEditManhwaFormRating(2)" class="text-2xl text-amber-400 edit-manhwa-star-btn transition hover:scale-125" data-value="2">★</span>
+                            <span onclick="setEditManhwaFormRating(3)" class="text-2xl text-amber-400 edit-manhwa-star-btn transition hover:scale-125" data-value="3">★</span>
+                            <span onclick="setEditManhwaFormRating(4)" class="text-2xl text-amber-400 edit-manhwa-star-btn transition hover:scale-125" data-value="4">★</span>
+                            <span onclick="setEditManhwaFormRating(5)" class="text-2xl text-amber-400 edit-manhwa-star-btn transition hover:scale-125" data-value="5">★</span>
                         </div>
                         <input type="hidden" id="edit-manhwa-rating" value="5">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Synopsis</label>
-                        <textarea id="edit-manhwa-description" rows="2" required class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm"></textarea>
+                        <textarea id="edit-manhwa-description" rows="2" required class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition"></textarea>
                     </div>
                     <div>
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Liens</label>
@@ -397,24 +396,24 @@
                     <div class="relative">
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Genres / Tags</label>
                         <div id="edit-manhwa-selected-tags-container" class="flex flex-wrap gap-1.5 mb-2 p-2 bg-zinc-900 rounded-xl border border-zinc-800 min-h-[40px]"></div>
-                        <input type="text" id="edit-manhwa-tag-autocomplete-input" oninput="handleEditManhwaTagInput(event)" placeholder="Tapez un genre..." class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm" autocomplete="off">
+                        <input type="text" id="edit-manhwa-tag-autocomplete-input" oninput="handleEditManhwaTagInput(event)" placeholder="Tapez un genre..." class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" autocomplete="off">
                         <div id="edit-manhwa-tag-dropdown" class="hidden absolute left-0 right-0 mt-1 bg-zinc-900 border border-zinc-800 rounded-xl shadow-lg max-h-36 overflow-y-auto z-50"></div>
                     </div>
-                    <button type="submit" class="w-full bg-rose-600 hover:bg-rose-700 text-white font-semibold py-2.5 px-4 rounded-xl tracking-wide text-xs transition mt-2 shadow-sm">Enregistrer les modifications</button>
+                    <button type="submit" class="w-full bg-rose-600 hover:bg-rose-700 text-white font-semibold py-2.5 px-4 rounded-xl tracking-wide text-xs transition-all duration-300 mt-2 shadow-sm hover:scale-[1.01]">Enregistrer les modifications</button>
                 </form>
             </section>
 
             <!-- AJOUT DOUJINSHI -->
-            <section id="page-doujinshi-add" class="page hidden max-w-2xl mx-auto bg-black p-6 rounded-3xl border border-zinc-800 text-zinc-100 shadow-xl">
+            <section id="page-doujinshi-add" class="page hidden max-w-2xl mx-auto bg-black p-6 rounded-3xl border border-zinc-800 text-zinc-100 shadow-xl transition-all duration-300">
                 <h2 class="text-zinc-100 font-semibold text-xs tracking-wider uppercase mb-4">Nouveau Doujinshi (Miniature 4:5)</h2>
                 <form id="doujinshi-form" class="space-y-3">
                     <div>
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Titre du Doujinshi</label>
-                        <input type="text" id="doujinshi-name" required class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm">
+                        <input type="text" id="doujinshi-name" required class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Couverture principale (URL - Format 4:5 conseillé)</label>
-                        <input type="url" id="doujinshi-primary-image-url" required class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm" placeholder="https://...">
+                        <input type="url" id="doujinshi-primary-image-url" required class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" placeholder="https://...">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Images / Planches supplémentaires</label>
@@ -424,24 +423,24 @@
                     <div>
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Note initiale (Étoiles)</label>
                         <div id="doujinshi-form-star-rating" class="flex gap-1.5 cursor-pointer py-1">
-                            <span onclick="setDoujinshiFormRating(1)" class="text-2xl text-amber-400 doujinshi-star-btn" data-value="1">★</span>
-                            <span onclick="setDoujinshiFormRating(2)" class="text-2xl text-amber-400 doujinshi-star-btn" data-value="2">★</span>
-                            <span onclick="setDoujinshiFormRating(3)" class="text-2xl text-amber-400 doujinshi-star-btn" data-value="3">★</span>
-                            <span onclick="setDoujinshiFormRating(4)" class="text-2xl text-amber-400 doujinshi-star-btn" data-value="4">★</span>
-                            <span onclick="setDoujinshiFormRating(5)" class="text-2xl text-amber-400 doujinshi-star-btn" data-value="5">★</span>
+                            <span onclick="setDoujinshiFormRating(1)" class="text-2xl text-amber-400 doujinshi-star-btn transition hover:scale-125" data-value="1">★</span>
+                            <span onclick="setDoujinshiFormRating(2)" class="text-2xl text-amber-400 doujinshi-star-btn transition hover:scale-125" data-value="2">★</span>
+                            <span onclick="setDoujinshiFormRating(3)" class="text-2xl text-amber-400 doujinshi-star-btn transition hover:scale-125" data-value="3">★</span>
+                            <span onclick="setDoujinshiFormRating(4)" class="text-2xl text-amber-400 doujinshi-star-btn transition hover:scale-125" data-value="4">★</span>
+                            <span onclick="setDoujinshiFormRating(5)" class="text-2xl text-amber-400 doujinshi-star-btn transition hover:scale-125" data-value="5">★</span>
                         </div>
                         <input type="hidden" id="doujinshi-rating" value="5">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Résumé / Description</label>
-                        <textarea id="doujinshi-description" rows="2" required class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm"></textarea>
+                        <textarea id="doujinshi-description" rows="2" required class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition"></textarea>
                     </div>
                     <div>
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Où le lire (Liens)</label>
                         <div id="doujinshi-links-inputs-container" class="space-y-2 mb-2">
                             <div class="flex gap-2">
-                                <input type="text" class="doujinshi-link-name-input w-1/3 p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm" placeholder="Nom du site">
-                                <input type="url" class="doujinshi-link-url-input w-2/3 p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm" placeholder="https://...">
+                                <input type="text" class="doujinshi-link-name-input w-1/3 p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" placeholder="Nom du site">
+                                <input type="url" class="doujinshi-link-url-input w-2/3 p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" placeholder="https://...">
                             </div>
                         </div>
                         <button type="button" onclick="addDoujinshiLinkInput()" class="text-xs text-rose-400 font-semibold hover:underline">+ Ajouter un autre lien</button>
@@ -449,15 +448,15 @@
                     <div class="relative">
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Genres / Tags</label>
                         <div id="doujinshi-selected-tags-container" class="flex flex-wrap gap-1.5 mb-2 p-2 bg-zinc-900 rounded-xl border border-zinc-800 min-h-[40px]"></div>
-                        <input type="text" id="doujinshi-tag-autocomplete-input" oninput="handleDoujinshiTagInput(event)" placeholder="Tapez un genre..." class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm" autocomplete="off">
+                        <input type="text" id="doujinshi-tag-autocomplete-input" oninput="handleDoujinshiTagInput(event)" placeholder="Tapez un genre..." class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" autocomplete="off">
                         <div id="doujinshi-tag-dropdown" class="hidden absolute left-0 right-0 mt-1 bg-zinc-900 border border-zinc-800 rounded-xl shadow-lg max-h-36 overflow-y-auto z-50"></div>
                     </div>
-                    <button type="submit" class="w-full bg-rose-600 hover:bg-rose-700 text-white font-semibold py-2.5 px-4 rounded-xl tracking-wide text-xs transition mt-2 shadow-sm">Publier le doujinshi</button>
+                    <button type="submit" class="w-full bg-rose-600 hover:bg-rose-700 text-white font-semibold py-2.5 px-4 rounded-xl tracking-wide text-xs transition-all duration-300 mt-2 shadow-sm hover:scale-[1.01]">Publier le doujinshi</button>
                 </form>
             </section>
 
             <!-- MODIFICATION DOUJINSHI -->
-            <section id="page-doujinshi-edit" class="page hidden max-w-2xl mx-auto bg-black p-6 rounded-3xl border border-zinc-800 text-zinc-100 shadow-xl">
+            <section id="page-doujinshi-edit" class="page hidden max-w-2xl mx-auto bg-black p-6 rounded-3xl border border-zinc-800 text-zinc-100 shadow-xl transition-all duration-300">
                 <div class="flex justify-between items-center mb-4">
                     <h2 class="text-zinc-100 font-semibold text-xs tracking-wider uppercase">Modifier le Doujinshi</h2>
                     <button onclick="switchPage('doujinshi-detail')" class="text-xs text-zinc-400 hover:underline">Annuler</button>
@@ -465,11 +464,11 @@
                 <form id="doujinshi-edit-form" class="space-y-3">
                     <div>
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Titre du Doujinshi</label>
-                        <input type="text" id="edit-doujinshi-name" required class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm">
+                        <input type="text" id="edit-doujinshi-name" required class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Couverture principale (URL)</label>
-                        <input type="url" id="edit-doujinshi-primary-image-url" required class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm" placeholder="https://...">
+                        <input type="url" id="edit-doujinshi-primary-image-url" required class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" placeholder="https://...">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Images supplémentaires</label>
@@ -479,17 +478,17 @@
                     <div>
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Note (Étoiles)</label>
                         <div id="edit-doujinshi-form-star-rating" class="flex gap-1.5 cursor-pointer py-1">
-                            <span onclick="setEditDoujinshiFormRating(1)" class="text-2xl text-amber-400 edit-doujinshi-star-btn" data-value="1">★</span>
-                            <span onclick="setEditDoujinshiFormRating(2)" class="text-2xl text-amber-400 edit-doujinshi-star-btn" data-value="2">★</span>
-                            <span onclick="setEditDoujinshiFormRating(3)" class="text-2xl text-amber-400 edit-doujinshi-star-btn" data-value="3">★</span>
-                            <span onclick="setEditDoujinshiFormRating(4)" class="text-2xl text-amber-400 edit-doujinshi-star-btn" data-value="4">★</span>
-                            <span onclick="setEditDoujinshiFormRating(5)" class="text-2xl text-amber-400 edit-doujinshi-star-btn" data-value="5">★</span>
+                            <span onclick="setEditDoujinshiFormRating(1)" class="text-2xl text-amber-400 edit-doujinshi-star-btn transition hover:scale-125" data-value="1">★</span>
+                            <span onclick="setEditDoujinshiFormRating(2)" class="text-2xl text-amber-400 edit-doujinshi-star-btn transition hover:scale-125" data-value="2">★</span>
+                            <span onclick="setEditDoujinshiFormRating(3)" class="text-2xl text-amber-400 edit-doujinshi-star-btn transition hover:scale-125" data-value="3">★</span>
+                            <span onclick="setEditDoujinshiFormRating(4)" class="text-2xl text-amber-400 edit-doujinshi-star-btn transition hover:scale-125" data-value="4">★</span>
+                            <span onclick="setEditDoujinshiFormRating(5)" class="text-2xl text-amber-400 edit-doujinshi-star-btn transition hover:scale-125" data-value="5">★</span>
                         </div>
                         <input type="hidden" id="edit-doujinshi-rating" value="5">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Synopsis</label>
-                        <textarea id="edit-doujinshi-description" rows="2" required class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm"></textarea>
+                        <textarea id="edit-doujinshi-description" rows="2" required class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition"></textarea>
                     </div>
                     <div>
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Liens</label>
@@ -499,24 +498,24 @@
                     <div class="relative">
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Genres / Tags</label>
                         <div id="edit-doujinshi-selected-tags-container" class="flex flex-wrap gap-1.5 mb-2 p-2 bg-zinc-900 rounded-xl border border-zinc-800 min-h-[40px]"></div>
-                        <input type="text" id="edit-doujinshi-tag-autocomplete-input" oninput="handleEditDoujinshiTagInput(event)" placeholder="Tapez un genre..." class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm" autocomplete="off">
+                        <input type="text" id="edit-doujinshi-tag-autocomplete-input" oninput="handleEditDoujinshiTagInput(event)" placeholder="Tapez un genre..." class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" autocomplete="off">
                         <div id="edit-doujinshi-tag-dropdown" class="hidden absolute left-0 right-0 mt-1 bg-zinc-900 border border-zinc-800 rounded-xl shadow-lg max-h-36 overflow-y-auto z-50"></div>
                     </div>
-                    <button type="submit" class="w-full bg-rose-600 hover:bg-rose-700 text-white font-semibold py-2.5 px-4 rounded-xl tracking-wide text-xs transition mt-2 shadow-sm">Enregistrer les modifications</button>
+                    <button type="submit" class="w-full bg-rose-600 hover:bg-rose-700 text-white font-semibold py-2.5 px-4 rounded-xl tracking-wide text-xs transition-all duration-300 mt-2 shadow-sm hover:scale-[1.01]">Enregistrer les modifications</button>
                 </form>
             </section>
 
             <!-- AJOUT COSPLAYEUSE -->
-            <section id="page-cosplayeuse-add" class="page hidden max-w-2xl mx-auto bg-black p-6 rounded-3xl border border-zinc-800 text-zinc-100 shadow-xl">
+            <section id="page-cosplayeuse-add" class="page hidden max-w-2xl mx-auto bg-black p-6 rounded-3xl border border-zinc-800 text-zinc-100 shadow-xl transition-all duration-300">
                 <h2 class="text-zinc-100 font-semibold text-xs tracking-wider uppercase mb-4">Nouvelle Cosplayeuse</h2>
                 <form id="cosplayeuse-form" class="space-y-3">
                     <div>
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Nom de la cosplayeuse</label>
-                        <input type="text" id="cosplayeuse-name" required class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm">
+                        <input type="text" id="cosplayeuse-name" required class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Image principale (URL)</label>
-                        <input type="url" id="cosplayeuse-primary-image-url" required class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm" placeholder="https://...">
+                        <input type="url" id="cosplayeuse-primary-image-url" required class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" placeholder="https://...">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Images supplémentaires</label>
@@ -526,24 +525,24 @@
                     <div>
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Note initiale (Étoiles)</label>
                         <div id="cosplayeuse-form-star-rating" class="flex gap-1.5 cursor-pointer py-1">
-                            <span onclick="setCosplayeuseFormRating(1)" class="text-2xl text-amber-400 cosplayeuse-star-btn" data-value="1">★</span>
-                            <span onclick="setCosplayeuseFormRating(2)" class="text-2xl text-amber-400 cosplayeuse-star-btn" data-value="2">★</span>
-                            <span onclick="setCosplayeuseFormRating(3)" class="text-2xl text-amber-400 cosplayeuse-star-btn" data-value="3">★</span>
-                            <span onclick="setCosplayeuseFormRating(4)" class="text-2xl text-amber-400 cosplayeuse-star-btn" data-value="4">★</span>
-                            <span onclick="setCosplayeuseFormRating(5)" class="text-2xl text-amber-400 cosplayeuse-star-btn" data-value="5">★</span>
+                            <span onclick="setCosplayeuseFormRating(1)" class="text-2xl text-amber-400 cosplayeuse-star-btn transition hover:scale-125" data-value="1">★</span>
+                            <span onclick="setCosplayeuseFormRating(2)" class="text-2xl text-amber-400 cosplayeuse-star-btn transition hover:scale-125" data-value="2">★</span>
+                            <span onclick="setCosplayeuseFormRating(3)" class="text-2xl text-amber-400 cosplayeuse-star-btn transition hover:scale-125" data-value="3">★</span>
+                            <span onclick="setCosplayeuseFormRating(4)" class="text-2xl text-amber-400 cosplayeuse-star-btn transition hover:scale-125" data-value="4">★</span>
+                            <span onclick="setCosplayeuseFormRating(5)" class="text-2xl text-amber-400 cosplayeuse-star-btn transition hover:scale-125" data-value="5">★</span>
                         </div>
                         <input type="hidden" id="cosplayeuse-rating" value="5">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Description / Cosplays réalisés</label>
-                        <textarea id="cosplayeuse-description" rows="2" required class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm"></textarea>
+                        <textarea id="cosplayeuse-description" rows="2" required class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition"></textarea>
                     </div>
                     <div>
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Où la trouver (Liens)</label>
                         <div id="cosplayeuse-links-inputs-container" class="space-y-2 mb-2">
                             <div class="flex gap-2">
-                                <input type="text" class="cosplayeuse-link-name-input w-1/3 p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm" placeholder="Nom du site">
-                                <input type="url" class="cosplayeuse-link-url-input w-2/3 p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm" placeholder="https://...">
+                                <input type="text" class="cosplayeuse-link-name-input w-1/3 p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" placeholder="Nom du site">
+                                <input type="url" class="cosplayeuse-link-url-input w-2/3 p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" placeholder="https://...">
                             </div>
                         </div>
                         <button type="button" onclick="addCosplayeuseLinkInput()" class="text-xs text-rose-400 font-semibold hover:underline">+ Ajouter un autre lien</button>
@@ -551,15 +550,15 @@
                     <div class="relative">
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Tags</label>
                         <div id="cosplayeuse-selected-tags-container" class="flex flex-wrap gap-1.5 mb-2 p-2 bg-zinc-900 rounded-xl border border-zinc-800 min-h-[40px]"></div>
-                        <input type="text" id="cosplayeuse-tag-autocomplete-input" oninput="handleCosplayeuseTagInput(event)" placeholder="Tapez un tag..." class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm" autocomplete="off">
+                        <input type="text" id="cosplayeuse-tag-autocomplete-input" oninput="handleCosplayeuseTagInput(event)" placeholder="Tapez un tag..." class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" autocomplete="off">
                         <div id="cosplayeuse-tag-dropdown" class="hidden absolute left-0 right-0 mt-1 bg-zinc-900 border border-zinc-800 rounded-xl shadow-lg max-h-36 overflow-y-auto z-50"></div>
                     </div>
-                    <button type="submit" class="w-full bg-rose-600 hover:bg-rose-700 text-white font-semibold py-2.5 px-4 rounded-xl tracking-wide text-xs transition mt-2 shadow-sm">Publier la cosplayeuse</button>
+                    <button type="submit" class="w-full bg-rose-600 hover:bg-rose-700 text-white font-semibold py-2.5 px-4 rounded-xl tracking-wide text-xs transition-all duration-300 mt-2 shadow-sm hover:scale-[1.01]">Publier la cosplayeuse</button>
                 </form>
             </section>
 
             <!-- MODIFICATION COSPLAYEUSE -->
-            <section id="page-cosplayeuse-edit" class="page hidden max-w-2xl mx-auto bg-black p-6 rounded-3xl border border-zinc-800 text-zinc-100 shadow-xl">
+            <section id="page-cosplayeuse-edit" class="page hidden max-w-2xl mx-auto bg-black p-6 rounded-3xl border border-zinc-800 text-zinc-100 shadow-xl transition-all duration-300">
                 <div class="flex justify-between items-center mb-4">
                     <h2 class="text-zinc-100 font-semibold text-xs tracking-wider uppercase">Modifier la Cosplayeuse</h2>
                     <button onclick="switchPage('cosplayeuse-detail')" class="text-xs text-zinc-400 hover:underline">Annuler</button>
@@ -567,11 +566,11 @@
                 <form id="cosplayeuse-edit-form" class="space-y-3">
                     <div>
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Nom de la cosplayeuse</label>
-                        <input type="text" id="edit-cosplayeuse-name" required class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm">
+                        <input type="text" id="edit-cosplayeuse-name" required class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Image principale (URL)</label>
-                        <input type="url" id="edit-cosplayeuse-primary-image-url" required class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm" placeholder="https://...">
+                        <input type="url" id="edit-cosplayeuse-primary-image-url" required class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" placeholder="https://...">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Images supplémentaires</label>
@@ -581,17 +580,17 @@
                     <div>
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Note (Étoiles)</label>
                         <div id="edit-cosplayeuse-form-star-rating" class="flex gap-1.5 cursor-pointer py-1">
-                            <span onclick="setEditCosplayeuseFormRating(1)" class="text-2xl text-amber-400 edit-cosplayeuse-star-btn" data-value="1">★</span>
-                            <span onclick="setEditCosplayeuseFormRating(2)" class="text-2xl text-amber-400 edit-cosplayeuse-star-btn" data-value="2">★</span>
-                            <span onclick="setEditCosplayeuseFormRating(3)" class="text-2xl text-amber-400 edit-cosplayeuse-star-btn" data-value="3">★</span>
-                            <span onclick="setEditCosplayeuseFormRating(4)" class="text-2xl text-amber-400 edit-cosplayeuse-star-btn" data-value="4">★</span>
-                            <span onclick="setEditCosplayeuseFormRating(5)" class="text-2xl text-amber-400 edit-cosplayeuse-star-btn" data-value="5">★</span>
+                            <span onclick="setEditCosplayeuseFormRating(1)" class="text-2xl text-amber-400 edit-cosplayeuse-star-btn transition hover:scale-125" data-value="1">★</span>
+                            <span onclick="setEditCosplayeuseFormRating(2)" class="text-2xl text-amber-400 edit-cosplayeuse-star-btn transition hover:scale-125" data-value="2">★</span>
+                            <span onclick="setEditCosplayeuseFormRating(3)" class="text-2xl text-amber-400 edit-cosplayeuse-star-btn transition hover:scale-125" data-value="3">★</span>
+                            <span onclick="setEditCosplayeuseFormRating(4)" class="text-2xl text-amber-400 edit-cosplayeuse-star-btn transition hover:scale-125" data-value="4">★</span>
+                            <span onclick="setEditCosplayeuseFormRating(5)" class="text-2xl text-amber-400 edit-cosplayeuse-star-btn transition hover:scale-125" data-value="5">★</span>
                         </div>
                         <input type="hidden" id="edit-cosplayeuse-rating" value="5">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Description</label>
-                        <textarea id="edit-cosplayeuse-description" rows="2" required class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm"></textarea>
+                        <textarea id="edit-cosplayeuse-description" rows="2" required class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition"></textarea>
                     </div>
                     <div>
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Liens</label>
@@ -601,10 +600,10 @@
                     <div class="relative">
                         <label class="block text-xs font-semibold mb-1 uppercase text-zinc-400">Tags</label>
                         <div id="edit-cosplayeuse-selected-tags-container" class="flex flex-wrap gap-1.5 mb-2 p-2 bg-zinc-900 rounded-xl border border-zinc-800 min-h-[40px]"></div>
-                        <input type="text" id="edit-cosplayeuse-tag-autocomplete-input" oninput="handleEditCosplayeuseTagInput(event)" placeholder="Tapez un tag..." class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm" autocomplete="off">
+                        <input type="text" id="edit-cosplayeuse-tag-autocomplete-input" oninput="handleEditCosplayeuseTagInput(event)" placeholder="Tapez un tag..." class="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm transition" autocomplete="off">
                         <div id="edit-cosplayeuse-tag-dropdown" class="hidden absolute left-0 right-0 mt-1 bg-zinc-900 border border-zinc-800 rounded-xl shadow-lg max-h-36 overflow-y-auto z-50"></div>
                     </div>
-                    <button type="submit" class="w-full bg-rose-600 hover:bg-rose-700 text-white font-semibold py-2.5 px-4 rounded-xl tracking-wide text-xs transition mt-2 shadow-sm">Enregistrer les modifications</button>
+                    <button type="submit" class="w-full bg-rose-600 hover:bg-rose-700 text-white font-semibold py-2.5 px-4 rounded-xl tracking-wide text-xs transition-all duration-300 mt-2 shadow-sm hover:scale-[1.01]">Enregistrer les modifications</button>
                 </form>
             </section>
 
@@ -615,9 +614,17 @@
         </footer>
     </div>
 
+    <!-- MODAL LIGHTBOX POUR AGRANDIR LES IMAGES -->
+    <div id="lightbox-modal" class="fixed inset-0 z-50 hidden bg-black/95 backdrop-blur-md flex items-center justify-center p-4 transition-all duration-300 opacity-0" onclick="closeLightbox()">
+        <div class="relative max-w-7xl max-h-[95vh] w-full h-full flex items-center justify-center pointer-events-none" onclick="event.stopPropagation()">
+            <img id="lightbox-img" src="" alt="Image agrandie" class="max-w-full max-h-[90vh] object-contain rounded-2xl shadow-2xl transition-all duration-300 scale-95 pointer-events-auto cursor-zoom-out">
+            <button onclick="closeLightbox()" class="absolute top-4 right-4 bg-zinc-800/80 hover:bg-rose-600 text-white w-10 h-10 rounded-full flex items-center justify-center text-lg transition-all duration-300 shadow-lg pointer-events-auto hover:scale-110">✕</button>
+        </div>
+    </div>
+
     <!-- Script Logique connectée à Supabase -->
     <script>
-        const SUPABASE_URL = 'httpsqmxygwyxkakxkxeyflqx.supabase.co'.replace('https', 'https://'); // Safe fix
+        const SUPABASE_URL = 'httpsqmxygwyxkakxkxeyflqx.supabase.co'.replace('https', 'https://');
         const actualSupabaseUrl = 'https://qmxygwyxkakxkxeyflqx.supabase.co';
         const SUPABASE_ANON_KEY = 'sb_publishable_S0zW_2DKvCxnhpN5-LRzvQ_0Lxhm-RB';
 
@@ -664,6 +671,32 @@
         let originalCosplayeuseName = null;
         let currentEditCosplayeuseFormTags = [];
         let currentEditCosplayeuseFormRating = 5;
+
+        /* --- FONCTIONS LIGHTBOX (AGRANDISSEMENT D'IMAGE) --- */
+        function openLightbox(url) {
+            const modal = document.getElementById('lightbox-modal');
+            const img = document.getElementById('lightbox-img');
+            img.src = url;
+            modal.classList.remove('hidden');
+            // Léger délai pour déclencher la transition d'opacité et de zoom
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                img.classList.remove('scale-95');
+                img.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeLightbox() {
+            const modal = document.getElementById('lightbox-modal');
+            const img = document.getElementById('lightbox-img');
+            modal.classList.add('opacity-0');
+            img.classList.remove('scale-100');
+            img.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                img.src = '';
+            }, 300);
+        }
 
         async function fetchArtistsFromCloud() {
             const { data, error } = await dbClient.from('artists').select('*');
@@ -814,13 +847,13 @@
 
         function escapeHtml(str) {
             if (!str) return '';
-            return str.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;').replace('"', '&quot;').replace("'", '&#039;');
+            return String(str).replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;').replace('"', '&quot;').replace("'", '&#039;');
         }
 
-        /* --- CARTES COMPOSANTS --- */
+        /* --- CARTES COMPOSANTS AVEC ANIMATIONS --- */
         function createArtistCard(artist, index) {
             const card = document.createElement('div');
-            card.className = "bg-black border border-zinc-800 rounded-2xl p-3 text-zinc-100 hover:border-rose-600 transition cursor-pointer flex flex-col justify-between shadow-sm";
+            card.className = "bg-black border border-zinc-800 rounded-2xl p-3 text-zinc-100 hover:border-rose-600 hover:-translate-y-1 hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col justify-between shadow-sm group";
             card.onclick = () => showDetail(index);
 
             const tagsHtml = (artist.tags || []).map(t => `<span class="bg-zinc-900 text-zinc-400 text-[10px] px-2 py-0.5 rounded-lg border border-zinc-800">${escapeHtml(t)}</span>`).join(' ');
@@ -833,7 +866,7 @@
                         ${artist.images && artist.images.length > 1 ? `<span class="bg-zinc-900 px-1.5 py-0.5 rounded text-[10px] border border-zinc-800">📷 ${artist.images.length}</span>` : ''}
                     </div>
                     <div class="h-32 rounded-xl overflow-hidden mb-2 bg-zinc-900 border border-zinc-800 flex items-center justify-center">
-                        <img src="${coverImage}" alt="${escapeHtml(artist.name)}" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/300x200?text=ErreurImage'">
+                        <img src="${escapeHtml(coverImage)}" alt="${escapeHtml(artist.name)}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.src='https://via.placeholder.com/300x200?text=ErreurImage'">
                     </div>
                     <div class="flex items-center justify-between gap-1 mb-1">
                         <h3 class="font-semibold text-sm truncate text-zinc-100">${escapeHtml(artist.name)}</h3>
@@ -850,7 +883,7 @@
 
         function createManhwaCard(manhwa, index) {
             const card = document.createElement('div');
-            card.className = "bg-black border border-zinc-800 rounded-2xl p-3 text-zinc-100 hover:border-rose-600 transition cursor-pointer flex flex-col justify-between shadow-sm";
+            card.className = "bg-black border border-zinc-800 rounded-2xl p-3 text-zinc-100 hover:border-rose-600 hover:-translate-y-1 hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col justify-between shadow-sm group";
             card.onclick = () => showManhwaDetail(index);
 
             const tagsHtml = (manhwa.tags || []).map(t => `<span class="bg-zinc-900 text-zinc-400 text-[10px] px-2 py-0.5 rounded-lg border border-zinc-800">${escapeHtml(t)}</span>`).join(' ');
@@ -863,7 +896,7 @@
                         ${manhwa.images && manhwa.images.length > 1 ? `<span class="bg-zinc-900 px-1.5 py-0.5 rounded text-[10px] border border-zinc-800">📷 ${manhwa.images.length}</span>` : ''}
                     </div>
                     <div class="aspect-[4/5] w-full rounded-xl overflow-hidden mb-2 bg-zinc-900 border border-zinc-800 flex items-center justify-center">
-                        <img src="${coverImage}" alt="${escapeHtml(manhwa.name)}" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/300x375?text=ErreurImage'">
+                        <img src="${escapeHtml(coverImage)}" alt="${escapeHtml(manhwa.name)}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.src='https://via.placeholder.com/300x375?text=ErreurImage'">
                     </div>
                     <div class="flex items-center justify-between gap-1 mb-1">
                         <h3 class="font-semibold text-sm truncate text-zinc-100">${escapeHtml(manhwa.name)}</h3>
@@ -880,7 +913,7 @@
 
         function createDoujinshiCard(doujinshi, index) {
             const card = document.createElement('div');
-            card.className = "bg-black border border-zinc-800 rounded-2xl p-3 text-zinc-100 hover:border-rose-600 transition cursor-pointer flex flex-col justify-between shadow-sm";
+            card.className = "bg-black border border-zinc-800 rounded-2xl p-3 text-zinc-100 hover:border-rose-600 hover:-translate-y-1 hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col justify-between shadow-sm group";
             card.onclick = () => showDoujinshiDetail(index);
 
             const tagsHtml = (doujinshi.tags || []).map(t => `<span class="bg-zinc-900 text-zinc-400 text-[10px] px-2 py-0.5 rounded-lg border border-zinc-800">${escapeHtml(t)}</span>`).join(' ');
@@ -893,7 +926,7 @@
                         ${doujinshi.images && doujinshi.images.length > 1 ? `<span class="bg-zinc-900 px-1.5 py-0.5 rounded text-[10px] border border-zinc-800">📷 ${doujinshi.images.length}</span>` : ''}
                     </div>
                     <div class="aspect-[4/5] w-full rounded-xl overflow-hidden mb-2 bg-zinc-900 border border-zinc-800 flex items-center justify-center">
-                        <img src="${coverImage}" alt="${escapeHtml(doujinshi.name)}" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/300x375?text=ErreurImage'">
+                        <img src="${escapeHtml(coverImage)}" alt="${escapeHtml(doujinshi.name)}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.src='https://via.placeholder.com/300x375?text=ErreurImage'">
                     </div>
                     <div class="flex items-center justify-between gap-1 mb-1">
                         <h3 class="font-semibold text-sm truncate text-zinc-100">${escapeHtml(doujinshi.name)}</h3>
@@ -910,7 +943,7 @@
 
         function createCosplayeuseCard(cosplayeuse, index) {
             const card = document.createElement('div');
-            card.className = "bg-black border border-zinc-800 rounded-2xl p-3 text-zinc-100 hover:border-rose-600 transition cursor-pointer flex flex-col justify-between shadow-sm";
+            card.className = "bg-black border border-zinc-800 rounded-2xl p-3 text-zinc-100 hover:border-rose-600 hover:-translate-y-1 hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col justify-between shadow-sm group";
             card.onclick = () => showCosplayeuseDetail(index);
 
             const tagsHtml = (cosplayeuse.tags || []).map(t => `<span class="bg-zinc-900 text-zinc-400 text-[10px] px-2 py-0.5 rounded-lg border border-zinc-800">${escapeHtml(t)}</span>`).join(' ');
@@ -923,7 +956,7 @@
                         ${cosplayeuse.images && cosplayeuse.images.length > 1 ? `<span class="bg-zinc-900 px-1.5 py-0.5 rounded text-[10px] border border-zinc-800">📷 ${cosplayeuse.images.length}</span>` : ''}
                     </div>
                     <div class="aspect-[4/5] w-full rounded-xl overflow-hidden mb-2 bg-zinc-900 border border-zinc-800 flex items-center justify-center">
-                        <img src="${coverImage}" alt="${escapeHtml(cosplayeuse.name)}" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/300x375?text=ErreurImage'">
+                        <img src="${escapeHtml(coverImage)}" alt="${escapeHtml(cosplayeuse.name)}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.src='https://via.placeholder.com/300x375?text=ErreurImage'">
                     </div>
                     <div class="flex items-center justify-between gap-1 mb-1">
                         <h3 class="font-semibold text-sm truncate text-zinc-100">${escapeHtml(cosplayeuse.name)}</h3>
@@ -936,6 +969,461 @@
                 </div>
             `;
             return card;
+        }
+
+        /* --- PAGES DE DÉTAILS AVEC CLIC POUR AGRANDIR L'IMAGE --- */
+        function showDetail(index) {
+            currentArtistIndex = index;
+            const artist = artists[index];
+            if (!artist) return;
+            originalArtistName = artist.name;
+            currentDetailImageIndex = 0;
+            renderArtistDetailContent();
+            switchPage('detail');
+        }
+
+        function renderArtistDetailContent() {
+            const container = document.getElementById('artist-detail-content');
+            const artist = artists[currentArtistIndex];
+            if (!artist) return;
+
+            const images = artist.images && artist.images.length > 0 ? artist.images : ['https://via.placeholder.com/400x400?text=Pas+d+image'];
+            const currentImg = images[currentDetailImageIndex] || images[0];
+
+            const tagsHtml = (artist.tags || []).map(t => `<span class="bg-zinc-900 text-zinc-300 text-xs px-2.5 py-1 rounded-xl border border-zinc-800">${escapeHtml(t)}</span>`).join(' ');
+            const linksHtml = (artist.links || []).map(l => `<a href="${escapeHtml(l.url)}" target="_blank" class="block bg-zinc-900 hover:bg-rose-600 hover:text-white text-zinc-200 p-2.5 rounded-xl border border-zinc-800 text-xs font-medium transition-all duration-300 truncate hover:scale-[1.01]">🔗 ${escapeHtml(l.name)}</a>`).join('');
+
+            container.innerHTML = `
+                <div class="space-y-4">
+                    <div class="relative aspect-square w-full rounded-2xl overflow-hidden bg-zinc-900 border border-zinc-800 flex items-center justify-center group">
+                        <img src="${escapeHtml(currentImg)}" alt="${escapeHtml(artist.name)}" class="w-full h-full object-cover cursor-zoom-in transition-transform duration-500 group-hover:scale-105" onclick="openLightbox('${escapeHtml(currentImg)}')">
+                        <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none text-white text-xs font-semibold px-3 py-1.5 rounded-xl bg-black/50 backdrop-blur-sm">🔍 Cliquer pour agrandir</div>
+                        ${images.length > 1 ? `
+                            <button onclick="changeDetailImage(-1)" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-rose-600 text-white p-2 rounded-xl text-xs transition border border-zinc-800">‹</button>
+                            <button onclick="changeDetailImage(1)" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-rose-600 text-white p-2 rounded-xl text-xs transition border border-zinc-800">›</button>
+                            <div class="absolute bottom-2 left-1/2 -translate-x-1/2 bg-black/70 px-2.5 py-1 rounded-xl text-[10px] text-zinc-300 border border-zinc-800">
+                                ${currentDetailImageIndex + 1} / ${images.length}
+                            </div>
+                        ` : ''}
+                    </div>
+                    ${images.length > 1 ? `
+                        <div class="flex gap-2 overflow-x-auto pb-2">
+                            ${images.map((img, idx) => `
+                                <div onclick="currentDetailImageIndex = ${idx}; renderArtistDetailContent();" class="w-16 h-16 rounded-xl overflow-hidden border-2 cursor-pointer flex-shrink-0 bg-zinc-900 transition-all duration-300 hover:scale-105 ${idx === currentDetailImageIndex ? 'border-rose-600' : 'border-zinc-800 opacity-60 hover:opacity-100'}">
+                                    <img src="${escapeHtml(img)}" class="w-full h-full object-cover">
+                                </div>
+                            `).join('')}
+                        </div>
+                    ` : ''}
+                </div>
+                <div class="flex flex-col justify-between space-y-4">
+                    <div>
+                        <div class="flex justify-between items-start gap-2 mb-2">
+                            <h2 class="text-xl font-bold text-zinc-100">${escapeHtml(artist.name)}</h2>
+                            <div>${renderStars(artist.rating)}</div>
+                        </div>
+                        <div class="flex flex-wrap gap-1.5 mb-4">${tagsHtml}</div>
+                        <p class="text-xs text-zinc-300 whitespace-pre-line leading-relaxed bg-zinc-900 p-4 rounded-2xl border border-zinc-800 mb-4">${escapeHtml(artist.description)}</p>
+                        <div class="space-y-2 mb-4">
+                            <h4 class="text-xs font-semibold text-zinc-400 uppercase">Liens & Réseaux</h4>
+                            <div class="space-y-1.5 max-h-40 overflow-y-auto">${linksHtml || '<p class="text-xs text-zinc-500 italic">Aucun lien disponible</p>'}</div>
+                        </div>
+                    </div>
+                    <div class="flex gap-2 pt-4 border-t border-zinc-800">
+                        <button onclick="prepareEditArtist()" class="flex-1 bg-zinc-800 hover:bg-zinc-700 text-zinc-200 font-semibold py-2.5 px-4 rounded-xl text-xs transition border border-zinc-700 hover:scale-[1.01]">Modifier</button>
+                        <button onclick="deleteArtist()" class="bg-zinc-800 hover:bg-red-600 text-zinc-300 hover:text-white font-semibold py-2.5 px-4 rounded-xl text-xs transition border border-zinc-700 hover:scale-[1.01]">Supprimer</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function changeDetailImage(direction) {
+            const artist = artists[currentArtistIndex];
+            if (!artist || !artist.images) return;
+            currentDetailImageIndex = (currentDetailImageIndex + direction + artist.images.length) % artist.images.length;
+            renderArtistDetailContent();
+        }
+
+        function showManhwaDetail(index) {
+            currentManhwaIndex = index;
+            const manhwa = manhwas[index];
+            if (!manhwa) return;
+            originalManhwaName = manhwa.name;
+            currentManhwaDetailImageIndex = 0;
+            renderManhwaDetailContent();
+            switchPage('manhwa-detail');
+        }
+
+        function renderManhwaDetailContent() {
+            const container = document.getElementById('manhwa-detail-content');
+            const manhwa = manhwas[currentManhwaIndex];
+            if (!manhwa) return;
+
+            const images = manhwa.images && manhwa.images.length > 0 ? manhwa.images : ['https://via.placeholder.com/400x500?text=Pas+d+image'];
+            const currentImg = images[currentManhwaDetailImageIndex] || images[0];
+
+            const tagsHtml = (manhwa.tags || []).map(t => `<span class="bg-zinc-900 text-zinc-300 text-xs px-2.5 py-1 rounded-xl border border-zinc-800">${escapeHtml(t)}</span>`).join(' ');
+            const linksHtml = (manhwa.links || []).map(l => `<a href="${escapeHtml(l.url)}" target="_blank" class="block bg-zinc-900 hover:bg-rose-600 hover:text-white text-zinc-200 p-2.5 rounded-xl border border-zinc-800 text-xs font-medium transition-all duration-300 truncate hover:scale-[1.01]">🌐 ${escapeHtml(l.name)}</a>`).join('');
+
+            container.innerHTML = `
+                <div class="space-y-4">
+                    <div class="relative aspect-[4/5] w-full rounded-2xl overflow-hidden bg-zinc-900 border border-zinc-800 flex items-center justify-center group">
+                        <img src="${escapeHtml(currentImg)}" alt="${escapeHtml(manhwa.name)}" class="w-full h-full object-cover cursor-zoom-in transition-transform duration-500 group-hover:scale-105" onclick="openLightbox('${escapeHtml(currentImg)}')">
+                        <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none text-white text-xs font-semibold px-3 py-1.5 rounded-xl bg-black/50 backdrop-blur-sm">🔍 Cliquer pour agrandir</div>
+                        ${images.length > 1 ? `
+                            <button onclick="changeManhwaDetailImage(-1)" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-rose-600 text-white p-2 rounded-xl text-xs transition border border-zinc-800">‹</button>
+                            <button onclick="changeManhwaDetailImage(1)" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-rose-600 text-white p-2 rounded-xl text-xs transition border border-zinc-800">›</button>
+                            <div class="absolute bottom-2 left-1/2 -translate-x-1/2 bg-black/70 px-2.5 py-1 rounded-xl text-[10px] text-zinc-300 border border-zinc-800">
+                                ${currentManhwaDetailImageIndex + 1} / ${images.length}
+                            </div>
+                        ` : ''}
+                    </div>
+                    ${images.length > 1 ? `
+                        <div class="flex gap-2 overflow-x-auto pb-2">
+                            ${images.map((img, idx) => `
+                                <div onclick="currentManhwaDetailImageIndex = ${idx}; renderManhwaDetailContent();" class="w-16 h-16 rounded-xl overflow-hidden border-2 cursor-pointer flex-shrink-0 bg-zinc-900 transition-all duration-300 hover:scale-105 ${idx === currentManhwaDetailImageIndex ? 'border-rose-600' : 'border-zinc-800 opacity-60 hover:opacity-100'}">
+                                    <img src="${escapeHtml(img)}" class="w-full h-full object-cover">
+                                </div>
+                            `).join('')}
+                        </div>
+                    ` : ''}
+                </div>
+                <div class="flex flex-col justify-between space-y-4">
+                    <div>
+                        <div class="flex justify-between items-start gap-2 mb-2">
+                            <h2 class="text-xl font-bold text-zinc-100">${escapeHtml(manhwa.name)}</h2>
+                            <div>${renderStars(manhwa.rating)}</div>
+                        </div>
+                        <div class="flex flex-wrap gap-1.5 mb-4">${tagsHtml}</div>
+                        <p class="text-xs text-zinc-300 whitespace-pre-line leading-relaxed bg-zinc-900 p-4 rounded-2xl border border-zinc-800 mb-4">${escapeHtml(manhwa.description)}</p>
+                        <div class="space-y-2 mb-4">
+                            <h4 class="text-xs font-semibold text-zinc-400 uppercase">Où le lire</h4>
+                            <div class="space-y-1.5 max-h-40 overflow-y-auto">${linksHtml || '<p class="text-xs text-zinc-500 italic">Aucun lien disponible</p>'}</div>
+                        </div>
+                    </div>
+                    <div class="flex gap-2 pt-4 border-t border-zinc-800">
+                        <button onclick="prepareEditManhwa()" class="flex-1 bg-zinc-800 hover:bg-zinc-700 text-zinc-200 font-semibold py-2.5 px-4 rounded-xl text-xs transition border border-zinc-700 hover:scale-[1.01]">Modifier</button>
+                        <button onclick="deleteManhwa()" class="bg-zinc-800 hover:bg-red-600 text-zinc-300 hover:text-white font-semibold py-2.5 px-4 rounded-xl text-xs transition border border-zinc-700 hover:scale-[1.01]">Supprimer</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function changeManhwaDetailImage(direction) {
+            const manhwa = manhwas[currentManhwaIndex];
+            if (!manhwa || !manhwa.images) return;
+            currentManhwaDetailImageIndex = (currentManhwaDetailImageIndex + direction + manhwa.images.length) % manhwa.images.length;
+            renderManhwaDetailContent();
+        }
+
+        function showDoujinshiDetail(index) {
+            currentDoujinshiIndex = index;
+            const doujinshi = doujinshis[index];
+            if (!doujinshi) return;
+            originalDoujinshiName = doujinshi.name;
+            currentDoujinshiDetailImageIndex = 0;
+            renderDoujinshiDetailContent();
+            switchPage('doujinshi-detail');
+        }
+
+        function renderDoujinshiDetailContent() {
+            const container = document.getElementById('doujinshi-detail-content');
+            const doujinshi = doujinshis[currentDoujinshiIndex];
+            if (!doujinshi) return;
+
+            const images = doujinshi.images && doujinshi.images.length > 0 ? doujinshi.images : ['https://via.placeholder.com/400x500?text=Pas+d+image'];
+            const currentImg = images[currentDoujinshiDetailImageIndex] || images[0];
+
+            const tagsHtml = (doujinshi.tags || []).map(t => `<span class="bg-zinc-900 text-zinc-300 text-xs px-2.5 py-1 rounded-xl border border-zinc-800">${escapeHtml(t)}</span>`).join(' ');
+            const linksHtml = (doujinshi.links || []).map(l => `<a href="${escapeHtml(l.url)}" target="_blank" class="block bg-zinc-900 hover:bg-rose-600 hover:text-white text-zinc-200 p-2.5 rounded-xl border border-zinc-800 text-xs font-medium transition-all duration-300 truncate hover:scale-[1.01]">🌐 ${escapeHtml(l.name)}</a>`).join('');
+
+            container.innerHTML = `
+                <div class="space-y-4">
+                    <div class="relative aspect-[4/5] w-full rounded-2xl overflow-hidden bg-zinc-900 border border-zinc-800 flex items-center justify-center group">
+                        <img src="${escapeHtml(currentImg)}" alt="${escapeHtml(doujinshi.name)}" class="w-full h-full object-cover cursor-zoom-in transition-transform duration-500 group-hover:scale-105" onclick="openLightbox('${escapeHtml(currentImg)}')">
+                        <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none text-white text-xs font-semibold px-3 py-1.5 rounded-xl bg-black/50 backdrop-blur-sm">🔍 Cliquer pour agrandir</div>
+                        ${images.length > 1 ? `
+                            <button onclick="changeDoujinshiDetailImage(-1)" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-rose-600 text-white p-2 rounded-xl text-xs transition border border-zinc-800">‹</button>
+                            <button onclick="changeDoujinshiDetailImage(1)" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-rose-600 text-white p-2 rounded-xl text-xs transition border border-zinc-800">›</button>
+                            <div class="absolute bottom-2 left-1/2 -translate-x-1/2 bg-black/70 px-2.5 py-1 rounded-xl text-[10px] text-zinc-300 border border-zinc-800">
+                                ${currentDoujinshiDetailImageIndex + 1} / ${images.length}
+                            </div>
+                        ` : ''}
+                    </div>
+                    ${images.length > 1 ? `
+                        <div class="flex gap-2 overflow-x-auto pb-2">
+                            ${images.map((img, idx) => `
+                                <div onclick="currentDoujinshiDetailImageIndex = ${idx}; renderDoujinshiDetailContent();" class="w-16 h-16 rounded-xl overflow-hidden border-2 cursor-pointer flex-shrink-0 bg-zinc-900 transition-all duration-300 hover:scale-105 ${idx === currentDoujinshiDetailImageIndex ? 'border-rose-600' : 'border-zinc-800 opacity-60 hover:opacity-100'}">
+                                    <img src="${escapeHtml(img)}" class="w-full h-full object-cover">
+                                </div>
+                            `).join('')}
+                        </div>
+                    ` : ''}
+                </div>
+                <div class="flex flex-col justify-between space-y-4">
+                    <div>
+                        <div class="flex justify-between items-start gap-2 mb-2">
+                            <h2 class="text-xl font-bold text-zinc-100">${escapeHtml(doujinshi.name)}</h2>
+                            <div>${renderStars(doujinshi.rating)}</div>
+                        </div>
+                        <div class="flex flex-wrap gap-1.5 mb-4">${tagsHtml}</div>
+                        <p class="text-xs text-zinc-300 whitespace-pre-line leading-relaxed bg-zinc-900 p-4 rounded-2xl border border-zinc-800 mb-4">${escapeHtml(doujinshi.description)}</p>
+                        <div class="space-y-2 mb-4">
+                            <h4 class="text-xs font-semibold text-zinc-400 uppercase">Où le lire</h4>
+                            <div class="space-y-1.5 max-h-40 overflow-y-auto">${linksHtml || '<p class="text-xs text-zinc-500 italic">Aucun lien disponible</p>'}</div>
+                        </div>
+                    </div>
+                    <div class="flex gap-2 pt-4 border-t border-zinc-800">
+                        <button onclick="prepareEditDoujinshi()" class="flex-1 bg-zinc-800 hover:bg-zinc-700 text-zinc-200 font-semibold py-2.5 px-4 rounded-xl text-xs transition border border-zinc-700 hover:scale-[1.01]">Modifier</button>
+                        <button onclick="deleteDoujinshi()" class="bg-zinc-800 hover:bg-red-600 text-zinc-300 hover:text-white font-semibold py-2.5 px-4 rounded-xl text-xs transition border border-zinc-700 hover:scale-[1.01]">Supprimer</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function changeDoujinshiDetailImage(direction) {
+            const doujinshi = doujinshis[currentDoujinshiIndex];
+            if (!doujinshi || !doujinshi.images) return;
+            currentDoujinshiDetailImageIndex = (currentDoujinshiDetailImageIndex + direction + doujinshi.images.length) % doujinshi.images.length;
+            renderDoujinshiDetailContent();
+        }
+
+        function showCosplayeuseDetail(index) {
+            currentCosplayeuseIndex = index;
+            const cosplayeuse = cosplayeuses[index];
+            if (!cosplayeuse) return;
+            originalCosplayeuseName = cosplayeuse.name;
+            currentCosplayeuseDetailImageIndex = 0;
+            renderCosplayeuseDetailContent();
+            switchPage('cosplayeuse-detail');
+        }
+
+        function renderCosplayeuseDetailContent() {
+            const container = document.getElementById('cosplayeuse-detail-content');
+            const cosplayeuse = cosplayeuses[currentCosplayeuseIndex];
+            if (!cosplayeuse) return;
+
+            const images = cosplayeuse.images && cosplayeuse.images.length > 0 ? cosplayeuse.images : ['https://via.placeholder.com/400x500?text=Pas+d+image'];
+            const currentImg = images[currentCosplayeuseDetailImageIndex] || images[0];
+
+            const tagsHtml = (cosplayeuse.tags || []).map(t => `<span class="bg-zinc-900 text-zinc-300 text-xs px-2.5 py-1 rounded-xl border border-zinc-800">${escapeHtml(t)}</span>`).join(' ');
+            const linksHtml = (cosplayeuse.links || []).map(l => `<a href="${escapeHtml(l.url)}" target="_blank" class="block bg-zinc-900 hover:bg-rose-600 hover:text-white text-zinc-200 p-2.5 rounded-xl border border-zinc-800 text-xs font-medium transition-all duration-300 truncate hover:scale-[1.01]">🔗 ${escapeHtml(l.name)}</a>`).join('');
+
+            container.innerHTML = `
+                <div class="space-y-4">
+                    <div class="relative aspect-[4/5] w-full rounded-2xl overflow-hidden bg-zinc-900 border border-zinc-800 flex items-center justify-center group">
+                        <img src="${escapeHtml(currentImg)}" alt="${escapeHtml(cosplayeuse.name)}" class="w-full h-full object-cover cursor-zoom-in transition-transform duration-500 group-hover:scale-105" onclick="openLightbox('${escapeHtml(currentImg)}')">
+                        <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none text-white text-xs font-semibold px-3 py-1.5 rounded-xl bg-black/50 backdrop-blur-sm">🔍 Cliquer pour agrandir</div>
+                        ${images.length > 1 ? `
+                            <button onclick="changeCosplayeuseDetailImage(-1)" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-rose-600 text-white p-2 rounded-xl text-xs transition border border-zinc-800">‹</button>
+                            <button onclick="changeCosplayeuseDetailImage(1)" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-rose-600 text-white p-2 rounded-xl text-xs transition border border-zinc-800">›</button>
+                            <div class="absolute bottom-2 left-1/2 -translate-x-1/2 bg-black/70 px-2.5 py-1 rounded-xl text-[10px] text-zinc-300 border border-zinc-800">
+                                ${currentCosplayeuseDetailImageIndex + 1} / ${images.length}
+                            </div>
+                        ` : ''}
+                    </div>
+                    ${images.length > 1 ? `
+                        <div class="flex gap-2 overflow-x-auto pb-2">
+                            ${images.map((img, idx) => `
+                                <div onclick="currentCosplayeuseDetailImageIndex = ${idx}; renderCosplayeuseDetailContent();" class="w-16 h-16 rounded-xl overflow-hidden border-2 cursor-pointer flex-shrink-0 bg-zinc-900 transition-all duration-300 hover:scale-105 ${idx === currentCosplayeuseDetailImageIndex ? 'border-rose-600' : 'border-zinc-800 opacity-60 hover:opacity-100'}">
+                                    <img src="${escapeHtml(img)}" class="w-full h-full object-cover">
+                                </div>
+                            `).join('')}
+                        </div>
+                    ` : ''}
+                </div>
+                <div class="flex flex-col justify-between space-y-4">
+                    <div>
+                        <div class="flex justify-between items-start gap-2 mb-2">
+                            <h2 class="text-xl font-bold text-zinc-100">${escapeHtml(cosplayeuse.name)}</h2>
+                            <div>${renderStars(cosplayeuse.rating)}</div>
+                        </div>
+                        <div class="flex flex-wrap gap-1.5 mb-4">${tagsHtml}</div>
+                        <p class="text-xs text-zinc-300 whitespace-pre-line leading-relaxed bg-zinc-900 p-4 rounded-2xl border border-zinc-800 mb-4">${escapeHtml(cosplayeuse.description)}</p>
+                        <div class="space-y-2 mb-4">
+                            <h4 class="text-xs font-semibold text-zinc-400 uppercase">Réseaux</h4>
+                            <div class="space-y-1.5 max-h-40 overflow-y-auto">${linksHtml || '<p class="text-xs text-zinc-500 italic">Aucun lien disponible</p>'}</div>
+                        </div>
+                    </div>
+                    <div class="flex gap-2 pt-4 border-t border-zinc-800">
+                        <button onclick="prepareEditCosplayeuse()" class="flex-1 bg-zinc-800 hover:bg-zinc-700 text-zinc-200 font-semibold py-2.5 px-4 rounded-xl text-xs transition border border-zinc-700 hover:scale-[1.01]">Modifier</button>
+                        <button onclick="deleteCosplayeuse()" class="bg-zinc-800 hover:bg-red-600 text-zinc-300 hover:text-white font-semibold py-2.5 px-4 rounded-xl text-xs transition border border-zinc-700 hover:scale-[1.01]">Supprimer</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function changeCosplayeuseDetailImage(direction) {
+            const cosplayeuse = cosplayeuses[currentCosplayeuseIndex];
+            if (!cosplayeuse || !cosplayeuse.images) return;
+            currentCosplayeuseDetailImageIndex = (currentCosplayeuseDetailImageIndex + direction + cosplayeuse.images.length) % cosplayeuse.images.length;
+            renderCosplayeuseDetailContent();
+        }
+
+        /* --- SUPPRESSIONS --- */
+        async function deleteArtist() {
+            const artist = artists[currentArtistIndex];
+            if (!artist) return;
+            if (!confirm(`Supprimer l'artiste "${artist.name}" ?`)) return;
+            const { error } = await dbClient.from('artists').delete().eq('name', artist.name);
+            if (error) alert('Erreur: ' + error.message);
+            else { switchPage('search'); fetchArtistsFromCloud(); }
+        }
+
+        async function deleteManhwa() {
+            const manhwa = manhwas[currentManhwaIndex];
+            if (!manhwa) return;
+            if (!confirm(`Supprimer le manhwa "${manhwa.name}" ?`)) return;
+            const { error } = await dbClient.from('manhwas').delete().eq('name', manhwa.name);
+            if (error) alert('Erreur: ' + error.message);
+            else { switchPage('manhwa-search'); fetchManhwasFromCloud(); }
+        }
+
+        async function deleteDoujinshi() {
+            const doujinshi = doujinshis[currentDoujinshiIndex];
+            if (!doujinshi) return;
+            if (!confirm(`Supprimer le doujinshi "${doujinshi.name}" ?`)) return;
+            const { error } = await dbClient.from('doujinshis').delete().eq('name', doujinshi.name);
+            if (error) alert('Erreur: ' + error.message);
+            else { switchPage('doujinshi-search'); fetchDoujinshisFromCloud(); }
+        }
+
+        async function deleteCosplayeuse() {
+            const cosplayeuse = cosplayeuses[currentCosplayeuseIndex];
+            if (!cosplayeuse) return;
+            if (!confirm(`Supprimer la cosplayeuse "${cosplayeuse.name}" ?`)) return;
+            const { error } = await dbClient.from('cosplayeuses').delete().eq('name', cosplayeuse.name);
+            if (error) alert('Erreur: ' + error.message);
+            else { switchPage('cosplayeuse-search'); fetchCosplayeusesFromCloud(); }
+        }
+
+        /* --- PRÉPARATION MODIFICATION --- */
+        function prepareEditArtist() {
+            const artist = artists[currentArtistIndex];
+            if (!artist) return;
+            document.getElementById('edit-name').value = artist.name;
+            document.getElementById('edit-primary-image-url').value = artist.images && artist.images.length > 0 ? artist.images[0] : '';
+            document.getElementById('edit-description').value = artist.description;
+            setEditFormRating(artist.rating || 5);
+
+            currentEditFormTags = [...(artist.tags || [])];
+            renderEditSelectedFormTags();
+
+            const imgContainer = document.getElementById('edit-images-inputs-container');
+            imgContainer.innerHTML = '';
+            if (artist.images && artist.images.length > 1) {
+                for (let i = 1; i < artist.images.length; i++) {
+                    addImageInput('edit-images-inputs-container', 'edit-image-input');
+                    const inputs = imgContainer.querySelectorAll('.edit-image-input');
+                    inputs[inputs.length - 1].value = artist.images[i];
+                }
+            }
+
+            const linkContainer = document.getElementById('edit-links-inputs-container');
+            linkContainer.innerHTML = '';
+            if (artist.links && artist.links.length > 0) {
+                artist.links.forEach(l => {
+                    addLinkInput('edit-links-inputs-container', 'edit-link-name-input', 'edit-link-url-input', l.name, l.url);
+                });
+            }
+            document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
+            document.getElementById('page-artist-edit').classList.remove('hidden');
+        }
+
+        function prepareEditManhwa() {
+            const manhwa = manhwas[currentManhwaIndex];
+            if (!manhwa) return;
+            document.getElementById('edit-manhwa-name').value = manhwa.name;
+            document.getElementById('edit-manhwa-primary-image-url').value = manhwa.images && manhwa.images.length > 0 ? manhwa.images[0] : '';
+            document.getElementById('edit-manhwa-description').value = manhwa.description;
+            setEditManhwaFormRating(manhwa.rating || 5);
+
+            currentEditManhwaFormTags = [...(manhwa.tags || [])];
+            renderEditManhwaSelectedFormTags();
+
+            const imgContainer = document.getElementById('edit-manhwa-images-inputs-container');
+            imgContainer.innerHTML = '';
+            if (manhwa.images && manhwa.images.length > 1) {
+                for (let i = 1; i < manhwa.images.length; i++) {
+                    addImageInput('edit-manhwa-images-inputs-container', 'edit-manhwa-image-input');
+                    const inputs = imgContainer.querySelectorAll('.edit-manhwa-image-input');
+                    inputs[inputs.length - 1].value = manhwa.images[i];
+                }
+            }
+
+            const linkContainer = document.getElementById('edit-manhwa-links-inputs-container');
+            linkContainer.innerHTML = '';
+            if (manhwa.links && manhwa.links.length > 0) {
+                manhwa.links.forEach(l => {
+                    addLinkInput('edit-manhwa-links-inputs-container', 'edit-manhwa-link-name-input', 'edit-manhwa-link-url-input', l.name, l.url);
+                });
+            }
+            document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
+            document.getElementById('page-manhwa-edit').classList.remove('hidden');
+        }
+
+        function prepareEditDoujinshi() {
+            const doujinshi = doujinshis[currentDoujinshiIndex];
+            if (!doujinshi) return;
+            document.getElementById('edit-doujinshi-name').value = doujinshi.name;
+            document.getElementById('edit-doujinshi-primary-image-url').value = doujinshi.images && doujinshi.images.length > 0 ? doujinshi.images[0] : '';
+            document.getElementById('edit-doujinshi-description').value = doujinshi.description;
+            setEditDoujinshiFormRating(doujinshi.rating || 5);
+
+            currentEditDoujinshiFormTags = [...(doujinshi.tags || [])];
+            renderEditDoujinshiSelectedFormTags();
+
+            const imgContainer = document.getElementById('edit-doujinshi-images-inputs-container');
+            imgContainer.innerHTML = '';
+            if (doujinshi.images && doujinshi.images.length > 1) {
+                for (let i = 1; i < doujinshi.images.length; i++) {
+                    addImageInput('edit-doujinshi-images-inputs-container', 'edit-doujinshi-image-input');
+                    const inputs = imgContainer.querySelectorAll('.edit-doujinshi-image-input');
+                    inputs[inputs.length - 1].value = doujinshi.images[i];
+                }
+            }
+
+            const linkContainer = document.getElementById('edit-doujinshi-links-inputs-container');
+            linkContainer.innerHTML = '';
+            if (doujinshi.links && doujinshi.links.length > 0) {
+                doujinshi.links.forEach(l => {
+                    addLinkInput('edit-doujinshi-links-inputs-container', 'edit-doujinshi-link-name-input', 'edit-doujinshi-link-url-input', l.name, l.url);
+                });
+            }
+            document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
+            document.getElementById('page-doujinshi-edit').classList.remove('hidden');
+        }
+
+        function prepareEditCosplayeuse() {
+            const cosplayeuse = cosplayeuses[currentCosplayeuseIndex];
+            if (!cosplayeuse) return;
+            document.getElementById('edit-cosplayeuse-name').value = cosplayeuse.name;
+            document.getElementById('edit-cosplayeuse-primary-image-url').value = cosplayeuse.images && cosplayeuse.images.length > 0 ? cosplayeuse.images[0] : '';
+            document.getElementById('edit-cosplayeuse-description').value = cosplayeuse.description;
+            setEditCosplayeuseFormRating(cosplayeuse.rating || 5);
+
+            currentEditCosplayeuseFormTags = [...(cosplayeuse.tags || [])];
+            renderEditCosplayeuseSelectedFormTags();
+
+            const imgContainer = document.getElementById('edit-cosplayeuse-images-inputs-container');
+            imgContainer.innerHTML = '';
+            if (cosplayeuse.images && cosplayeuse.images.length > 1) {
+                for (let i = 1; i < cosplayeuse.images.length; i++) {
+                    addImageInput('edit-cosplayeuse-images-inputs-container', 'edit-cosplayeuse-image-input');
+                    const inputs = imgContainer.querySelectorAll('.edit-cosplayeuse-image-input');
+                    inputs[inputs.length - 1].value = cosplayeuse.images[i];
+                }
+            }
+
+            const linkContainer = document.getElementById('edit-cosplayeuse-links-inputs-container');
+            linkContainer.innerHTML = '';
+            if (cosplayeuse.links && cosplayeuse.links.length > 0) {
+                cosplayeuse.links.forEach(l => {
+                    addLinkInput('edit-cosplayeuse-links-inputs-container', 'edit-cosplayeuse-link-name-input', 'edit-cosplayeuse-link-url-input', l.name, l.url);
+                });
+            }
+            document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
+            document.getElementById('page-cosplayeuse-edit').classList.remove('hidden');
         }
 
         /* --- RECHERCHE & FILTRES ARTISTES --- */
@@ -991,7 +1479,6 @@
             });
         }
 
-        /* --- RECHERCHE & FILTRES MANHWAS --- */
         function initManhwaSearchPage() {
             selectedManhwaTagFilter = null;
             const input = document.getElementById('manhwa-search-input');
@@ -1035,7 +1522,7 @@
             if (counter) counter.textContent = `${filtered.length} Manhwa${filtered.length > 1 ? 's' : ''}`;
 
             if (filtered.length === 0) {
-                resultsContainer.innerHTML = `<p class="col-span-full text-center text-zinc-500 py-8">Aucun résultat trouvé.</p>`;
+                resultsContainer.innerHTML = `<p class="col-span-full text-center text-zinc-500 py-8">Aucun manhwa trouvé.</p>`;
                 return;
             }
 
@@ -1044,7 +1531,6 @@
             });
         }
 
-        /* --- RECHERCHE & FILTRES DOUJINSHIS --- */
         function initDoujinshiSearchPage() {
             selectedDoujinshiTagFilter = null;
             const input = document.getElementById('doujinshi-search-input');
@@ -1088,7 +1574,7 @@
             if (counter) counter.textContent = `${filtered.length} Doujinshi${filtered.length > 1 ? 's' : ''}`;
 
             if (filtered.length === 0) {
-                resultsContainer.innerHTML = `<p class="col-span-full text-center text-zinc-500 py-8">Aucun résultat trouvé.</p>`;
+                resultsContainer.innerHTML = `<p class="col-span-full text-center text-zinc-500 py-8">Aucun doujinshi trouvé.</p>`;
                 return;
             }
 
@@ -1097,7 +1583,6 @@
             });
         }
 
-        /* --- RECHERCHE & FILTRES COSPLAYEUSES --- */
         function initCosplayeuseSearchPage() {
             selectedCosplayeuseTagFilter = null;
             const input = document.getElementById('cosplayeuse-search-input');
@@ -1141,7 +1626,7 @@
             if (counter) counter.textContent = `${filtered.length} Cosplayeuse${filtered.length > 1 ? 's' : ''}`;
 
             if (filtered.length === 0) {
-                resultsContainer.innerHTML = `<p class="col-span-full text-center text-zinc-500 py-8">Aucun résultat trouvé.</p>`;
+                resultsContainer.innerHTML = `<p class="col-span-full text-center text-zinc-500 py-8">Aucune cosplayeuse trouvée.</p>`;
                 return;
             }
 
@@ -1149,462 +1634,6 @@
                 resultsContainer.appendChild(createCosplayeuseCard(cosplayeuse, index));
             });
         }
-
-        /* --- FORMULAIRES AJOUT & MODIFICATION --- */
-        function setFormRating(val) {
-            currentFormRating = val;
-            document.getElementById('artist-rating').value = val;
-            document.querySelectorAll('.star-btn').forEach((s, idx) => {
-                if (idx < val) {
-                    s.classList.remove('text-zinc-700');
-                    s.classList.add('text-amber-400');
-                } else {
-                    s.classList.remove('text-amber-400');
-                    s.classList.add('text-zinc-700');
-                }
-            });
-        }
-
-        function setEditFormRating(val) {
-            currentEditFormRating = val;
-            document.getElementById('edit-artist-rating').value = val;
-            document.querySelectorAll('.edit-star-btn').forEach((s, idx) => {
-                if (idx < val) {
-                    s.classList.remove('text-zinc-700');
-                    s.classList.add('text-amber-400');
-                } else {
-                    s.classList.remove('text-amber-400');
-                    s.classList.add('text-zinc-700');
-                }
-            });
-        }
-
-        function setManhwaFormRating(val) {
-            currentManhwaFormRating = val;
-            document.getElementById('manhwa-rating').value = val;
-            document.querySelectorAll('.manhwa-star-btn').forEach((s, idx) => {
-                if (idx < val) {
-                    s.classList.remove('text-zinc-700');
-                    s.classList.add('text-amber-400');
-                } else {
-                    s.classList.remove('text-amber-400');
-                    s.classList.add('text-zinc-700');
-                }
-            });
-        }
-
-        function setEditManhwaFormRating(val) {
-            currentEditManhwaFormRating = val;
-            document.getElementById('edit-manhwa-rating').value = val;
-            document.querySelectorAll('.edit-manhwa-star-btn').forEach((s, idx) => {
-                if (idx < val) {
-                    s.classList.remove('text-zinc-700');
-                    s.classList.add('text-amber-400');
-                } else {
-                    s.classList.remove('text-amber-400');
-                    s.classList.add('text-zinc-700');
-                }
-            });
-        }
-
-        function setDoujinshiFormRating(val) {
-            currentDoujinshiFormRating = val;
-            document.getElementById('doujinshi-rating').value = val;
-            document.querySelectorAll('.doujinshi-star-btn').forEach((s, idx) => {
-                if (idx < val) {
-                    s.classList.remove('text-zinc-700');
-                    s.classList.add('text-amber-400');
-                } else {
-                    s.classList.remove('text-amber-400');
-                    s.classList.add('text-zinc-700');
-                }
-            });
-        }
-
-        function setEditDoujinshiFormRating(val) {
-            currentEditDoujinshiFormRating = val;
-            document.getElementById('edit-doujinshi-rating').value = val;
-            document.querySelectorAll('.edit-doujinshi-star-btn').forEach((s, idx) => {
-                if (idx < val) {
-                    s.classList.remove('text-zinc-700');
-                    s.classList.add('text-amber-400');
-                } else {
-                    s.classList.remove('text-amber-400');
-                    s.classList.add('text-zinc-700');
-                }
-            });
-        }
-
-        function setCosplayeuseFormRating(val) {
-            currentCosplayeuseFormRating = val;
-            document.getElementById('cosplayeuse-rating').value = val;
-            document.querySelectorAll('.cosplayeuse-star-btn').forEach((s, idx) => {
-                if (idx < val) {
-                    s.classList.remove('text-zinc-700');
-                    s.classList.add('text-amber-400');
-                } else {
-                    s.classList.remove('text-amber-400');
-                    s.classList.add('text-zinc-700');
-                }
-            });
-        }
-
-        function setEditCosplayeuseFormRating(val) {
-            currentEditCosplayeuseFormRating = val;
-            document.getElementById('edit-cosplayeuse-rating').value = val;
-            document.querySelectorAll('.edit-cosplayeuse-star-btn').forEach((s, idx) => {
-                if (idx < val) {
-                    s.classList.remove('text-zinc-700');
-                    s.classList.add('text-amber-400');
-                } else {
-                    s.classList.remove('text-amber-400');
-                    s.classList.add('text-zinc-700');
-                }
-            });
-        }
-
-        function addImageInput(containerId = 'images-inputs-container', inputClass = 'image-input') {
-            const container = document.getElementById(containerId);
-            const div = document.createElement('div');
-            div.className = "flex gap-2";
-            div.innerHTML = `
-                <input type="url" class="${inputClass} w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm" placeholder="https://...">
-                <button type="button" onclick="this.parentElement.remove()" class="px-3 bg-zinc-800 text-zinc-300 rounded-xl border border-zinc-700 font-semibold hover:bg-rose-600 hover:text-white transition">×</button>
-            `;
-            container.appendChild(div);
-        }
-
-        function addLinkInput(containerId = 'links-inputs-container', nameClass = 'link-name-input', urlClass = 'link-url-input', nameVal = '', urlVal = '') {
-            const container = document.getElementById(containerId);
-            const div = document.createElement('div');
-            div.className = "flex gap-2";
-            div.innerHTML = `
-                <input type="text" class="${nameClass} w-1/3 p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm" placeholder="Nom du site" value="${escapeHtml(nameVal)}">
-                <input type="url" class="${urlClass} w-2/3 p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm" placeholder="https://..." value="${escapeHtml(urlVal)}">
-                <button type="button" onclick="this.parentElement.remove()" class="px-3 bg-zinc-800 text-zinc-300 rounded-xl border border-zinc-700 font-semibold hover:bg-rose-600 hover:text-white transition">×</button>
-            `;
-            container.appendChild(div);
-        }
-
-        function addEditImageInput() { addImageInput('edit-images-inputs-container', 'edit-image-input'); }
-        function addEditLinkInput() { addLinkInput('edit-links-inputs-container', 'edit-link-name-input', 'edit-link-url-input'); }
-        
-        function addManhwaImageInput() { addImageInput('manhwa-images-inputs-container', 'manhwa-image-input'); }
-        function addManhwaLinkInput() { addLinkInput('manhwa-links-inputs-container', 'manhwa-link-name-input', 'manhwa-link-url-input'); }
-        function addEditManhwaImageInput() { addImageInput('edit-manhwa-images-inputs-container', 'edit-manhwa-image-input'); }
-        function addEditManhwaLinkInput() { addLinkInput('edit-manhwa-links-inputs-container', 'edit-manhwa-link-name-input', 'edit-manhwa-link-url-input'); }
-
-        function addDoujinshiImageInput() { addImageInput('doujinshi-images-inputs-container', 'doujinshi-image-input'); }
-        function addDoujinshiLinkInput() { addLinkInput('doujinshi-links-inputs-container', 'doujinshi-link-name-input', 'doujinshi-link-url-input'); }
-        function addEditDoujinshiImageInput() { addImageInput('edit-doujinshi-images-inputs-container', 'edit-doujinshi-image-input'); }
-        function addEditDoujinshiLinkInput() { addLinkInput('edit-doujinshi-links-inputs-container', 'edit-doujinshi-link-name-input', 'edit-doujinshi-link-url-input'); }
-
-        function addCosplayeuseImageInput() { addImageInput('cosplayeuse-images-inputs-container', 'cosplayeuse-image-input'); }
-        function addCosplayeuseLinkInput() { addLinkInput('cosplayeuse-links-inputs-container', 'cosplayeuse-link-name-input', 'cosplayeuse-link-url-input'); }
-        function addEditCosplayeuseImageInput() { addImageInput('edit-cosplayeuse-images-inputs-container', 'edit-cosplayeuse-image-input'); }
-        function addEditCosplayeuseLinkInput() { addLinkInput('edit-cosplayeuse-links-inputs-container', 'edit-cosplayeuse-link-name-input', 'edit-cosplayeuse-link-url-input'); }
-
-        function initAddPage() {
-            currentFormTags = [];
-            setFormRating(5);
-            const form = document.getElementById('artist-form');
-            if(form) form.reset();
-            document.getElementById('images-inputs-container').innerHTML = '';
-            document.getElementById('links-inputs-container').innerHTML = `
-                <div class="flex gap-2">
-                    <input type="text" class="link-name-input w-1/3 p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm" placeholder="Nom du site">
-                    <input type="url" class="link-url-input w-2/3 p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm" placeholder="https://...">
-                </div>
-            `;
-            renderSelectedFormTags();
-        }
-
-        function initManhwaAddPage() {
-            currentManhwaFormTags = [];
-            setManhwaFormRating(5);
-            const form = document.getElementById('manhwa-form');
-            if(form) form.reset();
-            document.getElementById('manhwa-images-inputs-container').innerHTML = '';
-            document.getElementById('manhwa-links-inputs-container').innerHTML = `
-                <div class="flex gap-2">
-                    <input type="text" class="manhwa-link-name-input w-1/3 p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm" placeholder="Nom du site">
-                    <input type="url" class="manhwa-link-url-input w-2/3 p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm" placeholder="https://...">
-                </div>
-            `;
-            renderSelectedManhwaFormTags();
-        }
-
-        function initDoujinshiAddPage() {
-            currentDoujinshiFormTags = [];
-            setDoujinshiFormRating(5);
-            const form = document.getElementById('doujinshi-form');
-            if(form) form.reset();
-            document.getElementById('doujinshi-images-inputs-container').innerHTML = '';
-            document.getElementById('doujinshi-links-inputs-container').innerHTML = `
-                <div class="flex gap-2">
-                    <input type="text" class="doujinshi-link-name-input w-1/3 p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm" placeholder="Nom du site">
-                    <input type="url" class="doujinshi-link-url-input w-2/3 p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm" placeholder="https://...">
-                </div>
-            `;
-            renderSelectedDoujinshiFormTags();
-        }
-
-        function initCosplayeuseAddPage() {
-            currentCosplayeuseFormTags = [];
-            setCosplayeuseFormRating(5);
-            const form = document.getElementById('cosplayeuse-form');
-            if(form) form.reset();
-            document.getElementById('cosplayeuse-images-inputs-container').innerHTML = '';
-            document.getElementById('cosplayeuse-links-inputs-container').innerHTML = `
-                <div class="flex gap-2">
-                    <input type="text" class="cosplayeuse-link-name-input w-1/3 p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm" placeholder="Nom du site">
-                    <input type="url" class="cosplayeuse-link-url-input w-2/3 p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 focus:outline-none focus:border-rose-600 text-sm" placeholder="https://...">
-                </div>
-            `;
-            renderSelectedCosplayeuseFormTags();
-        }
-
-        function renderSelectedTagsGeneric(tagsArray, containerId, removeCallbackName) {
-            const container = document.getElementById(containerId);
-            if (!container) return;
-            if (tagsArray.length === 0) {
-                container.innerHTML = `<span class="text-xs text-zinc-500 italic px-1">Aucun tag sélectionné...</span>`;
-                return;
-            }
-            container.innerHTML = tagsArray.map((tag, idx) => `
-                <span class="bg-zinc-900 text-zinc-200 text-xs px-2.5 py-1 rounded-lg border border-zinc-800 flex items-center gap-1.5 font-medium">
-                    ${escapeHtml(tag)}
-                    <button type="button" onclick="${removeCallbackName}(${idx})" class="text-zinc-500 hover:text-red-500 font-bold">×</button>
-                </span>
-            `).join('');
-        }
-
-        function renderSelectedFormTags() { renderSelectedTagsGeneric(currentFormTags, 'selected-tags-container', 'removeFormTag'); }
-        function removeFormTag(i) { currentFormTags.splice(i, 1); renderSelectedFormTags(); }
-
-        function renderEditSelectedFormTags() { renderSelectedTagsGeneric(currentEditFormTags, 'edit-selected-tags-container', 'removeEditFormTag'); }
-        function removeEditFormTag(i) { currentEditFormTags.splice(i, 1); renderEditSelectedFormTags(); }
-
-        function renderSelectedManhwaFormTags() { renderSelectedTagsGeneric(currentManhwaFormTags, 'manhwa-selected-tags-container', 'removeManhwaFormTag'); }
-        function removeManhwaFormTag(i) { currentManhwaFormTags.splice(i, 1); renderSelectedManhwaFormTags(); }
-
-        function renderEditManhwaSelectedFormTags() { renderSelectedTagsGeneric(currentEditManhwaFormTags, 'edit-manhwa-selected-tags-container', 'removeEditManhwaFormTag'); }
-        function removeEditManhwaFormTag(i) { currentEditManhwaFormTags.splice(i, 1); renderEditManhwaSelectedFormTags(); }
-
-        function renderSelectedDoujinshiFormTags() { renderSelectedTagsGeneric(currentDoujinshiFormTags, 'doujinshi-selected-tags-container', 'removeDoujinshiFormTag'); }
-        function removeDoujinshiFormTag(i) { currentDoujinshiFormTags.splice(i, 1); renderSelectedDoujinshiFormTags(); }
-
-        function renderEditDoujinshiSelectedFormTags() { renderSelectedTagsGeneric(currentEditDoujinshiFormTags, 'edit-doujinshi-selected-tags-container', 'removeEditDoujinshiFormTag'); }
-        function removeEditDoujinshiFormTag(i) { currentEditDoujinshiFormTags.splice(i, 1); renderEditDoujinshiSelectedFormTags(); }
-
-        function renderSelectedCosplayeuseFormTags() { renderSelectedTagsGeneric(currentCosplayeuseFormTags, 'cosplayeuse-selected-tags-container', 'removeCosplayeuseFormTag'); }
-        function removeCosplayeuseFormTag(i) { currentCosplayeuseFormTags.splice(i, 1); renderSelectedCosplayeuseFormTags(); }
-
-        function renderEditCosplayeuseSelectedFormTags() { renderSelectedTagsGeneric(currentEditCosplayeuseFormTags, 'edit-cosplayeuse-selected-tags-container', 'removeEditCosplayeuseFormTag'); }
-        function removeEditCosplayeuseFormTag(i) { currentEditCosplayeuseFormTags.splice(i, 1); renderEditCosplayeuseSelectedFormTags(); }
-
-        // Tag autocomplete bindings
-        function handleTagInput(e) {
-            const query = e.target.value.trim().toLowerCase();
-            const dropdown = document.getElementById('tag-dropdown');
-            if (query === '') { dropdown.classList.add('hidden'); return; }
-            const allTags = getAllTags();
-            const matchingTags = allTags.filter(t => t.toLowerCase().startsWith(query) && !currentFormTags.includes(t));
-            let html = '';
-            matchingTags.forEach(tag => {
-                html += `<div onclick="selectTagFromDropdown('${escapeHtml(tag)}')" class="px-3 py-2 text-xs text-zinc-100 hover:bg-zinc-900 cursor-pointer transition">${escapeHtml(tag)}</div>`;
-            });
-            const exactMatchExists = allTags.some(t => t.toLowerCase() === query);
-            if (!exactMatchExists && query.length > 0) {
-                const formattedQuery = query.charAt(0).toUpperCase() + query.slice(1);
-                html += `<div onclick="selectTagFromDropdown('${escapeHtml(formattedQuery)}')" class="px-3 py-2 text-xs text-zinc-200 font-semibold hover:bg-zinc-900 cursor-pointer transition border-t border-zinc-800">+ Créer le tag "${escapeHtml(formattedQuery)}"</div>`;
-            }
-            dropdown.innerHTML = html;
-            dropdown.classList.remove('hidden');
-        }
-        function selectTagFromDropdown(tag) {
-            if (!currentFormTags.includes(tag)) currentFormTags.push(tag);
-            document.getElementById('tag-autocomplete-input').value = '';
-            document.getElementById('tag-dropdown').classList.add('hidden');
-            renderSelectedFormTags();
-        }
-
-        function handleEditTagInput(e) {
-            const query = e.target.value.trim().toLowerCase();
-            const dropdown = document.getElementById('edit-tag-dropdown');
-            if (query === '') { dropdown.classList.add('hidden'); return; }
-            const allTags = getAllTags();
-            const matchingTags = allTags.filter(t => t.toLowerCase().startsWith(query) && !currentEditFormTags.includes(t));
-            let html = '';
-            matchingTags.forEach(tag => {
-                html += `<div onclick="selectEditTagFromDropdown('${escapeHtml(tag)}')" class="px-3 py-2 text-xs text-zinc-100 hover:bg-zinc-900 cursor-pointer transition">${escapeHtml(tag)}</div>`;
-            });
-            const exactMatchExists = allTags.some(t => t.toLowerCase() === query);
-            if (!exactMatchExists && query.length > 0) {
-                const formattedQuery = query.charAt(0).toUpperCase() + query.slice(1);
-                html += `<div onclick="selectEditTagFromDropdown('${escapeHtml(formattedQuery)}')" class="px-3 py-2 text-xs text-zinc-200 font-semibold hover:bg-zinc-900 cursor-pointer transition border-t border-zinc-800">+ Créer le tag "${escapeHtml(formattedQuery)}"</div>`;
-            }
-            dropdown.innerHTML = html;
-            dropdown.classList.remove('hidden');
-        }
-        function selectEditTagFromDropdown(tag) {
-            if (!currentEditFormTags.includes(tag)) currentEditFormTags.push(tag);
-            document.getElementById('edit-tag-autocomplete-input').value = '';
-            document.getElementById('edit-tag-dropdown').classList.add('hidden');
-            renderEditSelectedFormTags();
-        }
-
-        function handleManhwaTagInput(e) {
-            const query = e.target.value.trim().toLowerCase();
-            const dropdown = document.getElementById('manhwa-tag-dropdown');
-            if (query === '') { dropdown.classList.add('hidden'); return; }
-            const allTags = getAllManhwaTags();
-            const matchingTags = allTags.filter(t => t.toLowerCase().startsWith(query) && !currentManhwaFormTags.includes(t));
-            let html = '';
-            matchingTags.forEach(tag => {
-                html += `<div onclick="selectManhwaTagFromDropdown('${escapeHtml(tag)}')" class="px-3 py-2 text-xs text-zinc-100 hover:bg-zinc-900 cursor-pointer transition">${escapeHtml(tag)}</div>`;
-            });
-            const exactMatchExists = allTags.some(t => t.toLowerCase() === query);
-            if (!exactMatchExists && query.length > 0) {
-                const formattedQuery = query.charAt(0).toUpperCase() + query.slice(1);
-                html += `<div onclick="selectManhwaTagFromDropdown('${escapeHtml(formattedQuery)}')" class="px-3 py-2 text-xs text-zinc-200 font-semibold hover:bg-zinc-900 cursor-pointer transition border-t border-zinc-800">+ Créer le tag "${escapeHtml(formattedQuery)}"</div>`;
-            }
-            dropdown.innerHTML = html;
-            dropdown.classList.remove('hidden');
-        }
-        function selectManhwaTagFromDropdown(tag) {
-            if (!currentManhwaFormTags.includes(tag)) currentManhwaFormTags.push(tag);
-            document.getElementById('manhwa-tag-autocomplete-input').value = '';
-            document.getElementById('manhwa-tag-dropdown').classList.add('hidden');
-            renderSelectedManhwaFormTags();
-        }
-
-        function handleEditManhwaTagInput(e) {
-            const query = e.target.value.trim().toLowerCase();
-            const dropdown = document.getElementById('edit-manhwa-tag-dropdown');
-            if (query === '') { dropdown.classList.add('hidden'); return; }
-            const allTags = getAllManhwaTags();
-            const matchingTags = allTags.filter(t => t.toLowerCase().startsWith(query) && !currentEditManhwaFormTags.includes(t));
-            let html = '';
-            matchingTags.forEach(tag => {
-                html += `<div onclick="selectEditManhwaTagFromDropdown('${escapeHtml(tag)}')" class="px-3 py-2 text-xs text-zinc-100 hover:bg-zinc-900 cursor-pointer transition">${escapeHtml(tag)}</div>`;
-            });
-            const exactMatchExists = allTags.some(t => t.toLowerCase() === query);
-            if (!exactMatchExists && query.length > 0) {
-                const formattedQuery = query.charAt(0).toUpperCase() + query.slice(1);
-                html += `<div onclick="selectEditManhwaTagFromDropdown('${escapeHtml(formattedQuery)}')" class="px-3 py-2 text-xs text-zinc-200 font-semibold hover:bg-zinc-900 cursor-pointer transition border-t border-zinc-800">+ Créer le tag "${escapeHtml(formattedQuery)}"</div>`;
-            }
-            dropdown.innerHTML = html;
-            dropdown.classList.remove('hidden');
-        }
-        function selectEditManhwaTagFromDropdown(tag) {
-            if (!currentEditManhwaFormTags.includes(tag)) currentEditManhwaFormTags.push(tag);
-            document.getElementById('edit-manhwa-tag-autocomplete-input').value = '';
-            document.getElementById('edit-manhwa-tag-dropdown').classList.add('hidden');
-            renderEditManhwaSelectedFormTags();
-        }
-
-        function handleDoujinshiTagInput(e) {
-            const query = e.target.value.trim().toLowerCase();
-            const dropdown = document.getElementById('doujinshi-tag-dropdown');
-            if (query === '') { dropdown.classList.add('hidden'); return; }
-            const allTags = getAllDoujinshiTags();
-            const matchingTags = allTags.filter(t => t.toLowerCase().startsWith(query) && !currentDoujinshiFormTags.includes(t));
-            let html = '';
-            matchingTags.forEach(tag => {
-                html += `<div onclick="selectDoujinshiTagFromDropdown('${escapeHtml(tag)}')" class="px-3 py-2 text-xs text-zinc-100 hover:bg-zinc-900 cursor-pointer transition">${escapeHtml(tag)}</div>`;
-            });
-            const exactMatchExists = allTags.some(t => t.toLowerCase() === query);
-            if (!exactMatchExists && query.length > 0) {
-                const formattedQuery = query.charAt(0).toUpperCase() + query.slice(1);
-                html += `<div onclick="selectDoujinshiTagFromDropdown('${escapeHtml(formattedQuery)}')" class="px-3 py-2 text-xs text-zinc-200 font-semibold hover:bg-zinc-900 cursor-pointer transition border-t border-zinc-800">+ Créer le tag "${escapeHtml(formattedQuery)}"</div>`;
-            }
-            dropdown.innerHTML = html;
-            dropdown.classList.remove('hidden');
-        }
-        function selectDoujinshiTagFromDropdown(tag) {
-            if (!currentDoujinshiFormTags.includes(tag)) currentDoujinshiFormTags.push(tag);
-            document.getElementById('doujinshi-tag-autocomplete-input').value = '';
-            document.getElementById('doujinshi-tag-dropdown').classList.add('hidden');
-            renderSelectedDoujinshiFormTags();
-        }
-
-        function handleEditDoujinshiTagInput(e) {
-            const query = e.target.value.trim().toLowerCase();
-            const dropdown = document.getElementById('edit-doujinshi-tag-dropdown');
-            if (query === '') { dropdown.classList.add('hidden'); return; }
-            const allTags = getAllDoujinshiTags();
-            const matchingTags = allTags.filter(t => t.toLowerCase().startsWith(query) && !currentEditDoujinshiFormTags.includes(t));
-            let html = '';
-            matchingTags.forEach(tag => {
-                html += `<div onclick="selectEditDoujinshiTagFromDropdown('${escapeHtml(tag)}')" class="px-3 py-2 text-xs text-zinc-100 hover:bg-zinc-900 cursor-pointer transition">${escapeHtml(tag)}</div>`;
-            });
-            const exactMatchExists = allTags.some(t => t.toLowerCase() === query);
-            if (!exactMatchExists && query.length > 0) {
-                const formattedQuery = query.charAt(0).toUpperCase() + query.slice(1);
-                html += `<div onclick="selectEditDoujinshiTagFromDropdown('${escapeHtml(formattedQuery)}')" class="px-3 py-2 text-xs text-zinc-200 font-semibold hover:bg-zinc-900 cursor-pointer transition border-t border-zinc-800">+ Créer le tag "${escapeHtml(formattedQuery)}"</div>`;
-            }
-            dropdown.innerHTML = html;
-            dropdown.classList.remove('hidden');
-        }
-        function selectEditDoujinshiTagFromDropdown(tag) {
-            if (!currentEditDoujinshiFormTags.includes(tag)) currentEditDoujinshiFormTags.push(tag);
-            document.getElementById('edit-doujinshi-tag-autocomplete-input').value = '';
-            document.getElementById('edit-doujinshi-tag-dropdown').classList.add('hidden');
-            renderEditDoujinshiSelectedFormTags();
-        }
-
-        function handleCosplayeuseTagInput(e) {
-            const query = e.target.value.trim().toLowerCase();
-            const dropdown = document.getElementById('cosplayeuse-tag-dropdown');
-            if (query === '') { dropdown.classList.add('hidden'); return; }
-            const allTags = getAllCosplayeuseTags();
-            const matchingTags = allTags.filter(t => t.toLowerCase().startsWith(query) && !currentCosplayeuseFormTags.includes(t));
-            let html = '';
-            matchingTags.forEach(tag => {
-                html += `<div onclick="selectCosplayeuseTagFromDropdown('${escapeHtml(tag)}')" class="px-3 py-2 text-xs text-zinc-100 hover:bg-zinc-900 cursor-pointer transition">${escapeHtml(tag)}</div>`;
-            });
-            const exactMatchExists = allTags.some(t => t.toLowerCase() === query);
-            if (!exactMatchExists && query.length > 0) {
-                const formattedQuery = query.charAt(0).toUpperCase() + query.slice(1);
-                html += `<div onclick="selectCosplayeuseTagFromDropdown('${escapeHtml(formattedQuery)}')" class="px-3 py-2 text-xs text-zinc-200 font-semibold hover:bg-zinc-900 cursor-pointer transition border-t border-zinc-800">+ Créer le tag "${escapeHtml(formattedQuery)}"</div>`;
-            }
-            dropdown.innerHTML = html;
-            dropdown.classList.remove('hidden');
-        }
-        function selectCosplayeuseTagFromDropdown(tag) {
-            if (!currentCosplayeuseFormTags.includes(tag)) currentCosplayeuseFormTags.push(tag);
-            document.getElementById('cosplayeuse-tag-autocomplete-input').value = '';
-            document.getElementById('cosplayeuse-tag-dropdown').classList.add('hidden');
-            renderSelectedCosplayeuseFormTags();
-        }
-
-        function handleEditCosplayeuseTagInput(e) {
-            const query = e.target.value.trim().toLowerCase();
-            const dropdown = document.getElementById('edit-cosplayeuse-tag-dropdown');
-            if (query === '') { dropdown.classList.add('hidden'); return; }
-            const allTags = getAllCosplayeuseTags();
-            const matchingTags = allTags.filter(t => t.toLowerCase().startsWith(query) && !currentEditCosplayeuseFormTags.includes(t));
-            let html = '';
-            matchingTags.forEach(tag => {
-                html += `<div onclick="selectEditCosplayeuseTagFromDropdown('${escapeHtml(tag)}')" class="px-3 py-2 text-xs text-zinc-100 hover:bg-zinc-900 cursor-pointer transition">${escapeHtml(tag)}</div>`;
-            });
-            const exactMatchExists = allTags.some(t => t.toLowerCase() === query);
-            if (!exactMatchExists && query.length > 0) {
-                const formattedQuery = query.charAt(0).toUpperCase() + query.slice(1);
-                html += `<div onclick="selectEditCosplayeuseTagFromDropdown('${escapeHtml(formattedQuery)}')" class="px-3 py-2 text-xs text-zinc-200 font-semibold hover:bg-zinc-900 cursor-pointer transition border-t border-zinc-800">+ Créer le tag "${escapeHtml(formattedQuery)}"</div>`;
-            }
-            dropdown.innerHTML = html;
-            dropdown.classList.remove('hidden');
-        }
-        function selectEditCosplayeuseTagFromDropdown(tag) {
-            if (!currentEditCosplayeuseFormTags.includes(tag)) currentEditCosplayeuseFormTags.push(tag);
-            document.getElementById('edit-cosplayeuse-tag-autocomplete-input').value = '';
-            document.getElementById('edit-cosplayeuse-tag-dropdown').classList.add('hidden');
-            renderEditCosplayeuseSelectedFormTags();
-        }
-
-        fetchArtistsFromCloud();
     </script>
 </body>
 </html>
