@@ -1,0 +1,136 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes gx-shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes gx-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background-color: #0a0a0c;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0a0a0c;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #27272a;
+    border: 2px solid #0a0a0c;
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3f3f46;
+  }
+}
+
+@layer components {
+  /* Panneau de base */
+  .gx-panel {
+    @apply rounded-xl border border-hairline bg-charcoal shadow-grimoire;
+  }
+
+  /* Filet éditorial doré / carmin */
+  .gx-rule {
+    @apply h-px flex-1 bg-gradient-to-r from-transparent via-hairline to-transparent;
+  }
+
+  .gx-eyebrow {
+    @apply font-display text-[10px] uppercase tracking-[0.35em] text-zinc-500;
+  }
+
+  /* Navigation latérale (bureau) */
+  .gx-nav-label {
+    @apply px-3 pb-2 font-display text-[9px] uppercase tracking-[0.28em] text-zinc-600;
+  }
+  .gx-nav-item {
+    @apply flex w-full items-center gap-3 rounded-lg border border-transparent px-3 py-2.5 text-[13px] font-medium text-zinc-400 transition-colors duration-200 hover:bg-white/[0.04] hover:text-zinc-100;
+  }
+  .gx-nav-item.is-active {
+    @apply border-carmine/40 bg-carmine/15 text-amber-300;
+  }
+
+  /* Entrées de la barre de navigation mobile */
+  .gx-tab-item {
+    @apply flex flex-col items-center gap-1.5 py-2.5 text-[9px] uppercase tracking-[0.16em] text-zinc-500 transition-colors duration-200;
+  }
+  .gx-tab-item.is-active {
+    @apply text-amber-400;
+  }
+
+  /* Formulaires */
+  .gx-label {
+    @apply mb-1.5 block font-display text-[10px] uppercase tracking-[0.22em] text-zinc-500;
+  }
+  .gx-input {
+    @apply w-full rounded-lg border border-hairline bg-night px-3 py-2.5 text-sm text-zinc-100 placeholder-zinc-600 transition focus:border-carmine focus:outline-none focus:ring-1 focus:ring-carmine/40;
+  }
+
+  /* Boutons */
+  .gx-btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-3.5 py-2.5 text-xs font-semibold tracking-wide transition-all duration-200;
+  }
+  .gx-btn-primary {
+    @apply bg-carmine text-white hover:bg-ruby hover:shadow-glow;
+  }
+  .gx-btn-ghost {
+    @apply border border-hairline bg-graphite text-zinc-300 hover:border-zinc-700 hover:text-zinc-100;
+  }
+  .gx-btn-danger {
+    @apply border border-hairline bg-graphite text-zinc-400 hover:border-ruby/60 hover:bg-carmine/20 hover:text-rose-200;
+  }
+
+  /* Puces */
+  .gx-chip {
+    @apply inline-flex items-center gap-1.5 rounded-md border border-hairline bg-graphite px-2 py-1 text-[10px] font-medium tracking-wide text-zinc-400;
+  }
+  .gx-chip-gold {
+    @apply inline-flex items-center gap-1.5 rounded-md border border-amber-500/30 bg-amber-500/10 px-2 py-1 text-[10px] font-medium tracking-wide text-amber-300;
+  }
+  .gx-chip-toggle {
+    @apply inline-flex items-center gap-1.5 rounded-md border border-hairline bg-graphite px-2.5 py-1.5 text-[11px] font-medium text-zinc-400 transition-all duration-200 hover:border-zinc-700 hover:text-zinc-200;
+  }
+  .gx-chip-toggle.is-active {
+    @apply border-carmine/60 bg-carmine/20 text-amber-200;
+  }
+
+  /* Ornements d'angle des cartes collector */
+  .gx-corner {
+    @apply pointer-events-none absolute h-3 w-3 border-amber-500/0 transition-colors duration-300;
+  }
+  .group:hover .gx-corner {
+    @apply border-amber-500/70;
+  }
+
+  /* Squelettes de chargement */
+  .gx-skeleton {
+    @apply relative overflow-hidden rounded bg-zinc-800/50;
+  }
+  .gx-skeleton::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+    animation: gx-shimmer 1.6s infinite;
+  }
+}
